@@ -1,209 +1,24 @@
-@import "tailwindcss";
-
-@theme {
-    /* =========================
-     CORES
-     ========================= */
-
-    --color-inverse-surface: #213145;
-    --color-tertiary-fixed-dim: #68dba9;
-    --color-on-surface-variant: #45464d;
-    --color-secondary-fixed-dim: #6bd8cb;
-    --color-inverse-on-surface: #eaf1ff;
-    --color-on-surface: #0b1c30;
-    --color-on-tertiary-fixed-variant: #005137;
-    --color-secondary: #006a61;
-    --color-surface: #f8f9ff;
-    --color-surface-bright: #f8f9ff;
-    --color-on-error: #ffffff;
-    --color-primary: #000000;
-    --color-on-secondary: #ffffff;
-    --color-primary-container: #131b2e;
-    --color-secondary-container: #86f2e4;
-    --color-on-error-container: #93000a;
-    --color-inverse-primary: #bec6e0;
-    --color-surface-dim: #cbdbf5;
-    --color-outline-variant: #c6c6cd;
-    --color-tertiary: #000000;
-    --color-surface-tint: #565e74;
-    --color-on-primary: #ffffff;
-    --color-on-tertiary-fixed: #002114;
-    --color-surface-container: #e5eeff;
-    --color-primary-fixed-dim: #bec6e0;
-    --color-on-secondary-fixed: #00201d;
-    --color-on-secondary-fixed-variant: #005049;
-    --color-on-primary-container: #7c839b;
-    --color-error: #ba1a1a;
-    --color-on-tertiary-container: #069669;
-    --color-background: #f8f9ff;
-    --color-on-tertiary: #ffffff;
-    --color-on-primary-fixed-variant: #3f465c;
-    --color-surface-container-lowest: #ffffff;
-    --color-surface-container-highest: #d3e4fe;
-    --color-on-background: #0b1c30;
-    --color-surface-container-high: #dce9ff;
-    --color-primary-fixed: #dae2fd;
-    --color-surface-container-low: #eff4ff;
-    --color-surface-variant: #d3e4fe;
-    --color-error-container: #ffdad6;
-    --color-outline: #76777d;
-    --color-on-primary-fixed: #131b2e;
-    --color-secondary-fixed: #89f5e7;
-    --color-tertiary-fixed: #85f8c4;
-    --color-tertiary-container: #002114;
-    --color-on-secondary-container: #006f66;
-
-    /* =========================
-     ESPAÇAMENTOS
-     ========================= */
-
-    --spacing-space-xs: 0.5rem;
-    --spacing-gutter-sm: 1rem;
-    --spacing-space-3xl: 4.5rem;
-    --spacing-gutter: 1.5rem;
-    --spacing-space-md: 1rem;
-    --spacing-space-2xs: 0.25rem;
-    --spacing-margin-lg: 4rem;
-    --spacing-space-sm: 0.75rem;
-    --spacing-margin: 1rem;
-    --spacing-margin-md: 2rem;
-    --spacing-space-xl: 2rem;
-    --spacing-gutter-lg: 2rem;
-    --spacing-space-lg: 1.5rem;
-    --spacing-space-2xl: 3rem;
-
-    /* =========================
-     FONTES
-     ========================= */
-
-    --font-label-md: "Inter";
-    --font-label-lg: "Inter";
-    --font-label-sm: "Inter";
-
-    --font-headline-xl: "Plus Jakarta Sans";
-    --font-headline-lg: "Plus Jakarta Sans";
-    --font-headline-md: "Plus Jakarta Sans";
-    --font-headline-sm: "Plus Jakarta Sans";
-
-    --font-price-card: "Plus Jakarta Sans";
-    --font-price-hero: "Plus Jakarta Sans";
-
-    --font-body-lg: "Plus Jakarta Sans";
-    --font-body-md: "Plus Jakarta Sans";
-    --font-body-sm: "Plus Jakarta Sans";
-
-    --font-display-hero: "Plus Jakarta Sans";
-    --font-display-hero-mobile: "Plus Jakarta Sans";
-    --font-headline-xl-mobile: "Plus Jakarta Sans";
-
-    /* =========================
-     TAMANHOS DE TEXTO
-     ========================= */
-
-    --text-label-md: 12px;
-    --text-label-md--line-height: 16px;
-    --text-label-md--letter-spacing: 0.02em;
-    --text-label-md--font-weight: 600;
-
-    --text-headline-xl: 36px;
-    --text-headline-xl--line-height: 44px;
-    --text-headline-xl--letter-spacing: -0.02em;
-    --text-headline-xl--font-weight: 700;
-
-    --text-headline-lg: 28px;
-    --text-headline-lg--line-height: 36px;
-    --text-headline-lg--letter-spacing: -0.01em;
-    --text-headline-lg--font-weight: 700;
-
-    --text-headline-sm: 18px;
-    --text-headline-sm--line-height: 26px;
-    --text-headline-sm--font-weight: 600;
-
-    --text-price-card: 22px;
-    --text-price-card--line-height: 28px;
-    --text-price-card--letter-spacing: -0.015em;
-    --text-price-card--font-weight: 800;
-
-    --text-body-lg: 18px;
-    --text-body-lg--line-height: 28px;
-    --text-body-lg--font-weight: 400;
-
-    --text-headline-xl-mobile: 26px;
-    --text-headline-xl-mobile--line-height: 34px;
-    --text-headline-xl-mobile--letter-spacing: -0.015em;
-    --text-headline-xl-mobile--font-weight: 700;
-
-    --text-display-hero-mobile: 32px;
-    --text-display-hero-mobile--line-height: 40px;
-    --text-display-hero-mobile--letter-spacing: -0.015em;
-    --text-display-hero-mobile--font-weight: 800;
-
-    --text-headline-md: 22px;
-    --text-headline-md--line-height: 30px;
-    --text-headline-md--letter-spacing: -0.01em;
-    --text-headline-md--font-weight: 600;
-
-    --text-body-md: 15px;
-    --text-body-md--line-height: 24px;
-    --text-body-md--font-weight: 400;
-
-    --text-display-hero: 48px;
-    --text-display-hero--line-height: 56px;
-    --text-display-hero--letter-spacing: -0.02em;
-    --text-display-hero--font-weight: 800;
-
-    --text-body-sm: 13px;
-    --text-body-sm--line-height: 20px;
-    --text-body-sm--font-weight: 400;
-
-    --text-label-lg: 14px;
-    --text-label-lg--line-height: 20px;
-    --text-label-lg--letter-spacing: 0.01em;
-    --text-label-lg--font-weight: 600;
-
-    --text-price-hero: 32px;
-    --text-price-hero--line-height: 38px;
-    --text-price-hero--letter-spacing: -0.02em;
-    --text-price-hero--font-weight: 800;
-
-    --text-label-sm: 11px;
-    --text-label-sm--line-height: 14px;
-    --text-label-sm--letter-spacing: 0.04em;
-    --text-label-sm--font-weight: 700;
-
-    /* =========================
-     BORDAS
-     ========================= */
-
-    --radius-default: 0.25rem;
-    --radius-lg: 0.5rem;
-    --radius-xl: 0.75rem;
-    --radius-full: 9999px;
-}
-
-/* CSS global original */
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    overscroll-behavior: none;
+:host {
+  display: block;
+  min-height: 100vh;
 }
 
 button,
 a {
-    -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 
-::-webkit-scrollbar {
-    display: none;
+img {
+  display: block;
 }
 
-@media print {
-    .no-print {
-        display: none !important;
-    }
+input {
+  font: inherit;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

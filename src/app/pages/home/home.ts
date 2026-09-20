@@ -1,146 +1,139 @@
-import { Component, HostListener } from '@angular/core';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+
+interface Imovel {
+  id: number;
+  titulo: string;
+  localizacao: string;
+  preco: string;
+  imagem: string;
+  quartos: number;
+  banheiros: number;
+  vagas: number;
+  area: number;
+  tipo: string;
+  destaque?: boolean;
+}
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FormsModule],
+  imports: [RouterLink, FormsModule],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
 export class Home {
 
-  favorito = false;
+  imoveis: Imovel[] = [
+    {
+      id: 1,
+      titulo: 'Cobertura Duplex com Vista para a Baía',
+      localizacao: 'Vitória • Salvador/BA',
+      preco: 'R$ 3.850.000',
+      imagem:
+        'https://lh3.googleusercontent.com/aida-public/AB6AXuA3blaN2K5AQTvucNrSyYMYNFpMIvNrEw5St2PAFat8mNYOfAgpEeeZLy-KdU8gww8erDtjq8AtZYhBQQfKX1pCrzlev9fRxWERzdn4Jpi6rANF-Fmk_mElGdjjae37X9x9ZylkcH3UaR0PtPfoqx4L-Yi4Si1s1g3Vy0eLsOYAPMivIZ6q4jQfFxNNSaxp-b98T636g7p6FnVHYEU0BwM8LsXt32hUHtLuasaD7JtnvlOxjjKeeXuy',
+      quartos: 4,
+      banheiros: 5,
+      vagas: 4,
+      area: 310,
+      tipo: 'Cobertura',
+      destaque: true
+    },
 
-  galeriaAberta = false;
+    {
+      id: 2,
+      titulo: 'Apartamento de Alto Padrão',
+      localizacao: 'Barra • Salvador/BA',
+      preco: 'R$ 1.950.000',
+      imagem:
+        'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
+      quartos: 3,
+      banheiros: 4,
+      vagas: 2,
+      area: 185,
+      tipo: 'Apartamento',
+      destaque: true
+    },
 
-  abaContato: 'msg' | 'visit' = 'msg';
+    {
+      id: 3,
+      titulo: 'Apartamento Moderno com Varanda',
+      localizacao: 'Ondina • Salvador/BA',
+      preco: 'R$ 980.000',
+      imagem:
+        'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=1200&q=80',
+      quartos: 3,
+      banheiros: 2,
+      vagas: 2,
+      area: 120,
+      tipo: 'Apartamento'
+    },
 
-  toastVisivel = false;
-  toastErro = false;
-  mensagemToast = 'Notificação';
-  toastIcone = 'check_circle';
+    {
+      id: 4,
+      titulo: 'Casa Ampla com Piscina',
+      localizacao: 'Praia do Flamengo • Salvador/BA',
+      preco: 'R$ 2.400.000',
+      imagem:
+        'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+      quartos: 4,
+      banheiros: 5,
+      vagas: 4,
+      area: 350,
+      tipo: 'Casa'
+    },
 
-  nomeLead = '';
-  telefoneLead = '';
-  emailLead = '';
-  mensagemLead =
-    'Olá Carlos! Gostaria de agendar uma visita e receber a documentação desta Cobertura Duplex no Corredor da Vitória (Cód LI-98420).';
+    {
+      id: 5,
+      titulo: 'Apartamento com Vista para o Mar',
+      localizacao: 'Rio Vermelho • Salvador/BA',
+      preco: 'R$ 1.350.000',
+      imagem:
+        'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80',
+      quartos: 3,
+      banheiros: 3,
+      vagas: 2,
+      area: 145,
+      tipo: 'Apartamento'
+    },
 
-  private toastTimeout?: ReturnType<typeof setTimeout>;
-
-  alternarFavorito(): void {
-    this.favorito = !this.favorito;
-
-    if (this.favorito) {
-      this.mostrarToast('Imóvel adicionado aos seus favoritos!');
-    } else {
-      this.mostrarToast('Imóvel removido dos favoritos.');
+    {
+      id: 6,
+      titulo: 'Cobertura Moderna',
+      localizacao: 'Graça • Salvador/BA',
+      preco: 'R$ 2.750.000',
+      imagem:
+        'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80',
+      quartos: 4,
+      banheiros: 4,
+      vagas: 3,
+      area: 270,
+      tipo: 'Cobertura'
     }
-  }
+  ];
 
-  async compartilharImovel(): Promise<void> {
-    const dados = {
-      title: 'Cobertura Duplex 310m² - localizaImóveis',
-      text: 'Confira esta espetacular cobertura duplex com vista panorâmica para a Baía de Todos os Santos.',
-      url: window.location.href
-    };
+  termoBusca = '';
 
-    if (navigator.share) {
-      try {
-        await navigator.share(dados);
-      } catch {
-        // O usuário cancelou o compartilhamento.
-      }
+  get imoveisFiltrados(): Imovel[] {
+    const termo = this.termoBusca.trim().toLowerCase();
 
-      return;
+    if (!termo) {
+      return this.imoveis;
     }
 
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      this.mostrarToast('Link do imóvel copiado para a área de transferência!');
-    } catch {
-      this.mostrarToast('Não foi possível copiar o link.', true);
-    }
-  }
-
-  imprimirFicha(): void {
-    window.print();
-  }
-
-  alternarAba(aba: 'msg' | 'visit'): void {
-    this.abaContato = aba;
-  }
-
-  setMensagemRapida(texto: string): void {
-    this.mensagemLead = texto;
-  }
-
-  enviarMensagem(): void {
-    const nome = this.nomeLead.trim() || 'cliente';
-
-    this.mostrarToast(
-      `Obrigado ${nome}! Sua mensagem foi enviada ao corretor Carlos Silva.`
+    return this.imoveis.filter(imovel =>
+      imovel.titulo.toLowerCase().includes(termo) ||
+      imovel.localizacao.toLowerCase().includes(termo) ||
+      imovel.tipo.toLowerCase().includes(termo)
     );
-
-    this.nomeLead = '';
-    this.telefoneLead = '';
-    this.emailLead = '';
-    this.mensagemLead =
-      'Olá Carlos! Gostaria de agendar uma visita e receber a documentação desta Cobertura Duplex no Corredor da Vitória (Cód LI-98420).';
   }
 
-  confirmarAgendamento(): void {
-    this.mostrarToast(
-      'Visita solicitada com sucesso! O corretor confirmará em breve.'
-    );
+  pesquisar(): void {
+    // A filtragem já acontece automaticamente pelo getter.
   }
 
-  abrirGaleria(): void {
-    this.galeriaAberta = true;
-    document.body.style.overflow = 'hidden';
-  }
-
-  fecharGaleria(): void {
-    this.galeriaAberta = false;
-    document.body.style.overflow = '';
-  }
-
-  imagemAnterior(): void {
-    this.mostrarToast('Exibindo imagem anterior');
-  }
-
-  proximaImagem(): void {
-    this.mostrarToast('Exibindo próxima imagem');
-  }
-
-  abrirTourVirtual(): void {
-    this.mostrarToast(
-      'Carregando Tour Virtual 360° em alta fidelidade...'
-    );
-
-    this.abrirGaleria();
-  }
-
-  mostrarToast(mensagem: string, erro = false): void {
-    this.mensagemToast = mensagem;
-    this.toastErro = erro;
-    this.toastIcone = erro ? 'error' : 'check_circle';
-    this.toastVisivel = true;
-
-    if (this.toastTimeout) {
-      clearTimeout(this.toastTimeout);
-    }
-
-    this.toastTimeout = setTimeout(() => {
-      this.toastVisivel = false;
-    }, 3500);
-  }
-
-  @HostListener('document:keydown.escape')
-  fecharGaleriaComEsc(): void {
-    if (this.galeriaAberta) {
-      this.fecharGaleria();
-    }
+  limparBusca(): void {
+    this.termoBusca = '';
   }
 }
