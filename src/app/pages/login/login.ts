@@ -18,10 +18,11 @@ export class Login {
 
   nomeCadastro = '';
   emailCadastro = '';
+  telefoneCadastro = '';
+  creciCadastro = '';
   senhaCadastro = '';
   confirmarSenha = '';
 
-  // Tipo de conta
   perfilCadastro: 'usuario' | 'corretor' = 'usuario';
 
   aceitouLGPD = false;
@@ -29,7 +30,7 @@ export class Login {
   mensagemErro = '';
   mensagemSucesso = '';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   abrirCadastro(): void {
     this.mostrarCadastro = true;
@@ -76,7 +77,6 @@ export class Login {
 
     localStorage.setItem('usuarioLogado', 'true');
 
-    // Verifica o tipo de conta
     if (usuario.perfil === 'corretor') {
       this.router.navigate(['/corretor']);
     } else {
@@ -103,6 +103,16 @@ export class Login {
       return;
     }
 
+    // Campos obrigatórios somente para corretor
+    if (this.perfilCadastro === 'corretor') {
+
+      if (!this.telefoneCadastro || !this.creciCadastro) {
+        this.mensagemErro =
+          'Para cadastrar um corretor, informe o telefone e o CRECI.';
+        return;
+      }
+    }
+
     const usuarioSalvo = localStorage.getItem('usuario');
 
     if (usuarioSalvo) {
@@ -119,7 +129,13 @@ export class Login {
       nome: this.nomeCadastro,
       email: this.emailCadastro,
       senha: this.senhaCadastro,
-      perfil: this.perfilCadastro
+      perfil: this.perfilCadastro,
+      telefone: this.perfilCadastro === 'corretor'
+        ? this.telefoneCadastro
+        : '',
+      creci: this.perfilCadastro === 'corretor'
+        ? this.creciCadastro
+        : ''
     };
 
     localStorage.setItem(
@@ -127,16 +143,23 @@ export class Login {
       JSON.stringify(novoUsuario)
     );
 
-    this.mensagemSucesso = 'Cadastro realizado com sucesso!';
+    this.mensagemSucesso =
+      this.perfilCadastro === 'corretor'
+        ? 'Cadastro de corretor realizado com sucesso!'
+        : 'Cadastro realizado com sucesso!';
 
     // Já coloca o e-mail no campo de login
     this.emailLogin = this.emailCadastro;
 
-    // Limpa os campos do cadastro
+    // Limpa os campos
     this.nomeCadastro = '';
     this.emailCadastro = '';
+    this.telefoneCadastro = '';
+    this.creciCadastro = '';
     this.senhaCadastro = '';
     this.confirmarSenha = '';
+
+    // Volta para usuário como padrão
     this.perfilCadastro = 'usuario';
 
     setTimeout(() => {

@@ -64,57 +64,7 @@
       <form (ngSubmit)="entrar()" class="space-y-5">
 
 
-        <!-- TIPO DE CONTA -->
-        <div class="space-y-3">
 
-          <label class="block text-sm font-medium text-white/90">
-            Tipo de conta
-          </label>
-
-          <div class="grid grid-cols-2 gap-3">
-
-            <!-- USUÁRIO -->
-            <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-white/20
-             bg-white/10 p-4 transition hover:bg-white/15">
-
-              <input type="radio" name="perfilCadastro" value="usuario" [(ngModel)]="perfilCadastro"
-                class="h-4 w-4 accent-teal-500">
-
-              <div>
-                <p class="text-sm font-semibold text-white">
-                  Usuário
-                </p>
-
-                <p class="text-xs text-white/50">
-                  Procurar imóveis
-                </p>
-              </div>
-
-            </label>
-
-
-            <!-- CORRETOR -->
-            <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-white/20
-             bg-white/10 p-4 transition hover:bg-white/15">
-
-              <input type="radio" name="perfilCadastro" value="corretor" [(ngModel)]="perfilCadastro"
-                class="h-4 w-4 accent-teal-500">
-
-              <div>
-                <p class="text-sm font-semibold text-white">
-                  Corretor
-                </p>
-
-                <p class="text-xs text-white/50">
-                  Atender interessados
-                </p>
-              </div>
-
-            </label>
-
-          </div>
-
-        </div>
         <!-- E-MAIL -->
         <div class="space-y-2">
 
@@ -152,7 +102,49 @@
           </div>
 
         </div>
+        <!-- DADOS DO CORRETOR -->
+        @if (perfilCadastro === 'corretor') {
 
+        <!-- TELEFONE -->
+        <div class="space-y-2">
+
+          <label for="telefoneCadastro" class="block text-sm font-medium text-white/90">
+            Telefone
+          </label>
+
+          <input id="telefoneCadastro" type="tel" name="telefoneCadastro" [(ngModel)]="telefoneCadastro"
+            placeholder="Digite seu telefone" required class="w-full rounded-xl border border-white/20
+             bg-white/10 py-3.5 px-4
+             text-white outline-none
+             placeholder:text-white/40
+             transition duration-200
+             focus:border-white/50
+             focus:bg-white/15
+             focus:ring-2 focus:ring-white/20">
+
+        </div>
+
+
+        <!-- CRECI -->
+        <div class="space-y-2">
+
+          <label for="creciCadastro" class="block text-sm font-medium text-white/90">
+            CRECI
+          </label>
+
+          <input id="creciCadastro" type="text" name="creciCadastro" [(ngModel)]="creciCadastro"
+            placeholder="Ex.: 12345-BA" required class="w-full rounded-xl border border-white/20
+             bg-white/10 py-3.5 px-4
+             text-white outline-none
+             placeholder:text-white/40
+             transition duration-200
+             focus:border-white/50
+             focus:bg-white/15
+             focus:ring-2 focus:ring-white/20">
+
+        </div>
+
+        }
 
         <!-- SENHA -->
         <div class="space-y-2">
@@ -349,7 +341,57 @@
                      focus:ring-2 focus:ring-white/20">
 
         </div>
+        <!-- TIPO DE CONTA -->
+        <div class="space-y-3">
 
+          <label class="block text-sm font-medium text-white/90">
+            Tipo de conta
+          </label>
+
+          <div class="grid grid-cols-2 gap-3">
+
+            <!-- USUÁRIO -->
+            <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-white/20
+             bg-white/10 p-4 transition hover:bg-white/15">
+
+              <input type="radio" name="perfilCadastro" value="usuario" [(ngModel)]="perfilCadastro"
+                class="h-4 w-4 accent-teal-500">
+
+              <div>
+                <p class="text-sm font-semibold text-white">
+                  Usuário
+                </p>
+
+                <p class="text-xs text-white/50">
+                  Procurar imóveis
+                </p>
+              </div>
+
+            </label>
+
+
+            <!-- CORRETOR -->
+            <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-white/20
+             bg-white/10 p-4 transition hover:bg-white/15">
+
+              <input type="radio" name="perfilCadastro" value="corretor" [(ngModel)]="perfilCadastro"
+                class="h-4 w-4 accent-teal-500">
+
+              <div>
+                <p class="text-sm font-semibold text-white">
+                  Corretor
+                </p>
+
+                <p class="text-xs text-white/50">
+                  Atender interessados
+                </p>
+              </div>
+
+            </label>
+
+          </div>
+
+        </div>
 
         <!-- E-MAIL -->
         <div class="space-y-2">
@@ -369,7 +411,49 @@
                      focus:ring-2 focus:ring-white/20">
 
         </div>
+        <!-- DADOS DO CORRETOR -->
+        @if (perfilCadastro === 'corretor') {
 
+        <!-- TELEFONE -->
+        <div class="space-y-2">
+
+          <label for="telefoneCadastro" class="block text-sm font-medium text-white/90">
+            Telefone
+          </label>
+
+          <input id="telefoneCadastro" type="tel" name="telefoneCadastro" [(ngModel)]="telefoneCadastro"
+            placeholder="Digite seu telefone" required class="w-full rounded-xl border border-white/20
+             bg-white/10 py-3.5 px-4
+             text-white outline-none
+             placeholder:text-white/40
+             transition duration-200
+             focus:border-white/50
+             focus:bg-white/15
+             focus:ring-2 focus:ring-white/20">
+
+        </div>
+
+
+        <!-- CRECI -->
+        <div class="space-y-2">
+
+          <label for="creciCadastro" class="block text-sm font-medium text-white/90">
+            CRECI
+          </label>
+
+          <input id="creciCadastro" type="text" name="creciCadastro" [(ngModel)]="creciCadastro"
+            placeholder="Ex.: 12345-BA" required class="w-full rounded-xl border border-white/20
+             bg-white/10 py-3.5 px-4
+             text-white outline-none
+             placeholder:text-white/40
+             transition duration-200
+             focus:border-white/50
+             focus:bg-white/15
+             focus:ring-2 focus:ring-white/20">
+
+        </div>
+
+        }
 
         <!-- SENHA -->
         <div class="space-y-2">
