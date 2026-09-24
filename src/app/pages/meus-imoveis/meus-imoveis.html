@@ -1,0 +1,243 @@
+<div class="min-h-screen bg-slate-50">
+
+  <!-- Cabeçalho -->
+  <header class="border-b border-slate-200 bg-white">
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+
+      <a
+        routerLink="/home"
+        class="text-2xl font-bold text-slate-800"
+      >
+        localiza<span class="text-teal-600">Imóveis</span>
+      </a>
+
+      <a
+        routerLink="/home"
+        class="rounded-full px-4 py-2 text-sm font-semibold text-slate-600 transition hover:bg-slate-100"
+      >
+        ← Voltar para imóveis
+      </a>
+
+    </div>
+  </header>
+
+
+  <!-- Conteúdo -->
+  <main class="mx-auto max-w-7xl px-6 py-10">
+
+    <!-- Título -->
+    <div class="mb-8">
+
+      <p class="mb-2 text-sm font-medium text-teal-600">
+        Área do usuário
+      </p>
+
+      <h1 class="text-3xl font-bold text-slate-900">
+        Meus imóveis
+      </h1>
+
+      <p class="mt-2 text-slate-500">
+        Olá, {{ usuarioNome }}! Aqui estão os imóveis que você cadastrou.
+      </p>
+
+    </div>
+
+
+    <!-- Nenhum imóvel -->
+    @if (imoveis.length === 0) {
+
+      <div class="rounded-2xl border border-slate-200 bg-white p-10 text-center shadow-sm">
+
+        <div class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-teal-50">
+          <span class="material-symbols-outlined text-3xl text-teal-600">
+            home_work
+          </span>
+        </div>
+
+        <h2 class="text-xl font-semibold text-slate-800">
+          Você ainda não cadastrou nenhum imóvel
+        </h2>
+
+        <p class="mx-auto mt-2 max-w-md text-slate-500">
+          Cadastre seu primeiro imóvel para começar a anunciá-lo no LocalizaImóveis.
+        </p>
+
+        <a
+          routerLink="/cadastrar-imoveis"
+          class="mt-6 inline-flex items-center gap-2 rounded-xl bg-teal-600 px-6 py-3 font-semibold text-white transition hover:bg-teal-700"
+        >
+          <span class="material-symbols-outlined">
+            add_home
+          </span>
+
+          Cadastrar imóvel
+        </a>
+
+      </div>
+
+    }
+
+
+    <!-- Imóveis cadastrados -->
+    @if (imoveis.length > 0) {
+
+      <div class="mb-6 flex items-center justify-between">
+
+        <div>
+          <h2 class="text-xl font-bold text-slate-800">
+            Seus anúncios
+          </h2>
+
+          <p class="mt-1 text-sm text-slate-500">
+            {{ imoveis.length }}
+            @if (imoveis.length === 1) {
+              imóvel cadastrado
+            } @else {
+              imóveis cadastrados
+            }
+          </p>
+        </div>
+
+        <a
+          routerLink="/cadastrar-imoveis"
+          class="inline-flex items-center gap-2 rounded-xl bg-teal-600 px-5 py-3 font-semibold text-white transition hover:bg-teal-700"
+        >
+          <span class="material-symbols-outlined">
+            add
+          </span>
+
+          Novo imóvel
+        </a>
+
+      </div>
+
+
+      <!-- Cards -->
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+        @for (imovel of imoveis; track imovel.id) {
+
+          <article
+            class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+          >
+
+            <!-- Imagem -->
+            <div class="relative h-56 overflow-hidden bg-slate-100">
+
+              <img
+                [src]="imovel.imagem"
+                [alt]="imovel.titulo"
+                class="h-full w-full object-cover"
+              >
+
+              <div
+                class="absolute left-4 top-4 rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-teal-700 shadow-sm"
+              >
+                {{ imovel.tipo }}
+              </div>
+
+            </div>
+
+
+            <!-- Informações -->
+            <div class="p-5">
+
+              <h3 class="line-clamp-2 text-lg font-bold text-slate-800">
+                {{ imovel.titulo }}
+              </h3>
+
+              <p class="mt-2 flex items-center gap-1 text-sm text-slate-500">
+                <span class="material-symbols-outlined text-base">
+                  location_on
+                </span>
+
+                {{ imovel.localizacao }}
+              </p>
+
+
+              <!-- Características -->
+              <div class="mt-4 flex flex-wrap gap-3 text-sm text-slate-600">
+
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-base">
+                    square_foot
+                  </span>
+
+                  {{ imovel.area }} m²
+                </span>
+
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-base">
+                    bed
+                  </span>
+
+                  {{ imovel.quartos }}
+                  quartos
+                </span>
+
+                <span class="flex items-center gap-1">
+                  <span class="material-symbols-outlined text-base">
+                    bathtub
+                  </span>
+
+                  {{ imovel.banheiros }}
+                </span>
+
+              </div>
+
+
+              <!-- Preço -->
+              <div class="mt-5">
+
+                <p class="text-xs text-slate-400">
+                  Preço
+                </p>
+
+                <p class="mt-1 text-xl font-bold text-teal-700">
+                  {{ imovel.preco }}
+                </p>
+
+              </div>
+
+
+              <!-- Botões -->
+              <div class="mt-5 grid grid-cols-2 gap-3">
+
+                <a
+                  [routerLink]="['/imovel', imovel.id]"
+                  class="flex items-center justify-center gap-2 rounded-xl border border-teal-200 px-4 py-3 text-sm font-semibold text-teal-700 transition hover:bg-teal-50"
+                >
+                  <span class="material-symbols-outlined text-base">
+                    visibility
+                  </span>
+
+                  Ver anúncio
+                </a>
+
+                <button
+                  type="button"
+                  (click)="excluirImovel(imovel.id)"
+                  class="flex items-center justify-center gap-2 rounded-xl border border-red-200 px-4 py-3 text-sm font-semibold text-red-600 transition hover:bg-red-50"
+                >
+                  <span class="material-symbols-outlined text-base">
+                    delete
+                  </span>
+
+                  Excluir
+                </button>
+
+              </div>
+
+            </div>
+
+          </article>
+
+        }
+
+      </div>
+
+    }
+
+  </main>
+
+</div>

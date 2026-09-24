@@ -63,6 +63,58 @@
       <!-- FORMULÁRIO DE LOGIN -->
       <form (ngSubmit)="entrar()" class="space-y-5">
 
+
+        <!-- TIPO DE CONTA -->
+        <div class="space-y-3">
+
+          <label class="block text-sm font-medium text-white/90">
+            Tipo de conta
+          </label>
+
+          <div class="grid grid-cols-2 gap-3">
+
+            <!-- USUÁRIO -->
+            <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-white/20
+             bg-white/10 p-4 transition hover:bg-white/15">
+
+              <input type="radio" name="perfilCadastro" value="usuario" [(ngModel)]="perfilCadastro"
+                class="h-4 w-4 accent-teal-500">
+
+              <div>
+                <p class="text-sm font-semibold text-white">
+                  Usuário
+                </p>
+
+                <p class="text-xs text-white/50">
+                  Procurar imóveis
+                </p>
+              </div>
+
+            </label>
+
+
+            <!-- CORRETOR -->
+            <label class="flex cursor-pointer items-center gap-3 rounded-xl border border-white/20
+             bg-white/10 p-4 transition hover:bg-white/15">
+
+              <input type="radio" name="perfilCadastro" value="corretor" [(ngModel)]="perfilCadastro"
+                class="h-4 w-4 accent-teal-500">
+
+              <div>
+                <p class="text-sm font-semibold text-white">
+                  Corretor
+                </p>
+
+                <p class="text-xs text-white/50">
+                  Atender interessados
+                </p>
+              </div>
+
+            </label>
+
+          </div>
+
+        </div>
         <!-- E-MAIL -->
         <div class="space-y-2">
 

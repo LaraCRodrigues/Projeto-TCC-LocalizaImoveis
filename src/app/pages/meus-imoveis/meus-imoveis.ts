@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { Imovel } from '../../../models/imovel';
-import { ImoveisCadastradosService } from '../../../services/imoveis-cadastrados';
+import { Imovel } from '../../models/imovel';
+import { ImoveisCadastradosService } from '../../services/imoveis-cadastrados';
 
 @Component({
   selector: 'app-meus-imoveis',

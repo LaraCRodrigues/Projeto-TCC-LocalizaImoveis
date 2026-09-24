@@ -41,11 +41,16 @@ tipoFiltro = 'Todos';
   imoveis: Imovel[] = IMOVEIS;
 
   imoveisFiltrados: Imovel[] = [...this.imoveis];
-
-
+ // ==========================================
+  // CORRETORES
+  // ==========================================
+contatoCorretorAberto = false;
+mensagemCorretor = '';
   // ==========================================
   // CONSTRUTOR
   // ==========================================
+
+
 
   constructor(
     private router: Router
@@ -183,5 +188,26 @@ limparBusca(): void {
 
   this.filtrarImoveis();
 }
+abrirContatoCorretor(): void {
+  this.contatoCorretorAberto = true;
+}
 
+fecharContatoCorretor(): void {
+  this.contatoCorretorAberto = false;
+  this.mensagemCorretor = '';
+}
+
+enviarMensagemCorretor(): void {
+
+  if (!this.mensagemCorretor.trim()) {
+    return;
+  }
+
+  const mensagem = encodeURIComponent(
+    this.mensagemCorretor.trim()
+  );
+
+  window.location.href =
+    `mailto:contato@localizaimoveis.com?subject=Contato com corretor&body=${mensagem}`;
+}
 }

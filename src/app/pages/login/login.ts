@@ -12,18 +12,22 @@ import { Router, RouterLink } from '@angular/router';
 export class Login {
 
   mostrarCadastro = false;
-emailLogin = '';
-senhaLogin = '';
 
-nomeCadastro = '';
-emailCadastro = '';
-senhaCadastro = '';
-confirmarSenha = '';
+  emailLogin = '';
+  senhaLogin = '';
 
-aceitouLGPD = false;
+  nomeCadastro = '';
+  emailCadastro = '';
+  senhaCadastro = '';
+  confirmarSenha = '';
 
-mensagemErro = '';
-mensagemSucesso = '';
+  // Tipo de conta
+  perfilCadastro: 'usuario' | 'corretor' = 'usuario';
+
+  aceitouLGPD = false;
+
+  mensagemErro = '';
+  mensagemSucesso = '';
 
   constructor(private router: Router) {}
 
@@ -42,10 +46,11 @@ mensagemSucesso = '';
     this.limparMensagens();
 
     if (!this.aceitouLGPD) {
-    this.mensagemErro =
-      'Você precisa aceitar a Política de Privacidade para entrar.';
-    return;
-  }
+      this.mensagemErro =
+        'Você precisa aceitar a Política de Privacidade para entrar.';
+      return;
+    }
+
     if (!this.emailLogin || !this.senhaLogin) {
       this.mensagemErro = 'Preencha o e-mail e a senha.';
       return;
@@ -71,9 +76,13 @@ mensagemSucesso = '';
 
     localStorage.setItem('usuarioLogado', 'true');
 
-    this.router.navigate(['/home']);
+    // Verifica o tipo de conta
+    if (usuario.perfil === 'corretor') {
+      this.router.navigate(['/corretor']);
+    } else {
+      this.router.navigate(['/home']);
+    }
   }
-
 
   cadastrar(): void {
 
@@ -109,7 +118,8 @@ mensagemSucesso = '';
     const novoUsuario = {
       nome: this.nomeCadastro,
       email: this.emailCadastro,
-      senha: this.senhaCadastro
+      senha: this.senhaCadastro,
+      perfil: this.perfilCadastro
     };
 
     localStorage.setItem(
@@ -127,13 +137,13 @@ mensagemSucesso = '';
     this.emailCadastro = '';
     this.senhaCadastro = '';
     this.confirmarSenha = '';
+    this.perfilCadastro = 'usuario';
 
     setTimeout(() => {
       this.mostrarCadastro = false;
       this.mensagemSucesso = '';
     }, 1500);
   }
-
 
   private limparMensagens(): void {
     this.mensagemErro = '';

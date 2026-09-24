@@ -655,7 +655,79 @@ export const IMOVEIS: Imovel[] = [
   tempoCadastro: 'Anúncio publicado há  2 meses',
   emailProprietario: 'contato@localizaimoveis.com',
   telefoneProprietario: '71940254410',
-}
+},
+
+
+  {
+    id: 9,
+    titulo: 'Apartamento Com 2 Quartos, Distribuído Em 62M² E 1 Vaga De Garagem Na Vila Laura.',
+    tipo: 'Casa',
+    localizacao: 'Lauro de Freitas, Bahia',
+
+    area: 350,
+    quartos: 5,
+    banheiros: 4,
+    vagas: 3,
+
+    preco: 'R$ 340.000',
+    imagem: '/imagens/imoveis/10.jpg',
+    destaque: true,
+
+    descricao:
+      'Casa exclusiva em localização privilegiada próxima ao píer.',
+
+    caracteristicas: [
+      '5 quartos',
+      'Vista privilegiada',
+      'Área externa ampla',
+      'Suíte master'
+    ],
+
+    comodidades: [
+      'Piscina',
+      'Jardim',
+      'Churrasqueira',
+      'Área gourmet'
+    ],
+
+    avaliacaoRegiao: 4,
+    seguranca: 4,
+    transporte: 3,
+    comercio: 4,
+    escolas: 4,
+    hospitais: 3,
+    lazer: 5,
+
+    comentarios: [
+      {
+        nome: 'Sofia M.',
+        comentario:
+          'A proximidade com o píer deixa a região muito bonita e agradável, principalmente nos finais de semana.',
+        avaliacao: 5,
+        data: 'Há 3 dias'
+      },
+      {
+        nome: 'Marcelo D.',
+        comentario:
+          'É uma região mais tranquila e com bastante espaço para atividades ao ar livre.',
+        avaliacao: 5,
+        data: 'Há 1 semana'
+      },
+      {
+        nome: 'Cláudia R.',
+        comentario:
+          'Gostei muito do lazer e da paisagem, mas o transporte poderia ser melhor.',
+        avaliacao: 4,
+        data: 'Há 2 semanas'
+      }
+    ],
+
+    nomeProprietario: 'Marcos Vinícius',
+  tempoCadastro: 'Anúncio publicado há 9 meses',
+  emailProprietario: 'contato@localizaimoveis.com',
+  telefoneProprietario: '71952301455'
+
+  },
 ];
 
 export interface ImovelCadastrado extends Imovel {
