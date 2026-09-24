@@ -3,8 +3,10 @@ import { Routes } from '@angular/router';
 import { Home } from './pages/home/home';
 import { Login } from './pages/login/login';
 import { DetalhesImoveis } from './pages/imoveis/detalhes-imoveis/detalhes-imoveis';
+import { CadastrarImoveis } from './pages/imoveis/cadastrar-imoveis/cadastrar-imoveis';
 
 export const routes: Routes = [
+
   {
     path: '',
     redirectTo: 'home',
@@ -27,7 +29,13 @@ export const routes: Routes = [
   },
 
   {
+    path: 'cadastrar-imoveis',
+    component: CadastrarImoveis
+  },
+
+  {
     path: '**',
     redirectTo: 'home'
   }
+
 ];

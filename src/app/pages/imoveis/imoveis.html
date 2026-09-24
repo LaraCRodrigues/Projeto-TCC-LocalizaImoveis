@@ -1,1 +1,195 @@
-<p>imoveis works!</p>
+<div class="min-h-screen bg-slate-50">
+
+  <!-- CABEÇALHO -->
+  <header class="bg-white shadow-sm">
+
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+
+      <a
+        routerLink="/home"
+        class="text-2xl font-bold text-slate-900">
+
+        localiza<span class="text-teal-600">Imóveis</span>
+
+      </a>
+
+      <div class="flex gap-4">
+
+        <a
+          routerLink="/home"
+          class="px-4 py-2 text-slate-600 hover:text-teal-600">
+
+          Início
+
+        </a>
+
+        <a
+          routerLink="/regioes"
+          class="px-4 py-2 text-slate-600 hover:text-teal-600">
+
+          Regiões
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- CONTEÚDO -->
+  <main class="max-w-7xl mx-auto px-6 py-12">
+
+    <div class="mb-10">
+
+      <span class="text-sm font-semibold text-teal-600 uppercase">
+        Catálogo
+      </span>
+
+      <h1 class="text-4xl font-bold text-slate-900 mt-2">
+        Encontre seu próximo imóvel
+      </h1>
+
+      <p class="text-slate-500 mt-2">
+        Explore imóveis disponíveis em Salvador e região.
+      </p>
+
+    </div>
+
+
+    <!-- BUSCA -->
+    <div class="bg-white rounded-2xl shadow-sm p-5 mb-10">
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+
+        <input
+          [(ngModel)]="busca"
+          type="text"
+          placeholder="Busque por bairro, tipo ou imóvel..."
+          class="border border-slate-200 rounded-xl px-4 py-3 outline-none focus:ring-2 focus:ring-teal-500">
+
+        <select
+          [(ngModel)]="tipoSelecionado"
+          class="border border-slate-200 rounded-xl px-4 py-3 outline-none">
+
+          <option>Todos</option>
+          <option>Casa</option>
+          <option>Apartamento</option>
+          <option>Cobertura</option>
+
+        </select>
+
+        <div class="flex items-center px-4 text-slate-500">
+
+          {{ imoveisFiltrados.length }} imóveis encontrados
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- CARDS -->
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      @for (imovel of imoveisFiltrados; track imovel.id) {
+
+        <article
+          class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition">
+
+          <img
+            [src]="imovel.imagem"
+            [alt]="imovel.titulo"
+            class="w-full h-56 object-cover">
+
+          <div class="p-6">
+
+            <span
+              class="text-sm text-teal-600 font-semibold">
+
+              {{ imovel.tipo }}
+
+            </span>
+
+            <h2 class="text-xl font-bold text-slate-900 mt-2">
+
+              {{ imovel.titulo }}
+
+            </h2>
+
+            <p class="text-slate-500 mt-1">
+
+              {{ imovel.bairro }}, {{ imovel.cidade }}
+
+            </p>
+
+            <div
+              class="grid grid-cols-3 gap-2 border-t border-slate-100 mt-5 pt-5 text-sm text-slate-500">
+
+              <span>
+                {{ imovel.quartos }} quartos
+              </span>
+
+              <span>
+                {{ imovel.banheiros }} banheiros
+              </span>
+
+              <span>
+                {{ imovel.area }} m²
+              </span>
+
+            </div>
+
+            <div class="flex items-center justify-between mt-6">
+
+              <strong class="text-xl text-slate-900">
+
+                {{ formatarPreco(imovel.preco) }}
+
+              </strong>
+
+              <a
+                [routerLink]="['/imovel', imovel.id]"
+                class="bg-teal-600 text-white px-4 py-2 rounded-lg hover:bg-teal-700">
+
+                Detalhes
+
+              </a>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      }
+
+    </div>
+
+
+    @if (imoveisFiltrados.length === 0) {
+
+      <div class="text-center py-20">
+
+        <span class="material-symbols-outlined text-5xl text-slate-300">
+          search_off
+        </span>
+
+        <h2 class="text-xl font-semibold mt-4">
+          Nenhum imóvel encontrado
+        </h2>
+
+        <p class="text-slate-500 mt-2">
+          Tente pesquisar outro bairro ou tipo de imóvel.
+        </p>
+
+      </div>
+
+    }
+
+  </main>
+
+</div>

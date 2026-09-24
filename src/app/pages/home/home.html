@@ -4,16 +4,12 @@
   <header
     class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/95 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
 
-    <div
-      class="h-20 max-w-[1440px] mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
+    <div class="h-20 max-w-[1440px] mx-auto px-4 lg:px-8 flex items-center justify-between gap-6">
 
       <!-- LOGO -->
-      <a
-        routerLink="/home"
-        class="flex items-center gap-3 shrink-0">
+      <a routerLink="/home" class="flex items-center gap-3 shrink-0">
 
-        <span
-          class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">
+        <span class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">
           localiza<span class="text-secondary">Imóveis</span>
         </span>
 
@@ -22,44 +18,160 @@
       <!-- MENU -->
       <nav class="hidden lg:flex items-center gap-2">
 
-        <a
-          routerLink="/home"
-          class="px-4 py-2 rounded-lg bg-surface-container text-on-surface font-semibold">
+        <a routerLink="/home" class="px-4 py-2 rounded-lg text-on-surface font-semibold">
           Comprar Imóveis
         </a>
 
-        <a
-          href="#"
-          class="px-3 py-2 text-on-surface-variant hover:text-on-surface transition">
-          Anunciar Imóvel
-        </a>
-
-        <a
-          href="#"
-          class="px-3 py-2 text-on-surface-variant hover:text-on-surface transition">
+        @if (usuarioLogado) {
+        <a routerLink="/cadastrar-imoveis" class="px-3 py-2 text-on-surface-variant hover:text-on-surface transition">
           Meus Anúncios
         </a>
+        }
 
-        <a
-          href="#"
-          class="px-3 py-2 text-on-surface-variant hover:text-on-surface transition">
+        <a href="#" class="px-3 py-2 text-on-surface-variant hover:text-on-surface transition">
           Financiamento
         </a>
 
       </nav>
-
       <!-- AÇÕES -->
       <div class="flex items-center gap-3">
+        @if (usuarioLogado) {
 
-        <a
-          routerLink="/login"
-          class="hidden sm:inline-flex items-center justify-center h-10 px-5 rounded-lg bg-secondary text-on-secondary font-semibold hover:opacity-90 transition">
+        <div class="relative">
+
+          <!-- Botão do usuário -->
+          <button type="button" (click)="toggleMenuUsuario()"
+            class="flex items-center gap-2 rounded-full px-3 py-2 transition hover:bg-surface-container-high">
+
+            <!-- Ícone -->
+            <div class="flex h-9 w-9 items-center justify-center rounded-full bg-primary-container">
+              <span class="material-symbols-outlined text-primary">
+                person
+              </span>
+            </div>
+
+            <!-- Nome -->
+            <span class="hidden font-semibold text-on-surface sm:block">
+              {{ usuarioNome }}
+            </span>
+
+            <!-- Seta -->
+            <span class="material-symbols-outlined text-sm text-on-surface-variant">
+              {{ menuUsuarioAberto ? 'expand_less' : 'expand_more' }}
+            </span>
+
+          </button>
+
+
+          <!-- MENU -->
+          @if (menuUsuarioAberto) {
+
+          <div
+            class="absolute right-0 top-full z-50 mt-3 w-64 overflow-hidden rounded-2xl border border-outline-variant bg-surface shadow-xl">
+
+            <!-- Cabeçalho -->
+            <div class="border-b border-outline-variant px-4 py-4">
+
+              <p class="text-xs text-on-surface-variant">
+                Usuário conectado
+              </p>
+
+              <p class="mt-1 truncate font-semibold text-on-surface">
+                {{ usuarioNome }}
+              </p>
+
+            </div>
+
+
+            <!-- Opções -->
+            <div class="p-2">
+
+              <!-- Meu perfil -->
+              <button type="button"
+                class="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition hover:bg-surface-container-high">
+                <span class="material-symbols-outlined text-primary">
+                  person
+                </span>
+
+                <span class="text-sm font-medium text-on-surface">
+                  Meu perfil
+                </span>
+              </button>
+
+
+              <!-- Favoritos -->
+              <button type="button"
+                class="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition hover:bg-surface-container-high">
+                <span class="material-symbols-outlined text-primary">
+                  favorite
+                </span>
+
+                <span class="text-sm font-medium text-on-surface">
+                  Meus favoritos
+                </span>
+              </button>
+
+
+              <!-- Meus imóveis -->
+              <a routerLink="/cadastrar-imoveis" (click)="fecharMenuUsuario()"
+                class="flex w-full items-center gap-3 rounded-xl px-3 py-3 transition hover:bg-surface-container-high">
+                <span class="material-symbols-outlined text-primary">
+                  home_work
+                </span>
+
+                <span class="text-sm font-medium text-on-surface">
+                  Meus imóveis
+                </span>
+              </a>
+
+            </div>
+
+
+            <!-- Sair -->
+            <div class="border-t border-outline-variant p-2">
+
+              <button type="button" (click)="sair()"
+                class="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left transition hover:bg-error-container">
+
+                <span class="material-symbols-outlined text-error">
+                  logout
+                </span>
+
+                <span class="text-sm font-medium text-error">
+                  Sair
+                </span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+          }
+
+        </div>
+
+        } @else {
+
+        <!-- Usuário não logado -->
+        <a routerLink="/login"
+          class="flex items-center gap-2 rounded-full px-4 py-2 font-semibold transition hover:bg-surface-container-high">
+
+          <span class="material-symbols-outlined">
+            login
+          </span>
+
           Entrar
+
         </a>
 
-        <button
-          type="button"
-          class="p-2 rounded-full hover:bg-surface-container transition">
+        }
+        @if (usuarioLogado) {
+        <a routerLink="/cadastrar-imoveis">
+          Cadastrar imóvel
+        </a>
+        }
+        <button type="button" class="p-2 rounded-full hover:bg-surface-container transition">
 
           <span class="material-symbols-outlined">
             notifications
@@ -78,8 +190,7 @@
   <main class="pt-20">
 
     <!-- HERO -->
-    <section
-      class="bg-primary-container text-on-primary px-4 lg:px-8 py-16 lg:py-24">
+    <section class="bg-primary-container text-on-primary px-4 lg:px-8 py-16 lg:py-24">
 
       <div class="max-w-[1200px] mx-auto">
 
@@ -101,8 +212,7 @@
 
           </h1>
 
-          <p
-            class="text-lg text-on-primary/80 max-w-2xl mb-8">
+          <p class="text-lg text-on-primary/80 max-w-2xl mb-8">
 
             Encontre casas, apartamentos e coberturas nos melhores
             lugares de Salvador.
@@ -113,31 +223,22 @@
 
 
         <!-- BUSCA -->
-        <div
-          class="bg-surface-container-lowest rounded-2xl p-3 shadow-xl max-w-5xl">
+        <div class="bg-surface-container-lowest rounded-2xl p-3 shadow-xl max-w-5xl">
 
-          <div
-            class="flex flex-col md:flex-row gap-3">
+          <div class="flex flex-col md:flex-row gap-3">
 
-            <div
-              class="flex-1 flex items-center gap-3 px-4 h-14 rounded-xl bg-surface-container-low">
+            <div class="flex-1 flex items-center gap-3 px-4 h-14 rounded-xl bg-surface-container-low">
 
-              <span
-                class="material-symbols-outlined text-secondary">
+              <span class="material-symbols-outlined text-secondary">
                 search
               </span>
 
-              <input
-                type="text"
-                [(ngModel)]="termoBusca"
-                placeholder="Busque por cidade, bairro ou tipo de imóvel"
+              <input type="text" [(ngModel)]="termoBusca" placeholder="Busque por cidade, bairro ou tipo de imóvel"
                 class="w-full bg-transparent outline-none text-on-surface placeholder:text-on-surface-variant">
 
             </div>
 
-            <button
-              type="button"
-              (click)="pesquisar()"
+            <button type="button" (click)="pesquisar()"
               class="h-14 px-8 rounded-xl bg-secondary text-on-secondary font-semibold hover:opacity-90 transition">
 
               Buscar imóveis
@@ -154,34 +255,28 @@
 
 
     <!-- IMÓVEIS -->
-    <section
-      class="max-w-[1440px] mx-auto px-4 lg:px-8 py-14">
+    <section class="max-w-[1440px] mx-auto px-4 lg:px-8 py-14">
 
       <!-- TÍTULO -->
-      <div
-        class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-5 mb-8">
 
         <div>
 
-          <span
-            class="font-label-sm text-secondary uppercase tracking-wider">
+          <span class="font-label-sm text-secondary uppercase tracking-wider">
             Imóveis disponíveis
           </span>
 
-          <h2
-            class="font-headline-lg text-headline-lg font-bold mt-1">
+          <h2 class="font-headline-lg text-headline-lg font-bold mt-1">
             Encontre seu próximo imóvel
           </h2>
 
-          <p
-            class="text-on-surface-variant mt-2">
+          <p class="text-on-surface-variant mt-2">
             Confira imóveis selecionados para você.
           </p>
 
         </div>
 
-        <span
-          class="text-sm text-on-surface-variant">
+        <span class="text-sm text-on-surface-variant">
 
           {{ imoveisFiltrados.length }}
           imóveis encontrados
@@ -194,160 +289,149 @@
       <!-- GRID -->
       @if (imoveisFiltrados.length > 0) {
 
-        <div
-          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 
-          @for (imovel of imoveisFiltrados; track imovel.id) {
+        @for (imovel of imoveisFiltrados; track imovel.id) {
 
-            <!-- CARD -->
-            <a
-              [routerLink]="['/imovel', imovel.id]"
-              class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-outline-variant/20 transition-all duration-300 hover:-translate-y-1">
+        <!-- CARD -->
+        <a [routerLink]="['/imovel', imovel.id]"
+          class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-outline-variant/20 transition-all duration-300 hover:-translate-y-1">
 
-              <!-- IMAGEM -->
-              <div
-                class="relative h-64 overflow-hidden bg-surface-container">
+          <!-- IMAGEM -->
+          <div class="relative h-64 overflow-hidden bg-surface-container">
 
-                <img
-                  [src]="imovel.imagem"
-                  [alt]="imovel.titulo"
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+            <img [src]="imovel.imagem" [alt]="imovel.titulo"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
 
-                <!-- BADGE -->
-                @if (imovel.destaque) {
+            <!-- BADGE -->
+            @if (imovel.destaque) {
 
-                  <span
-                    class="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-secondary text-on-secondary text-xs font-semibold">
+            <span
+              class="absolute top-4 left-4 px-3 py-1.5 rounded-full bg-secondary text-on-secondary text-xs font-semibold">
 
-                    Destaque
+              Destaque
 
-                  </span>
+            </span>
 
-                }
+            }
 
-                <!-- FAVORITO VISUAL -->
-                <span
-                  class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow">
+            <!-- FAVORITO VISUAL -->
+            <span
+              class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center shadow">
 
-                  <span
-                    class="material-symbols-outlined text-on-surface">
-                    favorite
-                  </span>
+              <span class="material-symbols-outlined text-on-surface">
+                favorite
+              </span>
 
+            </span>
+
+          </div>
+
+
+          <!-- INFORMAÇÕES -->
+          <div class="p-5">
+
+            <div class="flex items-center justify-between gap-3 mb-2">
+
+              <span class="text-xs font-semibold uppercase tracking-wide text-secondary">
+
+                {{ imovel.tipo }}
+
+              </span>
+
+            </div>
+
+
+            <h3 class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-2 mb-2">
+
+              {{ imovel.titulo }}
+
+            </h3>
+
+
+            <div class="flex items-center gap-1 text-sm text-on-surface-variant mb-4">
+
+              <span class="material-symbols-outlined text-[18px]">
+                location_on
+              </span>
+
+              {{ imovel.localizacao }}
+
+            </div>
+
+
+            <!-- CARACTERÍSTICAS -->
+            <div
+              class="flex flex-wrap gap-x-4 gap-y-2 py-4 border-y border-outline-variant/30 text-sm text-on-surface-variant">
+
+              <span class="flex items-center gap-1">
+
+                <span class="material-symbols-outlined text-[18px]">
+                  square_foot
                 </span>
 
-              </div>
+                {{ imovel.area }} m²
+
+              </span>
 
 
-              <!-- INFORMAÇÕES -->
-              <div class="p-5">
+              <span class="flex items-center gap-1">
 
-                <div class="flex items-center justify-between gap-3 mb-2">
+                <span class="material-symbols-outlined text-[18px]">
+                  bed
+                </span>
 
-                  <span
-                    class="text-xs font-semibold uppercase tracking-wide text-secondary">
+                {{ imovel.quartos }}
 
-                    {{ imovel.tipo }}
-
-                  </span>
-
-                </div>
+              </span>
 
 
-                <h3
-                  class="font-headline-sm text-headline-sm font-bold text-on-surface line-clamp-2 mb-2">
+              <span class="flex items-center gap-1">
 
-                  {{ imovel.titulo }}
+                <span class="material-symbols-outlined text-[18px]">
+                  bathtub
+                </span>
 
-                </h3>
+                {{ imovel.banheiros }}
 
-
-                <div
-                  class="flex items-center gap-1 text-sm text-on-surface-variant mb-4">
-
-                  <span class="material-symbols-outlined text-[18px]">
-                    location_on
-                  </span>
-
-                  {{ imovel.localizacao }}
-
-                </div>
+              </span>
 
 
-                <!-- CARACTERÍSTICAS -->
-                <div
-                  class="flex flex-wrap gap-x-4 gap-y-2 py-4 border-y border-outline-variant/30 text-sm text-on-surface-variant">
+              <span class="flex items-center gap-1">
 
-                  <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-[18px]">
+                  directions_car
+                </span>
 
-                    <span class="material-symbols-outlined text-[18px]">
-                      square_foot
-                    </span>
+                {{ imovel.vagas }}
 
-                    {{ imovel.area }} m²
+              </span>
 
-                  </span>
+            </div>
 
 
-                  <span class="flex items-center gap-1">
+            <!-- PREÇO -->
+            <div class="pt-4">
 
-                    <span class="material-symbols-outlined text-[18px]">
-                      bed
-                    </span>
+              <span class="block text-xs text-on-surface-variant mb-1">
+                Valor de venda
+              </span>
 
-                    {{ imovel.quartos }}
+              <span class="font-price-card text-price-card font-extrabold text-on-surface">
 
-                  </span>
+                {{ imovel.preco }}
 
+              </span>
 
-                  <span class="flex items-center gap-1">
+            </div>
 
-                    <span class="material-symbols-outlined text-[18px]">
-                      bathtub
-                    </span>
+          </div>
 
-                    {{ imovel.banheiros }}
+        </a>
 
-                  </span>
+        }
 
-
-                  <span class="flex items-center gap-1">
-
-                    <span class="material-symbols-outlined text-[18px]">
-                      directions_car
-                    </span>
-
-                    {{ imovel.vagas }}
-
-                  </span>
-
-                </div>
-
-
-                <!-- PREÇO -->
-                <div class="pt-4">
-
-                  <span
-                    class="block text-xs text-on-surface-variant mb-1">
-                    Valor de venda
-                  </span>
-
-                  <span
-                    class="font-price-card text-price-card font-extrabold text-on-surface">
-
-                    {{ imovel.preco }}
-
-                  </span>
-
-                </div>
-
-              </div>
-
-            </a>
-
-          }
-
-        </div>
+      </div>
 
       }
 
@@ -355,40 +439,34 @@
       <!-- SEM RESULTADOS -->
       @if (imoveisFiltrados.length === 0) {
 
-        <div
-          class="py-20 text-center">
+      <div class="py-20 text-center">
 
-          <span
-            class="material-symbols-outlined text-6xl text-on-surface-variant">
+        <span class="material-symbols-outlined text-6xl text-on-surface-variant">
 
-            search_off
+          search_off
 
-          </span>
+        </span>
 
-          <h3
-            class="font-headline-md text-headline-md font-bold mt-4">
+        <h3 class="font-headline-md text-headline-md font-bold mt-4">
 
-            Nenhum imóvel encontrado
+          Nenhum imóvel encontrado
 
-          </h3>
+        </h3>
 
-          <p
-            class="text-on-surface-variant mt-2">
+        <p class="text-on-surface-variant mt-2">
 
-            Tente pesquisar por outro bairro, cidade ou tipo de imóvel.
+          Tente pesquisar por outro bairro, cidade ou tipo de imóvel.
 
-          </p>
+        </p>
 
-          <button
-            type="button"
-            (click)="limparBusca()"
-            class="mt-5 px-5 py-3 rounded-lg bg-secondary text-on-secondary font-semibold">
+        <button type="button" (click)="limparBusca()"
+          class="mt-5 px-5 py-3 rounded-lg bg-secondary text-on-secondary font-semibold">
 
-            Limpar busca
+          Limpar busca
 
-          </button>
+        </button>
 
-        </div>
+      </div>
 
       }
 
@@ -396,35 +474,28 @@
 
 
     <!-- CTA -->
-    <section
-      class="bg-surface-container-low py-16 px-4">
+    <section class="bg-surface-container-low py-16 px-4">
 
-      <div
-        class="max-w-[1000px] mx-auto text-center">
+      <div class="max-w-[1000px] mx-auto text-center">
 
-        <span
-          class="material-symbols-outlined text-secondary text-5xl">
+        <span class="material-symbols-outlined text-secondary text-5xl">
           home_work
         </span>
 
-        <h2
-          class="font-headline-lg text-headline-lg font-bold mt-4">
+        <h2 class="font-headline-lg text-headline-lg font-bold mt-4">
 
           Não encontrou o imóvel que procura?
 
         </h2>
 
-        <p
-          class="text-on-surface-variant mt-3 max-w-xl mx-auto">
+        <p class="text-on-surface-variant mt-3 max-w-xl mx-auto">
 
           Continue explorando nossos imóveis ou entre em contato
           para encontrar uma opção que combine com você.
 
         </p>
 
-        <button
-          type="button"
-          class="mt-6 px-6 py-3 rounded-lg bg-secondary text-on-secondary font-semibold">
+        <button type="button" class="mt-6 px-6 py-3 rounded-lg bg-secondary text-on-secondary font-semibold">
 
           Falar com um corretor
 
@@ -439,23 +510,19 @@
 
 
   <!-- FOOTER -->
-  <footer
-    class="bg-primary-container text-on-primary px-4 lg:px-8 py-10">
+  <footer class="bg-primary-container text-on-primary px-4 lg:px-8 py-10">
 
-    <div
-      class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between gap-8">
+    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between gap-8">
 
       <div>
 
-        <span
-          class="font-headline-sm text-headline-sm font-extrabold">
+        <span class="font-headline-sm text-headline-sm font-extrabold">
 
           localiza<span class="text-secondary">Imóveis</span>
 
         </span>
 
-        <p
-          class="text-sm text-on-primary/70 mt-3 max-w-md">
+        <p class="text-sm text-on-primary/70 mt-3 max-w-md">
 
           Encontre imóveis de qualidade nos melhores lugares.
 
@@ -463,8 +530,7 @@
 
       </div>
 
-      <div
-        class="text-sm text-on-primary/60">
+      <div class="text-sm text-on-primary/60">
 
         © 2026 localizaImóveis. Todos os direitos reservados.
 

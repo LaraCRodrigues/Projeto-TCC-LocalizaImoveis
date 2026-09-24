@@ -1,1331 +1,677 @@
-<main class="home-page">
-    <header
-        class="fixed top-0 left-0 w-full z-50 bg-surface-container-lowest/90 backdrop-blur-xl border-b border-outline-variant/30 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
-        <div class="h-20 max-w-[1440px] mx-auto px-gutter-lg flex items-center justify-between gap-gutter">
-            <div class="flex items-center gap-space-xl">
-                <a class="flex items-center gap-space-sm"
-                    data-path="comprar-imoveis" href="#">
-                    <img alt="Logo localizaImóveis" class="h-8 w-auto object-contain"
-                        src="https://lh3.googleusercontent.com/aida/AEtjO1VHVdtFl-bnJNImPgMhGyDIwEQym0hCL36eiPVfk168toQxZkb8PeBEVc1sahaoDGwM52eLwnzbOoCDLZFfgA33tVQN8su70M4Xy1WOecXs1RsUvkdHrU2Vif-ka_yGhsq79AmGmPB6HXZPrDf6WwWNqffVd2JpaqFlBYFZTxhYsiljxIkHXeNmlq1HH--KePHG3zl5p7AtFt2TG8OSoVk7W3_yRsXVSpFyvJQhlplTeVQ_pwaCcm5Tg4Q">
-                    <span
-                        class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">localiza<span
-                            class="text-secondary">Imóveis</span></span>
-                        </a>
-                <nav class="hidden xl:flex items-center gap-space-md"
-                    data-active-classes="text-on-surface font-semibold bg-surface-container px-space-md py-space-xs rounded-lg">
-                    <a aria-current="page"
-                        class="transition-colors text-on-surface font-semibold bg-surface-container px-space-md py-space-xs rounded-lg"
-                        data-path="comprar-imoveis" href="#">Comprar Imóveis</a><a
-                        class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-space-2xs"
-                        data-path="anunciar-imovel" href="#">Anunciar Imóvel</a><a
-                        class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-space-2xs"
-                        data-path="meus-anuncios" href="#">Meus Anúncios</a><a
-                        class="font-label-lg text-label-lg text-on-surface-variant hover:text-on-surface transition-colors px-space-sm py-space-2xs"
-                        data-path="simulador-financiamento" href="#">Simulador de Financiamento</a>
-                </nav>
-            </div>
-            <div class="flex items-center gap-space-md"><a
-                    class="hidden sm:inline-flex items-center justify-center h-11 px-space-lg rounded-lg bg-secondary text-on-secondary font-label-lg text-label-lg hover:bg-secondary/90 hover:text-on-secondary transition-colors shadow-sm"
-                    data-path="anunciar-imovel" href="#">Anunciar Imóvel</a><button aria-label="Notificações"
-                    class="relative p-space-xs rounded-full hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors"
-                    type="button"><span class="material-symbols-outlined text-[24px]">notifications</span><span
-                        class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-secondary"></span></button>
-                <div class="flex items-center gap-space-sm pl-space-xs"><img alt="Profile"
-                        class="w-8 h-8 rounded-full object-cover ring-1 ring-outline-variant/40"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0pHByHBxYVCZCbD7xUa-fCEJZTc6zlJpfu05CqHl1LNO5TuAK0OKF-SphM2xgKLp6e5n9sr9m7EV07yXCPHVO3S1hBG0X4E8ccFNNTFOXeoJbvJ0hejKKyZYAyB58XHJU5KQd3BJPbsJJ3z_K3DkMSSTu3jwE3zoLWgiWIpOJfUNSac2YYgeUknOQ2xuoItFQN7LfY3b-bnN5Ur7qiLdM48GiHjBwxAXzbLnvgUp9k6X7zZC5RVU8">
-                    <div class="hidden md:flex flex-col text-left"><span
-                            class="font-label-md text-label-md text-on-surface">Carlos Silva</span><span
-                            class="font-label-sm text-label-sm text-secondary font-medium">Corretor</span></div>
-                </div>
-            </div>
+<div class="min-h-screen bg-slate-50">
+
+  <!-- NAVBAR -->
+  <header class="bg-white border-b border-slate-200">
+
+    <div class="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+
+      <a
+        routerLink="/home"
+        class="text-2xl font-bold text-slate-800">
+
+        localiza<span class="text-teal-600">Imóveis</span>
+
+      </a>
+
+      <a
+        routerLink="/home"
+        class="text-sm font-medium text-slate-600 hover:text-teal-600 transition">
+
+        ← Voltar para imóveis
+
+      </a>
+
+    </div>
+
+  </header>
+
+
+  @if (imovel; as imovelAtual) {
+
+    <main class="max-w-7xl mx-auto px-6 py-8">
+
+      <!-- CAMINHO -->
+      <div class="mb-5">
+
+        <a
+          routerLink="/home"
+          class="text-sm text-slate-500 hover:text-teal-600">
+
+          Início
+
+        </a>
+
+        <span class="mx-2 text-slate-400">/</span>
+
+        <span class="text-sm text-slate-600">
+
+          {{ imovelAtual.titulo }}
+
+        </span>
+
+      </div>
+
+
+      <!-- TÍTULO -->
+      <div class="mb-6">
+
+        <div class="flex items-center gap-3 mb-2">
+
+          <span class="px-3 py-1 rounded-full bg-teal-100 text-teal-700 text-xs font-semibold uppercase">
+
+            {{ imovelAtual.tipo }}
+
+          </span>
+
+          @if (imovelAtual.destaque) {
+
+            <span class="px-3 py-1 rounded-full bg-teal-600 text-white text-xs font-semibold">
+
+              Destaque
+
+            </span>
+
+          }
+
         </div>
-    </header>
-    <main class="w-full pt-20 bg-background min-h-screen">
-        <div class="flex flex-col w-full">
-            <!-- Breadcrumb & Top Utility Bar -->
-            <section class="w-full bg-surface-container-lowest shadow-sm">
-                <div
-                    class="max-w-[1440px] mx-auto px-gutter lg:px-gutter-lg py-space-sm flex flex-col md:flex-row md:items-center justify-between gap-space-sm">
-                    <!-- Breadcrumbs -->
-                    <nav aria-label="Navegação estrutural"
-                        class="flex items-center flex-wrap gap-space-2xs text-on-surface-variant font-label-md text-label-md">
-                        <a class="hover:text-secondary transition-colors" href="#">Início</a>
-                        <span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
-                        <a class="hover:text-secondary transition-colors" href="#">Salvador</a>
-                        <span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
-                        <a class="hover:text-secondary transition-colors" href="#">Circuito Barra-Ondina / Vitória</a>
-                        <span class="material-symbols-outlined text-[14px] text-outline">chevron_right</span>
-                        <span class="text-on-surface font-semibold truncate max-w-[220px] sm:max-w-none">Cobertura Vista
-                            Baía de
-                            Todos os Santos 310m²</span>
-                    </nav>
-                    <!-- Quick Action Utilities -->
-                    <div class="flex items-center gap-space-xs">
-                        <button aria-label="Compartilhar imóvel"
-                            class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded-lg bg-surface hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all active:scale-95 shadow-sm"
-                            id="btn-share" (click)="compartilharImovel()" type="button">
-                            <span class="material-symbols-outlined text-[18px]">share</span>
-                            <span class="hidden sm:inline">Compartilhar</span>
-                        </button>
-                        <button aria-label="Salvar nos favoritos"
-                            class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded-lg bg-surface hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all active:scale-95 shadow-sm group"
-                            id="btn-favorite" (click)="alternarFavorito()" type="button">
-                            <span class="material-symbols-outlined text-[18px] group-hover:text-error transition-colors"
-                                id="fav-icon" [class.text-error]="favorito">favorite</span>
-                            <span class="hidden sm:inline" id="fav-text">{{ favorito ? "Salvo" : "Favoritar" }}</span>
-                        </button>
-                        <button aria-label="Imprimir ficha técnica"
-                            class="inline-flex items-center gap-1.5 px-space-sm py-1.5 rounded-lg bg-surface hover:bg-surface-container text-on-surface font-label-md text-label-md transition-all active:scale-95 shadow-sm"
-                            (click)="imprimirFicha()" type="button">
-                            <span class="material-symbols-outlined text-[18px]">print</span>
-                            <span class="hidden sm:inline">Imprimir Ficha</span>
-                        </button>
-                    </div>
-                </div>
-            </section>
-            <!-- Title & Status Header -->
-            <section class="w-full max-w-[1440px] mx-auto px-gutter lg:px-gutter-lg pt-space-lg pb-space-xs">
-                <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
-                    <div class="flex flex-col gap-space-2xs max-w-4xl">
-                        <div class="flex flex-wrap items-center gap-space-xs">
-                            <span
-                                class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">
-                                <span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
-                                Disponível para Compra
-                            </span>
-                            <span
-                                class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm tracking-wider font-mono">
-                                Cód: LI-98420
-                            </span>
-                            <span class="text-on-surface-variant font-body-sm text-body-sm flex items-center gap-1">
-                                <span class="material-symbols-outlined text-[14px]">schedule</span> Atualizado há 2 dias
-                            </span>
-                        </div>
-                        <h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight mt-1">Espetacular
-                            Cobertura
-                            Duplex com Vista Panorâmica para a Baía de Todos os Santos e Piscina Privativa no Corredor
-                            da Vitória</h1>
-                        <p class="font-body-md text-body-md text-on-surface-variant flex items-center gap-1.5">Av. Sete
-                            de Setembro,
-                            Vitória • Salvador/BA</p>
-                    </div>
-                    <div class="hidden lg:flex flex-col items-end gap-1">
-                        <span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Valor
-                            de
-                            Venda</span>
-                        <span class="font-display-hero text-price-hero text-on-surface tracking-tight leading-none">R$
-                            3.850.000</span>
-                        <span class="font-label-md text-label-md text-secondary font-medium">Aceita Financiamento e
-                            FGTS</span>
-                    </div>
-                </div>
-            </section>
-            <!-- Modern Interactive Photo Mosaic (Airbnb / Zillow Style) -->
-            <section class="w-full max-w-[1440px] mx-auto px-gutter lg:px-gutter-lg py-space-md">
-                <div
-                    class="relative rounded-2xl overflow-hidden shadow-md bg-surface-container-high grid grid-cols-1 md:grid-cols-4 gap-2 h-[380px] sm:h-[480px] lg:h-[560px]">
-                    <!-- Main Featured Image (Left 50%) -->
-                    <div class="relative md:col-span-2 h-full overflow-hidden group cursor-pointer"
-                        (click)="abrirGaleria()">
-                        <img alt="Terraço com piscina privativa e vista panorâmica de Moema"
-                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                            data-alt="Luxurious high-end penthouse terrace in Moema São Paulo at sunset featuring an illuminated private swimming pool wooden deck minimalist glass railings and expansive city skyline views with lush green treetops bathed in warm architectural glow"
-                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3blaN2K5AQTvucNrSyYMYNFpMIvNrEw5St2PAFat8mNYOfAgpEeeZLy-KdU8gww8erDtjq8AtZYhBQQfKX1pCrzlev9fRxWERzdn4Jpi6rANF-Fmk_mElGdjjae37X9x9ZylkcH3UaR0PtPfoqx4L-Yi4Si1s1g3Vy0eLsOYAPMivIZ6q4jQfFxNNSaxp-b98T636g7p6FnVHYEU0BwM8LsXt32hUHtLuasaD7JtnvlOxjjKeeXuy">
-                        <div
-                            class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity">
-                        </div>
-                        <div class="absolute bottom-4 left-4 text-on-primary">
-                            <span
-                                class="px-2.5 py-1 rounded-md bg-black/40 backdrop-blur-md text-label-sm font-label-sm inline-flex items-center gap-1">
-                                <span
-                                    class="material-symbols-outlined text-[14px] text-tertiary-fixed-dim">verified</span>
-                                Foto Principal • Vista do Deck 18º Andar
-                            </span>
-                        </div>
-                    </div>
-                    <!-- 4 Secondary Grid Photos (Right 50%) -->
-                    <div class="hidden md:grid md:col-span-2 grid-cols-2 gap-2 h-full">
-                        <!-- Sub 1: Living Integrado -->
-                        <div class="relative h-full overflow-hidden group cursor-pointer" (click)="abrirGaleria()">
-                            <img alt="Living integrado com pé-direito duplo"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                                data-alt="Spacious open concept luxury duplex living room with double height ceiling designer Italian furniture light beige marble flooring floor to ceiling windows showing urban daylight and bespoke brass accents"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF5kDmPKcFmx7eYnXpI_VeVhgUwhzDjNlEP7Mw0eS9fqUQAWFSv8C7idCdA4Huctae_-5Q8K86sKKv-mbRdgGNIg79DoyefdthuBCyF9q3NQiBQduiwiONLhaka4oTLRUPLLz99xoH5vxT-XJlUOAerL_uhPnfzcHbd6goQk8LCvSX4dMWdsyrd__QQn7hHi6NltwzkNpuD-XzzgZE3Sig8LMZCBIIvQHeZJHYDz_Hts8AKB_jMQSv">
-                            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors">
-                            </div>
-                            <span
-                                class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/50 backdrop-blur-sm text-on-primary font-label-sm text-[10px]">Living
-                                Integrado</span>
-                        </div>
-                        <!-- Sub 2: Cozinha Gourmet -->
-                        <div class="relative h-full overflow-hidden group cursor-pointer" (click)="abrirGaleria()">
-                            <img alt="Cozinha gourmet planejada"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                                data-alt="Modern high-end gourmet kitchen with dark quartz waterfall island integrated premium stainless steel appliances pendant lighting and custom natural wood cabinetry in an upscale apartment"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVndU_tm_0On40-SNf8jtYejao734m0NeLC0t4oOCU3IJ9LDcT6Ql_4VpquC8nW1S6besiWnuAS_l_MThFLGlV7O0O4KwHhIQnIBTvDbyoNGrGp7ecTPve4XXB4Upnf4eGIlOWZxgPPeQaRQHbIf1ZGR8WvXL5nVhDNX_oV9mtdG8KmgrBfg_BQDRYP43oSh1l5XaduXB9HH45plDyHUVNOO363o0m3DG2hkGUIQTjMkBjM0vzRn7B">
-                            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors">
-                            </div>
-                            <span
-                                class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/50 backdrop-blur-sm text-on-primary font-label-sm text-[10px]">Cozinha
-                                Gourmet</span>
-                        </div>
-                        <!-- Sub 3: Suíte Master com Closet -->
-                        <div class="relative h-full overflow-hidden group cursor-pointer" (click)="abrirGaleria()">
-                            <img alt="Suíte master com closet walk-in"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                                data-alt="Elegant master suite bedroom in a luxury penthouse featuring king sized bed warm indirect LED headboard lighting walk-in closet with smoked glass doors and sheer curtains"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuB98OkapmBaUwAVOzKVMi0ufErLmm4bc5JopSKCrH4BR95h9CtrZWmASYjqGL_AAM0KwPq57jqKhp4RlT36_PRuw0NOyjN2tiEJ04pTXbfhtdVlrTAFsABHalKpJ341HwazCsaTG1qPOUo2FP-2UA9WGEEUsfO7UrbOB57ub40xAw_wsP236jEAOok_b4yvrbhbeeIIZSEGsiZn_TGX18n94jl_NvrNLDTpE2mPQiEsN_RW70c57RyZ">
-                            <div class="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors">
-                            </div>
-                            <span
-                                class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/50 backdrop-blur-sm text-on-primary font-label-sm text-[10px]">Suíte
-                                Master</span>
-                        </div>
-                        <!-- Sub 4: Deck com Piscina e Lounge -->
-                        <div class="relative h-full overflow-hidden group cursor-pointer" (click)="abrirGaleria()">
-                            <img alt="Deck privativo com área de descanso"
-                                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                                data-alt="Close up architectural shot of outdoor rooftop lounge area with teak sun loungers pristine turquoise plunge pool surrounded by potted tropical foliage and evening city sunset"
-                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrapcVcDM3QCNRLOsahYPaJDXWcabDyoDsYUedilS-A9MgyFlMRvi232U_z4NEqmmHY2ogbnh1NrO858oLdMDbPyBkbUHjtVkLD_qzyJwvjDSsGCGEA2LGR0AU1u52Gk3Z7u_HlAkwluqNNLgWScDjrkSy17WRXOpuca8yV_Fq5XIStAEJ5LvHHpU4u1phCblRWyfrctehBsAN59X-VqGYOD_DV4i6po6HZeNdtD8xLHcEQj77DKy_">
-                            <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors">
-                            </div>
-                            <span
-                                class="absolute bottom-2 left-2 px-2 py-0.5 rounded bg-black/50 backdrop-blur-sm text-on-primary font-label-sm text-[10px]">Deck
-                                &amp; Spa</span>
-                        </div>
-                    </div>
-                    <!-- Floating Media Access Buttons on Mosaic -->
-                    <div class="absolute bottom-4 right-4 flex items-center gap-2 z-10">
-                        <button
-                            class="inline-flex items-center gap-1.5 px-space-md py-2.5 rounded-lg bg-surface-container-lowest/95 backdrop-blur-md text-on-surface font-label-md text-label-md hover:bg-surface-container-lowest shadow-md transition-transform active:scale-95"
-                            (click)="abrirGaleria()" type="button">
-                            <span class="material-symbols-outlined text-[18px]">photo_library</span>
-                            Ver todas as 28 fotos
-                        </button>
-                        <button
-                            class="inline-flex items-center gap-1.5 px-space-md py-2.5 rounded-lg bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-transform active:scale-95 shadow-md"
-                            (click)="abrirTourVirtual()" type="button">
-                            <span class="material-symbols-outlined text-[18px] text-secondary-fixed">view_in_ar</span>
-                            Tour Virtual 360°
-                        </button>
-                    </div>
-                </div>
-            </section>
-            <!-- Main 2-Column Split: 65% Content / 35% Floating Conversion Sidebar -->
-            <main class="w-full max-w-[1440px] mx-auto px-gutter lg:px-gutter-lg py-space-xl">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter-lg items-start">
-                    <!-- LEFT COLUMN (65% -> 8 of 12 cols) -->
-                    <div class="lg:col-span-8 flex flex-col gap-space-2xl">
-                        <!-- Key Metrics & Essential Specs Bento -->
-                        <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
-                            <!-- Mobile Price Strip (visible on mobile only) -->
-                            <div
-                                class="flex flex-col gap-1 pb-space-md mb-space-md lg:hidden border-b border-surface-container">
-                                <span
-                                    class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Valor
-                                    de
-                                    Venda</span>
-                                <span class="font-price-hero text-price-hero text-on-surface">R$ 3.850.000</span>
-                                <span class="font-label-md text-label-md text-secondary font-medium">Aceita
-                                    Financiamento e FGTS</span>
-                            </div>
-                            <!-- Financial Sub-Details Grid -->
-                            <div
-                                class="grid grid-cols-2 sm:grid-cols-4 gap-space-md pb-space-lg mb-space-lg bg-surface-container-low p-space-md rounded-xl">
-                                <div class="flex flex-col">
-                                    <span class="font-label-sm text-label-sm text-on-surface-variant">Condomínio</span>
-                                    <span class="font-headline-sm text-headline-sm text-on-surface font-bold">R$ 2.400
-                                        <span
-                                            class="font-body-sm text-body-sm font-normal text-on-surface-variant">/mês</span></span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="font-label-sm text-label-sm text-on-surface-variant">IPTU Anual</span>
-                                    <span class="font-headline-sm text-headline-sm text-on-surface font-bold">R$ 7.800
-                                        <span
-                                            class="font-body-sm text-body-sm font-normal text-on-surface-variant">/ano</span></span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="font-label-sm text-label-sm text-on-surface-variant">Valor do m²</span>
-                                    <span class="font-headline-sm text-headline-sm text-on-surface font-bold">R$ 12.419
-                                        <span
-                                            class="font-body-sm text-body-sm font-normal text-on-surface-variant">/m²</span></span>
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="font-label-sm text-label-sm text-on-surface-variant">Facilidade</span>
-                                    <span class="font-headline-sm text-headline-sm text-secondary font-bold">FGTS
-                                        Apto</span>
-                                </div>
-                            </div>
-                            <!-- Core Feature Badges Grid -->
-                            <h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Características
-                                Essenciais</h2>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-space-sm">
-                                <div
-                                    class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
-                                    <span
-                                        class="material-symbols-outlined text-secondary text-[26px]">square_foot</span>
-                                    <div class="flex flex-col">
-                                        <span
-                                            class="font-headline-sm text-headline-sm text-on-surface leading-tight font-bold">310
-                                            m²</span>
-                                        <span class="font-body-sm text-body-sm text-on-surface-variant">Área Útil</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
-                                    <span class="material-symbols-outlined text-secondary text-[26px]">bed</span>
-                                    <div class="flex flex-col">
-                                        <span
-                                            class="font-headline-sm text-headline-sm text-on-surface leading-tight font-bold">4
-                                            Suítes</span>
-                                        <span
-                                            class="font-body-sm text-body-sm text-on-surface-variant">Dormitórios</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
-                                    <span class="material-symbols-outlined text-secondary text-[26px]">bathtub</span>
-                                    <div class="flex flex-col">
-                                        <span
-                                            class="font-headline-sm text-headline-sm text-on-surface leading-tight font-bold">5</span>
-                                        <span class="font-body-sm text-body-sm text-on-surface-variant">Banheiros</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
-                                    <span
-                                        class="material-symbols-outlined text-secondary text-[26px]">directions_car</span>
-                                    <div class="flex flex-col">
-                                        <span
-                                            class="font-headline-sm text-headline-sm text-on-surface leading-tight font-bold">4
-                                            Vagas</span>
-                                        <span class="font-body-sm text-body-sm text-on-surface-variant">Cobertas</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex items-center gap-3 p-3 rounded-xl bg-surface-container-low hover:bg-surface-container transition-colors">
-                                    <span class="material-symbols-outlined text-secondary text-[26px]">apartment</span>
-                                    <div class="flex flex-col">
-                                        <span
-                                            class="font-headline-sm text-headline-sm text-on-surface leading-tight font-bold">24º</span>
-                                        <span class="font-body-sm text-body-sm text-on-surface-variant">Andar (c/
-                                            Píer)</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Full Detailed Property Description -->
-                        <article
-                            class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-lg">
-                            <div class="">
-                                <h2
-                                    class="font-headline-lg text-headline-lg text-on-surface tracking-tight mb-space-sm">
-                                    Sobre o Imóvel
-                                </h2>
-                                <p
-                                    class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-space-sm">
-                                    Exclusividade e sofisticação no endereço mais nobre de Salvador: o Corredor da
-                                    Vitória. Cobertura
-                                    duplex impecável com vista cinematográfica para o pôr do sol na Baía de Todos os
-                                    Santos. Acabamentos
-                                    em mármore importado, marcenaria fina e pé-direito duplo na área social.
-                                </p>
-                                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                                    No piso superior, deck em madeira nobre com piscina privativa aquecida, espaço
-                                    gourmet climatizado com
-                                    churrasqueira e vista mar de 180 graus sem obstruções. Acesso exclusivo pelo
-                                    condomínio a píer
-                                    privativo na baía com apoio náutico completo.
-                                </p>
-                            </div>
-                            <div class="p-space-md rounded-xl bg-surface-container-low">
-                                <h3
-                                    class="font-headline-sm text-headline-sm text-on-surface mb-space-sm flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-secondary">stars</span>
-                                    Diferenciais do Imóvel
-                                </h3>
-                                <ul
-                                    class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs font-body-md text-body-md text-on-surface-variant">
-                                    <li class="flex items-center gap-2">
-                                        <span
-                                            class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
-                                        Pier privativo com teleférico para banho de mar na Baía
-                                    </li>
-                                    <li class="flex items-center gap-2">
-                                        <span
-                                            class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
-                                        Piscina com borda infinita privativa aquecida
-                                    </li>
-                                    <li class="flex items-center gap-2">
-                                        <span
-                                            class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
-                                        Automação completa de climatização e iluminação
-                                    </li>
-                                    <li class="flex items-center gap-2">
-                                        <span
-                                            class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
-                                        4 suítes master com closet e marcenaria de alto padrão
-                                    </li>
-                                    <li class="flex items-center gap-2">
-                                        <span
-                                            class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
-                                        Varanda gourmet climatizada integrada ao living
-                                    </li>
-                                    <li class="flex items-center gap-2">
-                                        <span
-                                            class="material-symbols-outlined text-[18px] text-secondary">check_circle</span>
-                                        4 vagas de garagem soltas e depósito privativo
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="">
-                                <h3
-                                    class="font-headline-sm text-headline-sm text-on-surface mb-space-sm flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-secondary">domain</span>
-                                    Sobre o Condomínio e Lazer
-                                </h3>
-                                <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-                                    Empreendimento de prestígio internacional na encosta da Vitória. Oferece píer
-                                    exclusivo na Baía de
-                                    Todos os Santos com teleférico de acesso privativo, guarderia náutica, heliponto,
-                                    piscina
-                                    semiolímpica, academia de ponta e segurança perimetral 24 horas.
-                                </p>
-                            </div>
-                        </article>
-                        <!-- Amenities & Infrastructure Grid -->
-                        <section class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
-                            <div class="flex items-center justify-between mb-space-md">
-                                <div>
-                                    <h2 class="font-headline-lg text-headline-lg text-on-surface">Comodidades &amp;
-                                        Infraestrutura</h2>
-                                    <p class="font-body-sm text-body-sm text-on-surface-variant">Tudo o que você e sua
-                                        família precisam
-                                        com conforto absoluto</p>
-                                </div>
-                                <span
-                                    class="px-3 py-1 rounded-full bg-surface-container font-label-sm text-label-sm text-on-surface font-semibold">12
-                                    Itens Exclusivos</span>
-                            </div>
-                            <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-space-sm">
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5 hover:bg-surface-container transition-colors">
-                                    <span class="material-symbols-outlined text-secondary text-[24px]">pool</span>
-                                    <span class="font-label-md text-label-md text-on-surface">Piscina Privativa</span>
-                                    <span class="font-body-sm text-[11px] text-on-surface-variant">Aquecida no
-                                        deck</span>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5 hover:bg-surface-container transition-colors">
-                                    <span
-                                        class="material-symbols-outlined text-secondary text-[24px]">outdoor_grill</span>
-                                    <span class="font-label-md text-label-md text-on-surface">Varanda Gourmet</span>
-                                    <span class="font-body-sm text-[11px] text-on-surface-variant">Integrada com
-                                        churrasqueira</span>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5 hover:bg-surface-container transition-colors">
-                                    <span class="material-symbols-outlined text-secondary text-[24px]">mode_fan</span>
-                                    <span class="font-label-md text-label-md text-on-surface">Ar Condicionado</span>
-                                    <span class="font-body-sm text-[11px] text-on-surface-variant">Em todos os
-                                        ambientes</span>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5 hover:bg-surface-container transition-colors">
-                                    <span class="material-symbols-outlined text-secondary text-[24px]">checkroom</span>
-                                    <span class="font-label-md text-label-md text-on-surface">Closet Planejado</span>
-                                    <span class="font-body-sm text-[11px] text-on-surface-variant">Mobiliário
-                                        Ornare</span>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5 hover:bg-surface-container transition-colors">
-                                    <span class="material-symbols-outlined text-secondary text-[24px]">pin</span>
-                                    <span class="font-label-md text-label-md text-on-surface">Fechadura Digital</span>
-                                    <span class="font-body-sm text-[11px] text-on-surface-variant">Biometria e
-                                        senha</span>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5 hover:bg-surface-container transition-colors">
-                                    <span
-                                        class="material-symbols-outlined text-secondary text-[24px]">fitness_center</span>
-                                    <span class="font-label-md text-label-md text-on-surface">Academia Completa</span>
-                                    <span class="font-body-sm text-[11px] text-on-surface-variant">Equipamentos
-                                        LifeFitness</span>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5 hover:bg-surface-container transition-colors">
-                                    <span class="material-symbols-outlined text-secondary text-[24px]">shield</span>
-                                    <span class="font-label-md text-label-md text-on-surface">Portaria 24h
-                                        Blindada</span>
-                                    <span class="font-body-sm text-[11px] text-on-surface-variant">Vigilância e
-                                        clausura</span>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5 hover:bg-surface-container transition-colors">
-                                    <span
-                                        class="material-symbols-outlined text-secondary text-[24px]">celebration</span>
-                                    <span class="font-label-md text-label-md text-on-surface">Salão Gourmet</span>
-                                    <span class="font-body-sm text-[11px] text-on-surface-variant">Equipado para 40
-                                        pessoas</span>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5 hover:bg-surface-container transition-colors">
-                                    <span class="material-symbols-outlined text-secondary text-[24px]">work</span>
-                                    <span class="font-label-md text-label-md text-on-surface">Espaço Coworking</span>
-                                    <span class="font-body-sm text-[11px] text-on-surface-variant">Salas de reunião
-                                        isoladas</span>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5 hover:bg-surface-container transition-colors">
-                                    <span class="material-symbols-outlined text-secondary text-[24px]">pets</span>
-                                    <span class="font-label-md text-label-md text-on-surface">Pet Place &amp;
-                                        Care</span>
-                                    <span class="font-body-sm text-[11px] text-on-surface-variant">Área verde
-                                        cercada</span>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5 hover:bg-surface-container transition-colors">
-                                    <span class="material-symbols-outlined text-secondary text-[24px]">pedal_bike</span>
-                                    <span class="font-label-md text-label-md text-on-surface">Bicicletário</span>
-                                    <span class="font-body-sm text-[11px] text-on-surface-variant">Com ponto
-                                        elétrico</span>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1.5 hover:bg-surface-container transition-colors">
-                                    <span
-                                        class="material-symbols-outlined text-secondary text-[24px]">electric_bolt</span>
-                                    <span class="font-label-md text-label-md text-on-surface">Gerador Full</span>
-                                    <span class="font-body-sm text-[11px] text-on-surface-variant">Atende 100% dos
-                                        aptos</span>
-                                </div>
-                            </div>
-                        </section>
-                        <!-- Location & Neighborhood Map Section -->
-                        <section class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
-                            <div
-                                class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-md">
-                                <div>
-                                    <h2 class="font-headline-lg text-headline-lg text-on-surface">Localização
-                                        Estratégica</h2>
-                                    <p class="font-body-md text-body-md text-on-surface-variant">Av. Sete de Setembro,
-                                        Vitória •
-                                        Salvador/BA</p>
-                                </div>
-                                <a class="inline-flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors w-fit"
-                                    href="https://maps.google.com/?q=Avenida+Sete+de+Setembro+Vitoria+Salvador+BA"
-                                    rel="noopener noreferrer" target="_blank">
-                                    <span
-                                        class="material-symbols-outlined text-[18px] text-secondary">open_in_new</span>
-                                    Abrir no Google Maps
-                                </a>
-                            </div>
-                            <!-- Stylized Map Component -->
-                            <div class="relative w-full h-80 rounded-xl overflow-hidden shadow-inner mb-space-lg">
-                                <div class="w-full h-full bg-cover bg-center"
-                                    data-location="Rua Canário, Moema, São Paulo, SP, Brasil"
-                                    style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuD0pGy-4AT3eZQvWvka4XvrptA2MMFcdlm7UhbtxMHNNfAe-lLJpSee2sGdWEjEFd9tJITtY8JIduaXVj6CakKPbdL_hyCoGYcwneB8Y4Vjeh7Dt5gggTPdyWfMFCqOLHDcGSrnnUaI057G2njlFOn2rbt44-MuENhi96zNCi7IRfT34osji9T8apD_qj0I1qPrvVPXlCIbT_N4SHq4fIfIvkbuPP1dmXK7upG4lfjii4kKVSaLK6aP')">
-                                </div>
-                                <!-- Floating pin indicator -->
-                                <div
-                                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center pointer-events-none">
-                                    <div
-                                        class="px-3 py-1.5 rounded-xl bg-primary text-on-primary font-label-md text-label-md shadow-xl flex items-center gap-1.5 whitespace-nowrap animate-bounce">
-                                        <span
-                                            class="material-symbols-outlined text-secondary-fixed text-[18px]">home_pin</span>
-                                        Cobertura Duplex 310m² - Baía de Todos os Santos
-                                    </div>
-                                    <div class="w-3 h-3 bg-primary rotate-45 -mt-1.5"></div>
-                                </div>
-                            </div>
-                            <!-- Nearby Points of Interest Bento Cards -->
-                            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-sm">Pontos de
-                                Interesse Próximos
-                            </h3>
-                            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-space-sm">
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex items-start gap-space-xs">
-                                    <div
-                                        class="w-9 h-9 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
-                                        <span class="material-symbols-outlined text-[20px]">shopping_cart</span>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="font-label-md text-label-md text-on-surface">Pão de Açúcar</span>
-                                        <span class="font-body-sm text-[12px] text-on-surface-variant">A 200m (3 min a
-                                            pé)</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex items-start gap-space-xs">
-                                    <div
-                                        class="w-9 h-9 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
-                                        <span class="material-symbols-outlined text-[20px]">school</span>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="font-label-md text-label-md text-on-surface">Colégio Móbile</span>
-                                        <span class="font-body-sm text-[12px] text-on-surface-variant">A 450m (6 min a
-                                            pé)</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex items-start gap-space-xs">
-                                    <div
-                                        class="w-9 h-9 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
-                                        <span class="material-symbols-outlined text-[20px]">directions_subway</span>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="font-label-md text-label-md text-on-surface">Estação Moema</span>
-                                        <span class="font-body-sm text-[12px] text-on-surface-variant">A 600m (Linha
-                                            5-Lilás)</span>
-                                    </div>
-                                </div>
-                                <div
-                                    class="p-space-sm rounded-xl bg-surface-container-low flex items-start gap-space-xs">
-                                    <div
-                                        class="w-9 h-9 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
-                                        <span class="material-symbols-outlined text-[20px]">park</span>
-                                    </div>
-                                    <div class="flex flex-col">
-                                        <span class="font-label-md text-label-md text-on-surface">Parque
-                                            Ibirapuera</span>
-                                        <span class="font-body-sm text-[12px] text-on-surface-variant">Apenas 5 min de
-                                            carro</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </section>
-                        <!-- Interactive Banking Mortgage Simulator -->
-                        <section
-                            class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm flex flex-col gap-space-lg">
-                            <div
-                                class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-sm pb-space-sm border-b border-surface-container">
-                                <div>
-                                    <div class="flex flex-wrap items-center gap-2 mb-1"><span
-                                            class="material-symbols-outlined text-secondary text-[26px]">volume_down</span>
-                                        <h2 class="font-headline-lg text-headline-lg text-on-surface">Vizinhança &amp;
-                                            Nível de Ruído</h2>
-                                        <span
-                                            class="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm"><span
-                                                class="material-symbols-outlined text-[14px]">verified</span>Moradores
-                                            Verificados</span>
-                                    </div>
-                                    <p class="font-body-md text-body-md text-on-surface-variant">Avaliações de quem vive
-                                        no quadrilátero
-                                        dos Pássaros em Moema</p>
-                                </div>
-                                <div
-                                    class="flex items-center gap-space-xs bg-surface-container-low px-space-md py-2 rounded-xl">
-                                    <div class="flex flex-col items-end">
-                                        <div class="flex items-center gap-1"><span
-                                                class="material-symbols-outlined text-secondary text-[20px]">star</span><span
-                                                class="font-headline-md text-headline-md font-bold text-on-surface leading-none">4.8</span><span
-                                                class="text-body-sm font-normal text-on-surface-variant">/ 5.0</span>
-                                        </div><span class="font-label-sm text-[11px] text-on-surface-variant">Baseado em
-                                            38 avaliações</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-md items-center">
-                                <div
-                                    class="lg:col-span-4 p-space-md rounded-xl bg-surface-container-low flex flex-col items-center text-center gap-2">
-                                    <div
-                                        class="w-14 h-14 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center">
-                                        <span class="material-symbols-outlined text-[32px]">bedtime</span>
-                                    </div>
-                                    <div><span class="font-headline-sm text-headline-sm text-on-surface font-bold">Muito
-                                            Silencioso à
-                                            Noite</span>
-                                        <p class="font-body-sm text-[12px] text-on-surface-variant mt-0.5">Rua
-                                            estritamente residencial com
-                                            fluxo calmo e restrição a tráfego pesado.</p>
-                                    </div>
-                                    <div
-                                        class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-surface-container-lowest text-secondary font-label-md text-label-md font-bold shadow-sm">
-                                        <span class="material-symbols-outlined text-[16px]">graphic_eq</span>Score
-                                        Acústico: 94/100
-                                    </div>
-                                </div>
-                                <div
-                                    class="lg:col-span-8 flex flex-col gap-space-sm p-space-md rounded-xl bg-surface-container-low">
-                                    <div class="flex items-center justify-between gap-space-sm"><span
-                                            class="font-label-md text-label-md text-on-surface min-w-[170px]">Silêncio
-                                            Noturno</span>
-                                        <div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
-                                            <div class="h-full bg-secondary rounded-full w-[96%]"></div>
-                                        </div><span
-                                            class="font-label-sm text-label-sm font-bold text-on-surface text-right w-14">4.9
-                                            ★</span>
-                                    </div>
-                                    <div class="flex items-center justify-between gap-space-sm"><span
-                                            class="font-label-md text-label-md text-on-surface min-w-[170px]">Tranquilidade
-                                            Diurna</span>
-                                        <div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
-                                            <div class="h-full bg-secondary rounded-full w-[92%]"></div>
-                                        </div><span
-                                            class="font-label-sm text-label-sm font-bold text-on-surface text-right w-14">4.6
-                                            ★</span>
-                                    </div>
-                                    <div class="flex items-center justify-between gap-space-sm"><span
-                                            class="font-label-md text-label-md text-on-surface min-w-[170px]">Ruído de
-                                            Veículos &amp;
-                                            Trânsito</span>
-                                        <div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
-                                            <div class="h-full bg-secondary rounded-full w-[94%]"></div>
-                                        </div><span
-                                            class="font-label-sm text-label-sm font-bold text-on-surface text-right w-14">4.7
-                                            ★</span>
-                                    </div>
-                                    <div class="flex items-center justify-between gap-space-sm"><span
-                                            class="font-label-md text-label-md text-on-surface min-w-[170px]">Barulho de
-                                            Bares e
-                                            Comércio</span>
-                                        <div class="flex-1 h-2 bg-surface-container rounded-full overflow-hidden">
-                                            <div class="h-full bg-secondary rounded-full w-[95%]"></div>
-                                        </div><span
-                                            class="font-label-sm text-label-sm font-bold text-on-surface text-right w-14">4.8
-                                            ★</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex flex-col gap-space-sm">
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface">Depoimentos de Moradores
-                                    Vizinhos</h3>
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-space-sm">
-                                    <div
-                                        class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between gap-3">
-                                        <p
-                                            class="font-body-md text-body-md text-on-surface-variant italic leading-relaxed">
-                                            “Moro na Rua
-                                            Canário há 4 anos. O trecho é arborizado e pacato, sem bares barulhentos nem
-                                            linhas de ônibus. As
-                                            noites são serenas e a brisa no terraço é sensacional.”</p>
-                                        <div
-                                            class="flex items-center justify-between pt-2 border-t border-surface-container">
-                                            <div class="flex items-center gap-2">
-                                                <div
-                                                    class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-bold text-on-surface text-[12px]">
-                                                    FA</div>
-                                                <div><span
-                                                        class="font-label-md text-label-md text-on-surface block">Fernanda
-                                                        Alencar</span><span
-                                                        class="font-body-sm text-[11px] text-on-surface-variant">Moradora
-                                                        há 4
-                                                        anos • Prédio vizinho</span></div>
-                                            </div>
-                                            <div class="flex text-secondary text-[14px]"><span
-                                                    class="material-symbols-outlined text-[16px]">star</span><span
-                                                    class="material-symbols-outlined text-[16px]">star</span><span
-                                                    class="material-symbols-outlined text-[16px]">star</span><span
-                                                    class="material-symbols-outlined text-[16px]">star</span><span
-                                                    class="material-symbols-outlined text-[16px]">star</span></div>
-                                        </div>
-                                    </div>
-                                    <div
-                                        class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between gap-3">
-                                        <p
-                                            class="font-body-md text-body-md text-on-surface-variant italic leading-relaxed">
-                                            “Trabalho em
-                                            home office com gravação de áudio e o isolamento natural do bairro
-                                            impressiona. O som predominante
-                                            aqui é dos pássaros pela manhã e tranquilidade total após as 21h.”</p>
-                                        <div
-                                            class="flex items-center justify-between pt-2 border-t border-surface-container">
-                                            <div class="flex items-center gap-2">
-                                                <div
-                                                    class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center font-bold text-on-surface text-[12px]">
-                                                    RM</div>
-                                                <div><span
-                                                        class="font-label-md text-label-md text-on-surface block">Rodrigo
-                                                        Medeiros</span><span
-                                                        class="font-body-sm text-[11px] text-on-surface-variant">Morador
-                                                        há 6
-                                                        anos • Alameda dos Arapanés</span></div>
-                                            </div>
-                                            <div class="flex text-secondary text-[14px]"><span
-                                                    class="material-symbols-outlined text-[16px]">star</span><span
-                                                    class="material-symbols-outlined text-[16px]">star</span><span
-                                                    class="material-symbols-outlined text-[16px]">star</span><span
-                                                    class="material-symbols-outlined text-[16px]">star</span><span
-                                                    class="material-symbols-outlined text-[16px]">star</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div
-                                class="flex flex-col sm:flex-row items-center justify-between gap-space-sm p-space-sm px-space-md rounded-xl bg-surface-container-low">
-                                <div class="flex items-center gap-2"><span
-                                        class="material-symbols-outlined text-secondary text-[22px]">rate_review</span><span
-                                        class="font-body-sm text-body-sm text-on-surface-variant">Você reside ou já
-                                        morou nesta rua? Ajude
-                                        futuros moradores com sua impressão acústica.</span></div><button
-                                    class="inline-flex items-center gap-1.5 px-space-md py-2 rounded-lg bg-surface-container-lowest text-on-surface font-label-md text-label-md hover:bg-primary hover:text-on-primary transition-colors shadow-sm whitespace-nowrap active:scale-95"
-                                    (click)="mostrarToast('Obrigado! O formulário de avaliação do morador abrirá em instantes.')"
-                                    type="button"><span class="material-symbols-outlined text-[18px]">edit</span>Avaliar
-                                    este Bairro /
-                                    Região</button>
-                            </div>
-                        </section>
-                        <section class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-sm">
-                            <div
-                                class="flex flex-col sm:flex-row sm:items-center justify-between gap-space-xs mb-space-md">
-                                <div>
-                                    <div class="flex items-center gap-2">
-                                        <span
-                                            class="material-symbols-outlined text-secondary text-[26px]">calculate</span>
-                                        <h2 class="font-headline-lg text-headline-lg text-on-surface">Simulador de
-                                            Financiamento</h2>
-                                    </div>
-                                    <p class="font-body-md text-body-md text-on-surface-variant">Av. Sete de Setembro,
-                                        Vitória •
-                                        Salvador/BA</p>
-                                </div>
-                                <span
-                                    class="inline-flex items-center gap-1 text-on-tertiary-container font-label-sm text-label-sm bg-tertiary-fixed/30 px-3 py-1 rounded-full">
-                                    <span class="material-symbols-outlined text-[16px]">verified_user</span> Taxas
-                                    atualizadas hoje
-                                </span>
-                            </div>
-                            <!-- Controls Bento -->
-                            <div
-                                class="grid grid-cols-1 md:grid-cols-3 gap-space-md p-space-md rounded-xl bg-surface-container-low mb-space-lg">
-                                <div class="flex flex-col gap-1.5">
-                                    <label class="font-label-sm text-label-sm text-on-surface-variant">Valor Total do
-                                        Imóvel</label>
-                                    <div
-                                        class="h-12 px-space-md rounded-lg bg-surface-container-lowest flex items-center justify-between shadow-sm">
-                                        <span class="font-headline-sm text-headline-sm font-bold text-on-surface">R$
-                                            3.850.000</span>
-                                        <span class="font-label-sm text-label-sm text-outline">100%</span>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-1.5">
-                                    <div class="flex justify-between items-center">
-                                        <label class="font-label-sm text-label-sm text-on-surface-variant">Entrada
-                                            sugerida (20%)</label>
-                                        <span class="font-label-sm text-label-sm text-secondary font-bold"
-                                            id="down-pct-label">20%</span>
-                                    </div>
-                                    <div
-                                        class="h-12 px-space-md rounded-lg bg-surface-container-lowest flex items-center justify-between shadow-sm">
-                                        <span class="font-headline-sm text-headline-sm font-bold text-on-surface"
-                                            id="down-val-label">R$
-                                            770.000</span>
-                                        <span
-                                            class="material-symbols-outlined text-secondary text-[20px]">payments</span>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col gap-1.5">
-                                    <label class="font-label-sm text-label-sm text-on-surface-variant">Prazo de
-                                        Amortização</label>
-                                    <div
-                                        class="h-12 px-space-md rounded-lg bg-surface-container-lowest flex items-center justify-between shadow-sm">
-                                        <span class="font-headline-sm text-headline-sm font-bold text-on-surface">360
-                                            meses (30 anos)</span>
-                                        <span
-                                            class="material-symbols-outlined text-outline text-[20px]">calendar_today</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Bank Comparison Cards -->
-                            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-sm mb-space-lg">
-                                <!-- Caixa -->
-                                <div
-                                    class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between gap-3 relative overflow-hidden group">
-                                    <div class="flex items-center justify-between">
-                                        <span
-                                            class="font-headline-sm text-headline-sm font-bold text-on-surface">Caixa</span>
-                                        <span
-                                            class="px-2 py-0.5 rounded bg-surface-container-highest font-label-sm text-[10px] text-on-surface">Menor
-                                            Taxa</span>
-                                    </div>
-                                    <div>
-                                        <span class="font-label-sm text-label-sm text-on-surface-variant">Parcela
-                                            Inicial Est.</span>
-                                        <p class="font-headline-md text-headline-md font-bold text-secondary">R$ 13.480
-                                        </p>
-                                        <p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">Taxa: 9,20%
-                                            a.a. + TR</p>
-                                    </div>
-                                    <button
-                                        class="w-full py-2 rounded-lg bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-primary hover:text-on-primary transition-colors shadow-sm"
-                                        type="button">
-                                        Selecionar
-                                    </button>
-                                </div>
-                                <!-- Itaú -->
-                                <div
-                                    class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between gap-3 relative overflow-hidden group">
-                                    <div class="flex items-center justify-between">
-                                        <span
-                                            class="font-headline-sm text-headline-sm font-bold text-on-surface">Itaú</span>
-                                        <span
-                                            class="px-2 py-0.5 rounded bg-surface-container-highest font-label-sm text-[10px] text-on-surface">Aprovação
-                                            Rápida</span>
-                                    </div>
-                                    <div>
-                                        <span class="font-label-sm text-label-sm text-on-surface-variant">Parcela
-                                            Inicial Est.</span>
-                                        <p class="font-headline-md text-headline-md font-bold text-on-surface">R$ 13.920
-                                        </p>
-                                        <p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">Taxa: 9,65%
-                                            a.a. + TR</p>
-                                    </div>
-                                    <button
-                                        class="w-full py-2 rounded-lg bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-primary hover:text-on-primary transition-colors shadow-sm"
-                                        type="button">
-                                        Selecionar
-                                    </button>
-                                </div>
-                                <!-- Santander -->
-                                <div
-                                    class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between gap-3 relative overflow-hidden group">
-                                    <div class="flex items-center justify-between">
-                                        <span
-                                            class="font-headline-sm text-headline-sm font-bold text-on-surface">Santander</span>
-                                        <span
-                                            class="px-2 py-0.5 rounded bg-surface-container-highest font-label-sm text-[10px] text-on-surface">Carência
-                                            6 meses</span>
-                                    </div>
-                                    <div>
-                                        <span class="font-label-sm text-label-sm text-on-surface-variant">Parcela
-                                            Inicial Est.</span>
-                                        <p class="font-headline-md text-headline-md font-bold text-on-surface">R$ 14.150
-                                        </p>
-                                        <p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">Taxa: 9,89%
-                                            a.a. + TR</p>
-                                    </div>
-                                    <button
-                                        class="w-full py-2 rounded-lg bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-primary hover:text-on-primary transition-colors shadow-sm"
-                                        type="button">
-                                        Selecionar
-                                    </button>
-                                </div>
-                                <!-- Bradesco -->
-                                <div
-                                    class="p-space-md rounded-xl bg-surface-container-low hover:bg-surface-container transition-all flex flex-col justify-between gap-3 relative overflow-hidden group">
-                                    <div class="flex items-center justify-between">
-                                        <span
-                                            class="font-headline-sm text-headline-sm font-bold text-on-surface">Bradesco</span>
-                                        <span
-                                            class="px-2 py-0.5 rounded bg-surface-container-highest font-label-sm text-[10px] text-on-surface">Digital
-                                            100%</span>
-                                    </div>
-                                    <div>
-                                        <span class="font-label-sm text-label-sm text-on-surface-variant">Parcela
-                                            Inicial Est.</span>
-                                        <p class="font-headline-md text-headline-md font-bold text-on-surface">R$ 14.040
-                                        </p>
-                                        <p class="font-body-sm text-[11px] text-on-surface-variant mt-0.5">Taxa: 9,78%
-                                            a.a. + TR</p>
-                                    </div>
-                                    <button
-                                        class="w-full py-2 rounded-lg bg-surface-container-lowest text-on-surface font-label-sm text-label-sm hover:bg-primary hover:text-on-primary transition-colors shadow-sm"
-                                        type="button">
-                                        Selecionar
-                                    </button>
-                                </div>
-                            </div>
-                            <!-- Simulator CTA Footer -->
-                            <div
-                                class="flex flex-col sm:flex-row items-center justify-between gap-space-md p-space-md rounded-xl bg-primary-container text-on-primary">
-                                <div class="flex items-center gap-space-sm">
-                                    <span
-                                        class="material-symbols-outlined text-secondary-fixed text-[32px]">account_balance</span>
-                                    <div>
-                                        <p class="font-headline-sm text-headline-sm leading-snug">Quer utilizar crédito
-                                            de outro banco?</p>
-                                        <p class="font-body-sm text-body-sm text-on-primary-container">Nossa assessoria
-                                            jurídica cuida de
-                                            toda a aprovação sem custos extras.</p>
-                                    </div>
-                                </div>
-                                <button
-                                    class="px-space-lg py-3 rounded-lg bg-secondary text-on-secondary font-label-lg text-label-lg hover:bg-secondary/90 transition-all active:scale-95 whitespace-nowrap shadow-md"
-                                    type="button">
-                                    Simular com meu Banco
-                                </button>
-                            </div>
-                        </section>
-                    </div>
-                    <!-- RIGHT COLUMN: Sticky Lead Conversion & Realtor Card (35% -> 4 of 12 cols) -->
-                    <aside class="lg:col-span-4 lg:sticky lg:top-24 flex flex-col gap-space-lg">
-                        <!-- Primary Sticky Box -->
-                        <div
-                            class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-xl flex flex-col gap-space-md">
-                            <!-- Price Header in Sticky Card -->
-                            <div class="pb-space-sm border-b border-surface-container"><span
-                                    class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Valor
-                                    de
-                                    Venda</span>
-                                <div class="flex items-baseline gap-2">
-                                    <span class="font-headline-xl text-price-hero text-on-surface font-extrabold">R$
-                                        3.850.000</span>
-                                </div>
-                                <div
-                                    class="flex items-center justify-between font-body-sm text-body-sm text-on-surface-variant mt-1">
-                                    <span class="">Cond. R$ 2.400</span>
-                                    <span class="">•</span>
-                                    <span class="">IPTU R$ 7.800/ano</span>
-                                </div>
-                            </div>
-                            <!-- Realtor Profile Info -->
-                            <div class="flex items-center gap-space-sm p-space-sm rounded-xl bg-surface-container-low">
-                                <div class="relative">
-                                    <img alt="Corretor Carlos Silva"
-                                        class="w-14 h-14 rounded-full object-cover shadow-sm"
-                                        data-alt="Professional headshot of handsome male Brazilian real estate broker Carlos Silva in a tailored navy blazer smiling warmly against modern architectural office background"
-                                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjvdJQak55l5erX_jMaFe4lZEVdjQMMy7uIjfWYv15AOUkKI-5q6nej1y7TIiR7wQvMPPdKz5jcavEalyXudCZtBmbsAX1xoEpFWsamHlX1oFI7d7jtISRn22CHxQc7P1npArG7uf4GRStHTczk1-zTgmpH8SEudoc5M4grK8hQkgXLST5T2wcRqYsNeCbgBUyWL6-6Kltdnt-_5xsy0zOYDi6eCuzWg15rW6SiEapwH5LsCMIzDlQ">
-                                    <span
-                                        class="absolute bottom-0 right-0 w-4 h-4 rounded-full bg-secondary text-on-secondary flex items-center justify-center text-[10px] shadow-sm"
-                                        title="Corretor Verificado">
-                                        ✓
-                                    </span>
-                                </div>
-                                <div class="flex flex-col min-w-0 flex-1">
-                                    <div class="flex items-center justify-between">
-                                        <span
-                                            class="font-headline-sm text-headline-sm text-on-surface truncate font-bold">Carlos
-                                            Silva</span>
-                                        <span
-                                            class="flex items-center gap-0.5 text-secondary font-label-md text-label-md font-bold">
-                                            ★ 4.9 <span
-                                                class="text-on-surface-variant font-normal text-body-sm">(84)</span>
-                                        </span>
-                                    </div>
-                                    <span class="font-body-sm text-body-sm text-secondary font-medium">Especialista em
-                                        Imóveis de Alto
-                                        Padrão em Salvador (Vitória, Horto &amp; Barra)</span>
-                                    <span class="font-label-sm text-[11px] text-on-surface-variant">CRECI-BA 14.892-F •
-                                        Ativo</span>
-                                </div>
-                            </div>
-                            <!-- Fast Interaction Tabs: Form vs Schedule Visit -->
-                            <div class="flex rounded-lg bg-surface-container p-1 text-on-surface">
-                                <button
-                                    class="flex-1 py-1.5 rounded-md bg-surface-container-lowest font-label-md text-label-md shadow-sm transition-all text-on-surface"
-                                    id="tab-msg" (click)="alternarAba('msg')">
-                                    Mensagem
-                                </button>
-                                <button
-                                    class="flex-1 py-1.5 rounded-md font-label-md text-label-md transition-all text-on-surface-variant hover:text-on-surface"
-                                    id="tab-visit" (click)="alternarAba('visit')">
-                                    Agendar Visita
-                                </button>
-                            </div>
-                            <!-- TAB 1: Fast Contact Form -->
-                            <form class="flex flex-col gap-space-sm" id="contact-form" (ngSubmit)="enviarMensagem()">
-                                <div class="flex flex-col gap-1">
-                                    <label class="font-label-sm text-label-sm text-on-surface-variant"
-                                        for="lead-name">Seu Nome
-                                        Completo</label>
-                                    <input
-                                        class="w-full h-11 px-space-md rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
-                                        id="lead-name" name="leadName" [(ngModel)]="nomeLead"
-                                        placeholder="Ex: Dra. Mariana Costa" required type="text">
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <label class="font-label-sm text-label-sm text-on-surface-variant"
-                                        for="lead-phone">Telefone /
-                                        WhatsApp</label>
-                                    <input
-                                        class="w-full h-11 px-space-md rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
-                                        id="lead-phone" name="leadPhone" [(ngModel)]="telefoneLead"
-                                        placeholder="(11) 98765-4321" required type="tel">
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <label class="font-label-sm text-label-sm text-on-surface-variant"
-                                        for="lead-email">E-mail</label>
-                                    <input
-                                        class="w-full h-11 px-space-md rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary transition-all"
-                                        id="lead-email" name="leadEmail" [(ngModel)]="emailLead"
-                                        placeholder="mariana@exemplo.com.br" required type="email">
-                                </div>
-                                <div class="flex flex-col gap-1">
-                                    <label class="font-label-sm text-label-sm text-on-surface-variant"
-                                        for="lead-message">Mensagem</label>
-                                    <textarea
-                                        class="w-full p-space-sm rounded-lg bg-surface-container-low text-on-surface placeholder:text-outline font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none focus:ring-2 focus:ring-secondary transition-all resize-none"
-                                        id="lead-message" name="leadMessage" [(ngModel)]="mensagemLead"
-                                        rows="3">Olá Carlos! Gostaria de agendar uma visita e receber a documentação desta Cobertura Duplex no Corredor da Vitória (Cód LI-98420).</textarea>
-                                </div>
-                                <!-- Quick Question Chips -->
-                                <div class="flex flex-wrap gap-1.5 pt-1">
-                                    <button
-                                        class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-sm text-[11px] transition-colors"
-                                        (click)="setMensagemRapida('O imóvel ainda está disponível para compra?')"
-                                        type="button">
-                                        Está disponível?
-                                    </button>
-                                    <button
-                                        class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-sm text-[11px] transition-colors"
-                                        (click)="setMensagemRapida('Qual o valor final negociável à vista?')"
-                                        type="button">
-                                        Aceita proposta à vista?
-                                    </button>
-                                    <button
-                                        class="px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high font-label-sm text-[11px] transition-colors"
-                                        (click)="setMensagemRapida('Aceita permuta por outro imóvel na Zona Sul?')"
-                                        type="button">
-                                        Aceita permuta?
-                                    </button>
-                                </div>
-                                <!-- Action CTAs -->
-                                <button
-                                    class="w-full h-12 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-all active:scale-[0.99] flex items-center justify-center gap-2 shadow-sm mt-1"
-                                    type="submit">
-                                    <span class="material-symbols-outlined text-[20px]">send</span>
-                                    Enviar Mensagem
-                                </button>
-                            </form>
-                            <!-- TAB 2: Schedule Visit Calendar (Hidden by default) -->
-                            <div class="hidden flex-col gap-space-sm" id="visit-panel">
-                                <span class="font-label-sm text-label-sm text-on-surface-variant">Selecione uma data
-                                    para visita:</span>
-                                <div class="grid grid-cols-4 gap-1.5 text-center">
-                                    <button
-                                        class="p-2 rounded-lg bg-secondary text-on-secondary font-label-md text-label-md flex flex-col items-center"
-                                        type="button">
-                                        <span class="text-[10px] uppercase">Hoje</span>
-                                        <span class="font-bold">14</span>
-                                    </button>
-                                    <button
-                                        class="p-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex flex-col items-center"
-                                        type="button">
-                                        <span class="text-[10px] uppercase text-on-surface-variant">Amanhã</span>
-                                        <span class="font-bold">15</span>
-                                    </button>
-                                    <button
-                                        class="p-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex flex-col items-center"
-                                        type="button">
-                                        <span class="text-[10px] uppercase text-on-surface-variant">Sex</span>
-                                        <span class="font-bold">16</span>
-                                    </button>
-                                    <button
-                                        class="p-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface font-label-md text-label-md flex flex-col items-center"
-                                        type="button">
-                                        <span class="text-[10px] uppercase text-on-surface-variant">Sáb</span>
-                                        <span class="font-bold">17</span>
-                                    </button>
-                                </div>
-                                <span class="font-label-sm text-label-sm text-on-surface-variant mt-1">Horários
-                                    preferenciais:</span>
-                                <div class="grid grid-cols-3 gap-1.5 text-center font-label-sm text-label-sm">
-                                    <button
-                                        class="py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface"
-                                        type="button">10:00</button>
-                                    <button class="py-2 rounded-lg bg-secondary text-on-secondary font-bold shadow-sm"
-                                        type="button">14:30</button>
-                                    <button
-                                        class="py-2 rounded-lg bg-surface-container-low hover:bg-surface-container text-on-surface"
-                                        type="button">16:00</button>
-                                </div>
-                                <div class="flex items-center gap-2 mt-2">
-                                    <input checked="" class="accent-secondary w-4 h-4" id="type-presencial"
-                                        name="visit-mode" type="radio">
-                                    <label class="font-body-sm text-body-sm text-on-surface"
-                                        for="type-presencial">Presencial no
-                                        imóvel</label>
-                                    <input class="accent-secondary w-4 h-4 ml-2" id="type-video" name="visit-mode"
-                                        type="radio">
-                                    <label class="font-body-sm text-body-sm text-on-surface" for="type-video">Vídeo ao
-                                        vivo</label>
-                                </div>
-                                <button
-                                    class="w-full h-12 rounded-lg bg-primary text-on-primary font-label-lg text-label-lg hover:bg-primary-container transition-all active:scale-[0.99] flex items-center justify-center gap-2 shadow-sm mt-2"
-                                    (click)="confirmarAgendamento()" type="button">
-                                    <span class="material-symbols-outlined text-[20px]">event_available</span>
-                                    Confirmar Agendamento
-                                </button>
-                            </div>
-                            <!-- Prominent WhatsApp Direct CTA -->
-                            <a class="w-full h-12 rounded-lg bg-secondary text-on-secondary font-label-lg text-label-lg hover:bg-secondary/90 transition-all active:scale-[0.99] flex items-center justify-center gap-2 shadow-md"
-                                href="https://wa.me/5511987654321?text=Ol%C3%A1%20Carlos!%20Tenho%20interesse%20na%20Cobertura%20Duplex%20no%20Corredor%20da%20Vit%C3%B3ria%20(C%C3%B3d%20LI-98420)."
-                                rel="noopener noreferrer" target="_blank">
-                                <span class="material-symbols-outlined text-[20px]">chat</span>
-                                Conversar no WhatsApp
-                            </a>
-                            <!-- Safety & Quality Guarantees -->
-                            <div class="pt-space-sm border-t border-surface-container flex flex-col gap-2">
-                                <div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
-                                    <span class="material-symbols-outlined text-secondary text-[18px]">verified</span>
-                                    <span class="">Documentação 100% checada e aprovada</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
-                                    <span class="material-symbols-outlined text-secondary text-[18px]">gavel</span>
-                                    <span class="">Transação protegida e suporte jurídico total</span>
-                                </div>
-                                <div class="flex items-center gap-2 text-on-surface-variant font-body-sm text-body-sm">
-                                    <span
-                                        class="material-symbols-outlined text-secondary text-[18px]">support_agent</span>
-                                    <span class="">Atendimento humanizado sem robôs</span>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Secondary Advisory Banner -->
-                        <div
-                            class="p-space-md rounded-2xl bg-surface-container-low flex items-start gap-space-sm shadow-sm">
-                            <div
-                                class="w-10 h-10 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center shrink-0">
-                                <span class="material-symbols-outlined text-[22px]">lock_reset</span>
-                            </div>
-                            <div>
-                                <h3 class="font-headline-sm text-headline-sm text-on-surface text-[15px]">Proposta
-                                    Segura
-                                    localizaImóveis</h3>
-                                <p class="font-body-sm text-body-sm text-on-surface-variant mt-0.5">
-                                    Sua proposta é registrada digitalmente e só tem valor formal após concordância
-                                    bilateral de valores.
-                                </p>
-                            </div>
-                        </div>
-                    </aside>
-                </div>
-            </main>
-            <!-- Fullscreen Lightbox Modal (Hidden by Default) -->
-            <div aria-label="Galeria de Fotos Completa" aria-modal="true"
-                class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md flex-col justify-between p-4 md:p-8"
-                [class.hidden]="!galeriaAberta" [class.flex]="galeriaAberta" id="gallery-modal" role="dialog">
-                <div class="flex items-center justify-between text-on-primary w-full max-w-6xl mx-auto pb-4">
-                    <div class="flex items-center gap-3">
-                        <span class="font-headline-sm text-headline-sm font-bold">Galeria do Imóvel</span>
-                        <span
-                            class="px-2.5 py-0.5 rounded-full bg-surface-container-highest/20 font-label-sm text-label-sm text-secondary-fixed">28
-                            Fotos em Alta Definição</span>
-                    </div>
-                    <button aria-label="Fechar galeria"
-                        class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-on-primary transition-colors"
-                        (click)="fecharGaleria()" type="button">
-                        <span class="material-symbols-outlined text-[28px]">close</span>
-                    </button>
-                </div>
-                <div class="relative flex-1 max-w-5xl w-full mx-auto flex items-center justify-center">
-                    <img alt="Foto expandida do imóvel"
-                        class="max-h-[75vh] w-auto max-w-full rounded-xl object-contain shadow-2xl"
-                        data-alt="Ultra high resolution interior wide angle photo of contemporary luxury duplex apartment in Moema featuring designer staircase double height glass facade and skyline terrace"
-                        id="modal-main-img"
-                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFDN-ue8eM2e6RTwq4ilvyN3YLq7KuHnP5u42PW32sARdK0WlsN5d5f7mswSrhOYxiHECLD4gyujVmTWiIOnGZ4ZuJjeNetNHduIU5tGYjWZXl-J0riCWCnYdQXCWmTlc7s1bd41aWHUA50wpLBWNCOQVOJ3eEwzwS2fD-5FxmB3PhiWxbshMSF3dcyGUhrR0RmFkEnREguJ-Bs2Pb_sLpIP9Gpi-qkp58kKJLzQjheLNNLGryl48J">
-                    <button aria-label="Foto anterior"
-                        class="absolute left-2 p-3 rounded-full bg-black/60 text-on-primary hover:bg-black/90 transition-transform active:scale-90"
-                        (click)="imagemAnterior()" type="button">
-                        <span class="material-symbols-outlined text-[28px]">chevron_left</span>
-                    </button>
-                    <button aria-label="Próxima foto"
-                        class="absolute right-2 p-3 rounded-full bg-black/60 text-on-primary hover:bg-black/90 transition-transform active:scale-90"
-                        (click)="proximaImagem()" type="button">
-                        <span class="material-symbols-outlined text-[28px]">chevron_right</span>
-                    </button>
-                </div>
-                <div
-                    class="w-full max-w-6xl mx-auto pt-4 flex items-center justify-center gap-2 text-on-primary font-body-sm text-body-sm">
-                    <span class="">Use as setas para navegar • Pressione ESC para fechar</span>
-                </div>
-            </div>
-            <!-- Notification Toast Container -->
-            <div class="fixed bottom-6 right-6 z-50 transform transition-all duration-300 flex items-center gap-2.5 px-space-md py-3 rounded-xl bg-primary text-on-primary shadow-2xl font-label-md text-label-md"
-                [class.translate-y-20]="!toastVisivel" [class.opacity-0]="!toastVisivel"
-                [class.pointer-events-none]="!toastVisivel" id="toast">
-                <span class="material-symbols-outlined text-secondary-fixed text-[20px]" id="toast-icon"
-                    [class.text-error-container]="toastErro">{{ toastIcone }}</span>
-                <span id="toast-msg" class="">{{ mensagemToast }}</span>
-            </div>
-            <!-- Inline Micro-interactions & Handlers -->
+
+
+        <h1 class="text-3xl md:text-4xl font-bold text-slate-900">
+
+          {{ imovelAtual.titulo }}
+
+        </h1>
+
+
+        <div class="flex items-center gap-2 text-slate-500 mt-2">
+
+          <span class="material-symbols-outlined">
+            location_on
+          </span>
+
+          {{ imovelAtual.localizacao }}
+
         </div>
+
+      </div>
+
+
+      <!-- GALERIA -->
+      <section class="grid grid-cols-1 md:grid-cols-3 gap-2 h-[450px] mb-8">
+
+        <div class="md:col-span-2 h-full overflow-hidden rounded-l-2xl">
+
+          <img
+            [src]="imovelAtual.imagem"
+            [alt]="imovelAtual.titulo"
+            class="w-full h-full object-cover"
+          >
+
+        </div>
+
+
+        <div class="hidden md:grid grid-rows-2 gap-2">
+
+          <div class="overflow-hidden rounded-tr-2xl">
+
+            <img
+              [src]="imovelAtual.imagem"
+              [alt]="imovelAtual.titulo"
+              class="w-full h-full object-cover"
+            >
+
+          </div>
+
+          <div class="overflow-hidden rounded-br-2xl">
+
+            <img
+              [src]="imovelAtual.imagem"
+              [alt]="imovelAtual.titulo"
+              class="w-full h-full object-cover"
+            >
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CONTEÚDO PRINCIPAL -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+
+        <!-- COLUNA ESQUERDA -->
+        <div class="lg:col-span-2 space-y-6">
+
+
+          <!-- PREÇO + CARACTERÍSTICAS -->
+          <section class="bg-white rounded-2xl border border-slate-200 p-6">
+
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-5">
+
+              <div>
+
+                <p class="text-sm text-slate-500">
+                  Valor de venda
+                </p>
+
+                <p class="text-3xl font-bold text-slate-900">
+                  {{ imovelAtual.preco }}
+                </p>
+
+              </div>
+
+
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-5">
+
+                <div class="property-info">
+
+                  <span class="material-symbols-outlined text-teal-600">
+                    square_foot
+                  </span>
+
+                  <div>
+                    <p>Área</p>
+                    <strong>{{ imovelAtual.area }} m²</strong>
+                  </div>
+
+                </div>
+
+
+                <div class="property-info">
+
+                  <span class="material-symbols-outlined text-teal-600">
+                    bed
+                  </span>
+
+                  <div>
+                    <p>Quartos</p>
+                    <strong>{{ imovelAtual.quartos }}</strong>
+                  </div>
+
+                </div>
+
+
+                <div class="property-info">
+
+                  <span class="material-symbols-outlined text-teal-600">
+                    bathtub
+                  </span>
+
+                  <div>
+                    <p>Banheiros</p>
+                    <strong>{{ imovelAtual.banheiros }}</strong>
+                  </div>
+
+                </div>
+
+
+                <div class="property-info">
+
+                  <span class="material-symbols-outlined text-teal-600">
+                    directions_car
+                  </span>
+
+                  <div>
+                    <p>Vagas</p>
+                    <strong>{{ imovelAtual.vagas }}</strong>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- SOBRE O IMÓVEL -->
+          <section class="bg-white rounded-2xl border border-slate-200 p-6">
+
+            <h2 class="section-title">
+              Sobre o imóvel
+            </h2>
+
+            <p class="text-slate-600 leading-7">
+
+              {{ imovelAtual.descricao }}
+
+            </p>
+
+
+            <h3 class="text-lg font-bold text-slate-800 mt-7 mb-4">
+
+              Diferenciais do imóvel
+
+            </h3>
+
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+
+              @for (caracteristica of imovelAtual.caracteristicas; track caracteristica) {
+
+                <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
+
+                  <span class="material-symbols-outlined text-teal-600">
+                    check_circle
+                  </span>
+
+                  <span class="text-sm text-slate-600">
+                    {{ caracteristica }}
+                  </span>
+
+                </div>
+
+              }
+
+            </div>
+
+          </section>
+
+
+          <!-- COMODIDADES -->
+          <section class="bg-white rounded-2xl border border-slate-200 p-6">
+
+            <h2 class="section-title">
+              Comodidades & infraestrutura
+            </h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+
+              @for (comodidade of imovelAtual.comodidades; track comodidade) {
+
+                <div class="comodidade">
+
+                  <span class="material-symbols-outlined text-teal-600">
+                    home
+                  </span>
+
+                  <span>
+                    {{ comodidade }}
+                  </span>
+
+                </div>
+
+              }
+
+            </div>
+
+          </section>
+
+
+          <!-- AVALIAÇÃO DA REGIÃO -->
+          <section class="bg-white rounded-2xl border border-slate-200 p-6">
+
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+
+              <div>
+
+                <h2 class="section-title mb-1">
+                  Avaliações da região
+                </h2>
+
+                <p class="text-sm text-slate-500">
+                  Veja como moradores avaliam a região.
+                </p>
+
+              </div>
+
+
+              <div class="text-center">
+
+                <div class="text-3xl font-bold text-slate-900">
+
+                  {{ imovelAtual.avaliacaoRegiao }}
+
+                </div>
+
+                <div class="stars">
+
+                  {{ getEstrelas(imovelAtual.avaliacaoRegiao) }}
+
+                </div>
+
+                <p class="text-xs text-slate-500">
+                  Avaliação geral
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="space-y-4">
+
+
+              <div class="rating-row">
+
+                <span>Segurança</span>
+
+                <div class="rating-bar">
+
+                  <div
+                    class="rating-fill"
+                    [style.width.%]="imovelAtual.seguranca * 20">
+                  </div>
+
+                </div>
+
+                <strong>
+                  {{ imovelAtual.seguranca }}
+                </strong>
+
+              </div>
+
+
+              <div class="rating-row">
+
+                <span>Transporte</span>
+
+                <div class="rating-bar">
+
+                  <div
+                    class="rating-fill"
+                    [style.width.%]="imovelAtual.transporte * 20">
+                  </div>
+
+                </div>
+
+                <strong>
+                  {{ imovelAtual.transporte }}
+                </strong>
+
+              </div>
+
+
+              <div class="rating-row">
+
+                <span>Comércio</span>
+
+                <div class="rating-bar">
+
+                  <div
+                    class="rating-fill"
+                    [style.width.%]="imovelAtual.comercio * 20">
+                  </div>
+
+                </div>
+
+                <strong>
+                  {{ imovelAtual.comercio }}
+                </strong>
+
+              </div>
+
+
+              <div class="rating-row">
+
+                <span>Escolas</span>
+
+                <div class="rating-bar">
+
+                  <div
+                    class="rating-fill"
+                    [style.width.%]="imovelAtual.escolas * 20">
+                  </div>
+
+                </div>
+
+                <strong>
+                  {{ imovelAtual.escolas }}
+                </strong>
+
+              </div>
+
+
+              <div class="rating-row">
+
+                <span>Hospitais</span>
+
+                <div class="rating-bar">
+
+                  <div
+                    class="rating-fill"
+                    [style.width.%]="imovelAtual.hospitais * 20">
+                  </div>
+
+                </div>
+
+                <strong>
+                  {{ imovelAtual.hospitais }}
+                </strong>
+
+              </div>
+
+
+              <div class="rating-row">
+
+                <span>Lazer</span>
+
+                <div class="rating-bar">
+
+                  <div
+                    class="rating-fill"
+                    [style.width.%]="imovelAtual.lazer * 20">
+                  </div>
+
+                </div>
+
+                <strong>
+                  {{ imovelAtual.lazer }}
+                </strong>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+        </div>
+
+
+        <!-- COLUNA DIREITA -->
+        <aside class="space-y-6 sticky top-6 self-start">
+
+
+          <!-- CARD DO CADASTRANTE -->
+          <section class="bg-white rounded-2xl border border-slate-200 p-6">
+
+            <p class="text-sm text-slate-500 mb-4">
+              Anúncio publicado por
+            </p>
+
+
+            <div class="flex items-center gap-4 mb-5">
+
+              <div class="w-14 h-14 rounded-full bg-teal-100 flex items-center justify-center">
+
+                <span class="material-symbols-outlined text-3xl text-teal-700">
+                  person
+                </span>
+
+              </div>
+
+
+              <div>
+
+                <h2 class="font-bold text-slate-900">
+                  {{ imovelAtual.nomeProprietario }}
+                </h2>
+
+                <p class="text-sm text-slate-500">
+                  Proprietário
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <div class="bg-slate-50 rounded-lg p-3 mb-4">
+
+              <p class="text-xs text-slate-500">
+                {{ imovelAtual.tempoCadastro }}
+              </p>
+
+            </div>
+
+
+            <div class="space-y-3">
+
+              <button
+                type="button"
+                class="w-full py-3 rounded-lg bg-teal-600 text-white font-semibold hover:bg-teal-700 transition">
+
+                <span class="material-symbols-outlined align-middle mr-2">
+                  chat
+                </span>
+
+                Enviar mensagem
+
+              </button>
+
+
+              <button
+                type="button"
+                class="w-full py-3 rounded-lg border border-teal-600 text-teal-700 font-semibold hover:bg-teal-50 transition">
+
+                <span class="material-symbols-outlined align-middle mr-2">
+                  phone
+                </span>
+
+                Ver telefone
+
+              </button>
+
+            </div>
+
+
+            <div class="mt-5 pt-5 border-t border-slate-200">
+
+              <button
+                type="button"
+                class="w-full py-3 rounded-lg bg-green-600 text-white font-semibold hover:bg-green-700 transition">
+
+                <svg
+                  class="inline-block w-6 h-6 mr-2 align-middle"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  aria-hidden="true">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.198.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.611-.916-2.206-.242-.579-.487-.5-.67-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.626.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982 1-3.648-.235-.374a9.86 9.86 0 1 1 8.372 4.632m8.167-18.357A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.725-8.473"/>
+                </svg>
+
+                Conversar pelo WhatsApp
+
+              </button>
+
+            </div>
+
+
+            <div class="mt-5 text-xs text-slate-500">
+
+              <p class="mb-2">
+                <strong>Contato:</strong>
+              </p>
+
+              <p>
+                {{ imovelAtual.emailProprietario }}
+              </p>
+
+            </div>
+
+          </section>
+
+
+          <!-- FAVORITOS -->
+          <section class="bg-white rounded-2xl border border-slate-200 p-6">
+
+            <button
+              type="button"
+              class="w-full flex items-center justify-center gap-2 py-3 rounded-lg border border-slate-300 text-slate-700 font-semibold hover:bg-slate-50">
+
+              <span class="material-symbols-outlined">
+                favorite_border
+              </span>
+
+              Adicionar aos favoritos
+
+            </button>
+
+          </section>
+
+
+          <!-- SEGURANÇA -->
+          <section class="bg-white rounded-2xl border border-slate-200 p-6">
+
+            <div class="flex items-start gap-3">
+
+              <span class="material-symbols-outlined text-teal-600">
+                verified_user
+              </span>
+
+              <div>
+
+                <h3 class="font-bold text-slate-800">
+                  Compra segura
+                </h3>
+
+                <p class="text-sm text-slate-500 mt-1 leading-6">
+
+                  Verifique todas as informações do imóvel e converse diretamente com o anunciante antes de realizar qualquer negociação.
+
+                </p>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+        </aside>
+
+      </div>
+
     </main>
-    <footer class="w-full bg-surface-container-lowest border-t border-outline-variant/30">
-        <div class="max-w-[1440px] mx-auto px-gutter-lg pt-space-3xl pb-space-2xl">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-xl">
-                <div class="lg:col-span-2 flex flex-col gap-space-md pr-space-lg">
-                    <div class="flex items-center gap-space-sm"><img alt="Logo localizaImóveis"
-                            class="h-8 w-auto object-contain"
-                            src="https://lh3.googleusercontent.com/aida/AEtjO1VHVdtFl-bnJNImPgMhGyDIwEQym0hCL36eiPVfk168toQxZkb8PeBEVc1sahaoDGwM52eLwnzbOoCDLZFfgA33tVQN8su70M4Xy1WOecXs1RsUvkdHrU2Vif-ka_yGhsq79AmGmPB6HXZPrDf6WwWNqffVd2JpaqFlBYFZTxhYsiljxIkHXeNmlq1HH--KePHG3zl5p7AtFt2TG8OSoVk7W3_yRsXVSpFyvJQhlplTeVQ_pwaCcm5Tg4Q"><span
-                            class="font-headline-sm text-headline-sm text-on-surface font-extrabold tracking-tight">localiza<span
-                                class="text-secondary">Imóveis</span></span></div>
-                    <p class="font-body-md text-body-md text-on-surface-variant max-w-md">A plataforma de tecnologia
-                        imobiliária
-                        mais confiável do Brasil. Conectamos compradores, corretores e proprietários com transparência,
-                        inteligência
-                        de dados e segurança jurídica em cada etapa.</p>
-                    <div class="flex items-center gap-space-sm mt-space-xs"><span
-                            class="font-label-sm text-label-sm px-space-sm py-space-2xs rounded-full bg-surface-container text-on-surface-variant font-medium">CRECI
-                            Jurídico J-48910</span><span
-                            class="font-label-sm text-label-sm px-space-sm py-space-2xs rounded-full bg-surface-container text-on-surface-variant font-medium">Transação
-                            Segura</span></div>
-                </div>
-                <div class="flex flex-col gap-space-sm">
-                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-space-2xs">Imóveis por
-                        Cidade
-                    </h3>
-                    <ul class="flex flex-col gap-space-xs">
-                        <li
-                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                            São Paulo (SP)</li>
-                        <li
-                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                            Rio de Janeiro (RJ)</li>
-                        <li
-                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                            Curitiba (PR)</li>
-                        <li
-                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                            Belo Horizonte (MG)</li>
-                        <li
-                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                            Porto Alegre (RS)</li>
-                        <li
-                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                            Brasília (DF)</li>
-                    </ul>
-                </div>
-                <div class="flex flex-col gap-space-sm">
-                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-space-2xs">Categorias
-                    </h3>
-                    <ul class="flex flex-col gap-space-xs">
-                        <li
-                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                            Apartamentos Residenciais</li>
-                        <li
-                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                            Casas em Condomínio</li>
-                        <li
-                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                            Lançamentos na Planta</li>
-                        <li
-                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                            Salas e Prédios Comerciais</li>
-                        <li
-                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                            Terrenos e Lotes</li>
-                        <li
-                            class="font-body-sm text-body-sm text-on-surface-variant hover:text-on-surface transition-colors cursor-pointer">
-                            Coberturas de Alto Padrão</li>
-                    </ul>
-                </div>
-                <div class="flex flex-col gap-space-sm">
-                    <h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold mb-space-2xs">Suporte
-                        &amp; Contato
-                    </h3>
-                    <ul class="flex flex-col gap-space-xs">
-                        <li class="font-body-sm text-body-sm text-on-surface-variant">SAC: 0800 720 9090</li>
-                        <li class="font-body-sm text-body-sm text-on-surface-variant">Atendimento WhatsApp: (11)
-                            98765-4321</li>
-                        <li class="font-body-sm text-body-sm text-on-surface-variant">E-mail:
-                            contato@localizaimoveis.com.br</li>
-                        <li class="font-body-sm text-body-sm text-on-surface-variant">Segunda a Sexta: 08:00 às 20:00
-                        </li>
-                        <li class="font-body-sm text-body-sm text-on-surface-variant">Central de Ajuda &amp; FAQ</li>
-                        <li class="font-body-sm text-body-sm text-on-surface-variant">Portal da Privacidade</li>
-                    </ul>
-                </div>
-            </div>
-            <div
-                class="mt-space-2xl pt-space-lg border-t border-outline-variant/30 flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-body-sm text-body-sm">
-                <p class="">© 2025 localizaImóveis Tecnologia Imobiliária S.A. Todos os direitos reservados. CNPJ:
-                    42.109.876/0001-55</p>
-                <div class="flex items-center gap-space-lg"><a class="hover:text-on-surface transition-colors"
-                        href="#">Termos
-                        de Uso</a><a class="hover:text-on-surface transition-colors" href="#">Política de
-                        Privacidade</a><a class="hover:text-on-surface transition-colors" href="#">Segurança
-                        Imobiliária</a></div>
-            </div>
-        </div>
-    </footer>
-</main>
+
+
+  } @else {
+
+
+    <!-- NÃO ENCONTRADO -->
+    <main class="min-h-[70vh] flex items-center justify-center px-6">
+
+      <div class="text-center">
+
+        <span class="material-symbols-outlined text-6xl text-slate-300">
+          home_work
+        </span>
+
+        <h1 class="text-2xl font-bold text-slate-800 mt-4">
+          Imóvel não encontrado
+        </h1>
+
+        <p class="text-slate-500 mt-2 mb-6">
+
+          O imóvel que você está procurando não existe ou foi removido.
+
+        </p>
+
+        <a
+          routerLink="/home"
+          class="inline-block px-6 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-700">
+
+          Voltar para imóveis
+
+        </a>
+
+      </div>
+
+    </main>
+
+  }
+
+</div>

@@ -1,73 +1,442 @@
-<div class="login-page">
+<div class="relative min-h-screen w-full overflow-hidden bg-black">
 
-  <video
-    #videoFundo
-    class="video-fundo"
-    autoplay
-    muted
-    loop
-    playsinline>
-
+  <!-- VÍDEO DE FUNDO -->
+  <video #videoFundo class="absolute inset-0 h-full w-full object-cover" autoplay muted loop playsinline>
     <source src="/video.mp4" type="video/mp4">
-
   </video>
 
-  <div class="overlay"></div>
 
-  <div class="container-card">
+  <!-- BOTÃO VOLTAR PARA HOME -->
+  <a routerLink="/home"
+    class="absolute top-6 left-6 z-50 flex items-center gap-2 rounded-lg bg-white/90 px-4 py-2 text-sm font-semibold text-gray-800 shadow-md transition hover:bg-white">
+    <span class="material-symbols-outlined">arrow_back</span>
+    Voltar para a página principal
+  </a>
 
-    <div class="login-content">
 
-      <h1>Bem-vindo!</h1>
+  <!-- OVERLAY -->
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
 
-      <p>Entre na sua conta</p>
 
-      <form>
+  <!-- CONTEÚDO -->
+  <div class="relative z-10 flex min-h-screen items-center justify-center px-6 py-10">
 
-        <div class="campo">
 
-          <label for="email">E-mail</label>
+    <!-- ===================================================== -->
+    <!-- CARD DE LOGIN -->
+    <!-- ===================================================== -->
 
-          <input
-            id="email"
-            type="email"
-            placeholder="Digite seu e-mail"
-          >
+    @if (!mostrarCadastro) {
+
+    <div class="w-full max-w-md rounded-3xl border border-white/20
+               bg-white/10 p-8 shadow-2xl backdrop-blur-xl
+               sm:p-10">
+
+      <!-- CABEÇALHO -->
+      <div class="mb-8 text-center">
+
+        <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center
+                   rounded-2xl bg-white/15 ring-1 ring-white/20">
+
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="h-8 w-8 text-white">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0
+                   3.75 3.75 0 0 1 7.5 0ZM4.501 20.118
+                   a7.5 7.5 0 0 1 14.998 0A17.933
+                   17.933 0 0 1 12 21.75c-2.676
+                   0-5.216-.584-7.499-1.632Z" />
+          </svg>
+
+        </div>
+
+        <h1 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          Bem-vindo!
+        </h1>
+
+        <p class="mt-2 text-sm text-white/70">
+          Entre na sua conta para continuar
+        </p>
+
+      </div>
+
+
+      <!-- FORMULÁRIO DE LOGIN -->
+      <form (ngSubmit)="entrar()" class="space-y-5">
+
+        <!-- E-MAIL -->
+        <div class="space-y-2">
+
+          <label for="email" class="block text-sm font-medium text-white/90">
+            E-mail
+          </label>
+
+          <div class="relative">
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="pointer-events-none absolute left-4 top-1/2
+                       h-5 w-5 -translate-y-1/2 text-white/50">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25
+                     0 0 1-2.25 2.25h-15a2.25
+                     2.25 0 0 1-2.25-2.25V6.75
+                     m19.5 0A2.25 2.25 0 0 0
+                     19.5 4.5h-15a2.25 2.25
+                     0 0 0-2.25 2.25m19.5 0v.243
+                     a2.25 2.25 0 0 1-1.07 1.916l-7.5
+                     4.615a2.25 2.25 0 0 1-2.36
+                     0l-7.5-4.615A2.25 2.25
+                     0 0 1 2.25 6.993V6.75" />
+            </svg>
+
+            <input id="email" type="email" name="emailLogin" [(ngModel)]="emailLogin" placeholder="Digite seu e-mail"
+              required class="w-full rounded-xl border border-white/20
+                       bg-white/10 py-3.5 pl-12 pr-4
+                       text-white outline-none
+                       placeholder:text-white/40
+                       transition duration-200
+                       focus:border-white/50
+                       focus:bg-white/15
+                       focus:ring-2 focus:ring-white/20">
+
+          </div>
 
         </div>
 
 
-        <div class="campo">
+        <!-- SENHA -->
+        <div class="space-y-2">
 
-          <label for="senha">Senha</label>
+          <label for="senha" class="block text-sm font-medium text-white/90">
+            Senha
+          </label>
 
-          <input
-            id="senha"
-            type="password"
-            placeholder="Digite sua senha"
-          >
+          <div class="relative">
+
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+              stroke="currentColor" class="pointer-events-none absolute left-4 top-1/2
+                       h-5 w-5 -translate-y-1/2 text-white/50">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 10.5V6.75a4.5
+                     4.5 0 0 0-9 0v3.75m-.75
+                     11.25h10.5a2.25 2.25
+                     0 0 0 2.25-2.25v-6.75
+                     a2.25 2.25 0 0 0-2.25-2.25
+                     H6.75a2.25 2.25 0 0 0-2.25
+                     2.25v6.75a2.25 2.25
+                     0 0 0 2.25 2.25Z" />
+            </svg>
+
+            <input id="senha" type="password" name="senhaLogin" [(ngModel)]="senhaLogin" placeholder="Digite sua senha"
+              required class="w-full rounded-xl border border-white/20
+                       bg-white/10 py-3.5 pl-12 pr-4
+                       text-white outline-none
+                       placeholder:text-white/40
+                       transition duration-200
+                       focus:border-white/50
+                       focus:bg-white/15
+                       focus:ring-2 focus:ring-white/20">
+
+          </div>
 
         </div>
 
 
-        <button type="submit">
+        <!-- ERRO DO LOGIN -->
+        <!-- ERRO DO LOGIN -->
+        @if (mensagemErro) {
+
+        <p class="rounded-lg bg-red-500/20 px-4 py-3 text-sm text-red-200">
+          {{ mensagemErro }}
+        </p>
+
+        }
+
+
+        <!-- LGPD / POLÍTICA DE PRIVACIDADE -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-4">
+
+          <label class="flex cursor-pointer items-start gap-3">
+
+            <input type="checkbox" name="aceiteLGPDLogin" [(ngModel)]="aceitouLGPD"
+              class="mt-1 h-4 w-4 shrink-0 cursor-pointer accent-teal-500">
+
+            <span class="text-xs leading-5 text-white/70">
+
+              Li e estou ciente da
+
+              <a routerLink="/politica-de-privacidade" target="_blank"
+                class="font-semibold text-white underline underline-offset-2 hover:text-teal-300">
+                Política de Privacidade
+              </a>
+
+              e das informações sobre o tratamento dos meus dados pessoais,
+              conforme a LGPD.
+
+            </span>
+
+          </label>
+
+        </div>
+
+        <!-- AVISO DE PRIVACIDADE -->
+        <p class="text-xs leading-5 text-white/50">
+
+          Ao entrar, você reconhece que seus dados são tratados de acordo
+          com a
+
+          <a routerLink="/politica-de-privacidade"
+            class="font-semibold text-white/80 underline underline-offset-2 hover:text-white">
+            Política de Privacidade
+          </a>
+
+          do LocalizaImóveis.
+
+        </p>
+
+
+        <!-- ESQUECI A SENHA -->
+        <div class="flex justify-end">
+
+          <a href="#" class="text-sm text-white/70 transition hover:text-white" (click)="$event.preventDefault()">
+            Esqueci minha senha
+          </a>
+
+        </div>
+
+
+        <!-- BOTÃO ENTRAR -->
+        <button type="submit" class="w-full rounded-xl bg-white px-4 py-3.5
+                   text-sm font-semibold text-gray-900
+                   shadow-lg transition duration-200
+                   hover:-translate-y-0.5
+                   hover:bg-gray-100
+                   hover:shadow-xl
+                   active:translate-y-0
+                   focus:outline-none
+                   focus:ring-2 focus:ring-white/50
+                   focus:ring-offset-2
+                   focus:ring-offset-transparent">
           Entrar
         </button>
 
       </form>
 
 
-      <p class="cadastro">
+      <!-- CADASTRO -->
+      <p class="mt-8 text-center text-sm text-white/60">
 
         Ainda não possui uma conta?
 
-        <a routerLink="/cadastro">
+        <button type="button" (click)="abrirCadastro()"
+          class="ml-1 font-semibold text-white underline-offset-4 transition hover:underline">
           Cadastre-se
-        </a>
+        </button>
 
       </p>
 
     </div>
+
+    }
+
+
+    <!-- ===================================================== -->
+    <!-- CARD DE CADASTRO -->
+    <!-- ===================================================== -->
+
+    @if (mostrarCadastro) {
+
+    <div class="w-full max-w-md rounded-3xl border border-white/20
+               bg-white/10 p-8 shadow-2xl backdrop-blur-xl
+               sm:p-10">
+
+      <!-- CABEÇALHO -->
+      <div class="mb-7 text-center">
+
+        <div class="mx-auto mb-5 flex h-16 w-16 items-center justify-center
+                   rounded-2xl bg-white/15 ring-1 ring-white/20">
+
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+            stroke="currentColor" class="h-8 w-8 text-white">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M18 7.5v3m-1.5-1.5h3
+                   M15.75 6a3.75 3.75 0 1 1-7.5 0
+                   3.75 3.75 0 0 1 7.5 0ZM4.501 20.118
+                   a7.5 7.5 0 0 1 14.998 0A17.933
+                   17.933 0 0 1 12 21.75c-2.676
+                   0-5.216-.584-7.499-1.632Z" />
+          </svg>
+
+        </div>
+
+        <h1 class="text-3xl font-bold tracking-tight text-white">
+          Criar conta
+        </h1>
+
+        <p class="mt-2 text-sm text-white/70">
+          Cadastre-se para continuar
+        </p>
+
+      </div>
+
+
+      <!-- FORMULÁRIO DE CADASTRO -->
+      <form (ngSubmit)="cadastrar()" class="space-y-4">
+
+        <!-- NOME -->
+        <div class="space-y-2">
+
+          <label for="nomeCadastro" class="block text-sm font-medium text-white/90">
+            Nome
+          </label>
+
+          <input id="nomeCadastro" type="text" name="nomeCadastro" [(ngModel)]="nomeCadastro"
+            placeholder="Digite seu nome" required class="w-full rounded-xl border border-white/20
+                     bg-white/10 py-3.5 px-4
+                     text-white outline-none
+                     placeholder:text-white/40
+                     transition duration-200
+                     focus:border-white/50
+                     focus:bg-white/15
+                     focus:ring-2 focus:ring-white/20">
+
+        </div>
+
+
+        <!-- E-MAIL -->
+        <div class="space-y-2">
+
+          <label for="emailCadastro" class="block text-sm font-medium text-white/90">
+            E-mail
+          </label>
+
+          <input id="emailCadastro" type="email" name="emailCadastro" [(ngModel)]="emailCadastro"
+            placeholder="Digite seu e-mail" required class="w-full rounded-xl border border-white/20
+                     bg-white/10 py-3.5 px-4
+                     text-white outline-none
+                     placeholder:text-white/40
+                     transition duration-200
+                     focus:border-white/50
+                     focus:bg-white/15
+                     focus:ring-2 focus:ring-white/20">
+
+        </div>
+
+
+        <!-- SENHA -->
+        <div class="space-y-2">
+
+          <label for="senhaCadastro" class="block text-sm font-medium text-white/90">
+            Senha
+          </label>
+
+          <input id="senhaCadastro" type="password" name="senhaCadastro" [(ngModel)]="senhaCadastro"
+            placeholder="Crie uma senha" required class="w-full rounded-xl border border-white/20
+                     bg-white/10 py-3.5 px-4
+                     text-white outline-none
+                     placeholder:text-white/40
+                     transition duration-200
+                     focus:border-white/50
+                     focus:bg-white/15
+                     focus:ring-2 focus:ring-white/20">
+
+        </div>
+
+
+        <!-- CONFIRMAR SENHA -->
+        <div class="space-y-2">
+
+          <label for="confirmarSenha" class="block text-sm font-medium text-white/90">
+            Confirmar senha
+          </label>
+
+          <input id="confirmarSenha" type="password" name="confirmarSenha" [(ngModel)]="confirmarSenha"
+            placeholder="Digite a senha novamente" required class="w-full rounded-xl border border-white/20
+                     bg-white/10 py-3.5 px-4
+                     text-white outline-none
+                     placeholder:text-white/40
+                     transition duration-200
+                     focus:border-white/50
+                     focus:bg-white/15
+                     focus:ring-2 focus:ring-white/20">
+
+        </div>
+
+
+        <!-- ERRO -->
+        @if (mensagemErro) {
+
+        <p class="rounded-lg bg-red-500/20 px-4 py-3 text-sm text-red-200">
+          {{ mensagemErro }}
+        </p>
+
+        }
+
+
+        <!-- LGPD / POLÍTICA DE PRIVACIDADE -->
+        <div class="rounded-xl border border-white/10 bg-white/5 p-4">
+
+          <label class="flex cursor-pointer items-start gap-3">
+
+            <input type="checkbox" name="aceiteLGPD" [(ngModel)]="aceitouLGPD"
+              class="mt-1 h-4 w-4 shrink-0 cursor-pointer accent-teal-500">
+
+            <span class="text-xs leading-5 text-white/70">
+
+              Li e estou ciente da
+
+              <a routerLink="/politica-de-privacidade" target="_blank"
+                class="font-semibold text-white underline underline-offset-2 hover:text-teal-300">
+                Política de Privacidade
+              </a>
+
+              e das informações sobre o tratamento dos meus dados pessoais,
+              conforme a LGPD.
+
+            </span>
+
+          </label>
+
+        </div>
+
+
+        <!-- SUCESSO -->
+        @if (mensagemSucesso) {
+
+        <p class="rounded-lg bg-green-500/20 px-4 py-3 text-sm text-green-200">
+          {{ mensagemSucesso }}
+        </p>
+
+        }
+
+
+        <!-- BOTÃO CADASTRAR -->
+        <button type="submit" [disabled]="!aceitouLGPD" class="w-full rounded-xl bg-white px-4 py-3.5
+                   text-sm font-semibold text-gray-900
+                   shadow-lg transition duration-200
+                   hover:-translate-y-0.5
+                   hover:bg-gray-100
+                   hover:shadow-xl
+                   active:translate-y-0
+                   focus:outline-none
+                   focus:ring-2 focus:ring-white/50
+                   disabled:cursor-not-allowed
+                   disabled:opacity-50">
+          Criar cadastro
+        </button>
+
+      </form>
+
+
+      <!-- VOLTAR PARA LOGIN -->
+      <div class="mt-6 text-center">
+
+        <button type="button" (click)="fecharCadastro()"
+          class="text-sm font-semibold text-white/70 transition hover:text-white">
+          ← Já tenho uma conta
+        </button>
+
+      </div>
+
+    </div>
+
+    }
 
   </div>
 

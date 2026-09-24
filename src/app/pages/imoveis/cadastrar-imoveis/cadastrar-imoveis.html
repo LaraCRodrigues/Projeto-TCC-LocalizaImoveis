@@ -1,1 +1,363 @@
-<p>cadastrar-imoveis works!</p>
+<div class="min-h-screen bg-background">
+
+  <!-- HEADER -->
+  <header class="border-b border-outline-variant/30 bg-surface">
+
+    <div class="mx-auto flex max-w-7xl items-center justify-between px-gutter-lg py-5">
+
+      <a
+        routerLink="/home"
+        class="flex items-center gap-2 font-semibold text-on-surface"
+      >
+        <span class="material-symbols-outlined">
+          arrow_back
+        </span>
+
+        Voltar
+      </a>
+
+      <h1 class="text-xl font-bold text-on-surface">
+        Anunciar imóvel
+      </h1>
+
+      <div class="w-20"></div>
+
+    </div>
+
+  </header>
+
+
+  <!-- CONTEÚDO -->
+  <main class="mx-auto max-w-5xl px-gutter-lg py-10">
+
+    <div class="mb-8">
+
+      <h2 class="text-headline-lg font-headline-lg text-on-surface">
+        Anuncie seu imóvel
+      </h2>
+
+      <p class="mt-2 text-body-md text-on-surface-variant">
+        Preencha as informações abaixo para cadastrar seu imóvel.
+      </p>
+
+    </div>
+
+
+    <!-- CARD -->
+    <form
+      (ngSubmit)="enviarAnuncio()"
+      class="rounded-2xl bg-surface-container-low p-6 shadow-sm sm:p-8"
+    >
+
+      <!-- INFORMAÇÕES PRINCIPAIS -->
+      <section>
+
+        <h3 class="text-lg font-bold text-on-surface">
+          Informações do imóvel
+        </h3>
+
+        <div class="mt-6 grid gap-5 md:grid-cols-2">
+
+          <!-- TÍTULO -->
+          <div class="md:col-span-2">
+
+            <label class="mb-2 block text-sm font-medium text-on-surface">
+              Título do anúncio
+            </label>
+
+            <input
+              type="text"
+              name="titulo"
+              [(ngModel)]="titulo"
+              placeholder="Ex.: Apartamento moderno com vista para o mar"
+              required
+              class="w-full rounded-xl border border-outline-variant
+                     bg-surface-container-lowest px-4 py-3
+                     text-on-surface outline-none
+                     focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+
+          </div>
+
+
+          <!-- TIPO -->
+          <div>
+
+            <label class="mb-2 block text-sm font-medium text-on-surface">
+              Tipo de imóvel
+            </label>
+
+            <select
+              name="tipo"
+              [(ngModel)]="tipo"
+              required
+              class="w-full rounded-xl border border-outline-variant
+                     bg-surface-container-lowest px-4 py-3
+                     text-on-surface outline-none
+                     focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+
+              <option value="">
+                Selecione
+              </option>
+
+              <option value="Apartamento">
+                Apartamento
+              </option>
+
+              <option value="Casa">
+                Casa
+              </option>
+
+              <option value="Terreno">
+                Terreno
+              </option>
+
+              <option value="Comercial">
+                Comercial
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- FINALIDADE -->
+          <div>
+
+            <label class="mb-2 block text-sm font-medium text-on-surface">
+              Finalidade
+            </label>
+
+            <select
+              name="finalidade"
+              [(ngModel)]="finalidade"
+              required
+              class="w-full rounded-xl border border-outline-variant
+                     bg-surface-container-lowest px-4 py-3
+                     text-on-surface outline-none
+                     focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+
+              <option value="">
+                Selecione
+              </option>
+
+              <option value="Venda">
+                Venda
+              </option>
+
+              <option value="Aluguel">
+                Aluguel
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- PREÇO -->
+          <div>
+
+            <label class="mb-2 block text-sm font-medium text-on-surface">
+              Preço
+            </label>
+
+            <input
+              type="text"
+              name="preco"
+              [(ngModel)]="preco"
+              placeholder="R$ 000.000,00"
+              required
+              class="w-full rounded-xl border border-outline-variant
+                     bg-surface-container-lowest px-4 py-3
+                     text-on-surface outline-none
+                     focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+
+          </div>
+
+
+          <!-- ÁREA -->
+          <div>
+
+            <label class="mb-2 block text-sm font-medium text-on-surface">
+              Área
+            </label>
+
+            <input
+              type="text"
+              name="area"
+              [(ngModel)]="area"
+              placeholder="Ex.: 120 m²"
+              class="w-full rounded-xl border border-outline-variant
+                     bg-surface-container-lowest px-4 py-3
+                     text-on-surface outline-none
+                     focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+
+          </div>
+
+
+          <!-- QUARTOS -->
+          <div>
+
+            <label class="mb-2 block text-sm font-medium text-on-surface">
+              Quartos
+            </label>
+
+            <input
+              type="number"
+              name="quartos"
+              [(ngModel)]="quartos"
+              min="0"
+              placeholder="Ex.: 3"
+              class="w-full rounded-xl border border-outline-variant
+                     bg-surface-container-lowest px-4 py-3
+                     text-on-surface outline-none
+                     focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+
+          </div>
+
+
+          <!-- BANHEIROS -->
+          <div>
+
+            <label class="mb-2 block text-sm font-medium text-on-surface">
+              Banheiros
+            </label>
+
+            <input
+              type="number"
+              name="banheiros"
+              [(ngModel)]="banheiros"
+              min="0"
+              placeholder="Ex.: 2"
+              class="w-full rounded-xl border border-outline-variant
+                     bg-surface-container-lowest px-4 py-3
+                     text-on-surface outline-none
+                     focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- LOCALIZAÇÃO -->
+      <section class="mt-10 border-t border-outline-variant/30 pt-8">
+
+        <h3 class="text-lg font-bold text-on-surface">
+          Localização
+        </h3>
+
+        <div class="mt-6 grid gap-5 md:grid-cols-3">
+
+          <div class="md:col-span-3">
+
+            <label class="mb-2 block text-sm font-medium text-on-surface">
+              Endereço
+            </label>
+
+            <input
+              type="text"
+              name="endereco"
+              [(ngModel)]="endereco"
+              placeholder="Rua, avenida, número..."
+              class="w-full rounded-xl border border-outline-variant
+                     bg-surface-container-lowest px-4 py-3
+                     text-on-surface outline-none
+                     focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label class="mb-2 block text-sm font-medium text-on-surface">
+              Cidade
+            </label>
+
+            <input
+              type="text"
+              name="cidade"
+              [(ngModel)]="cidade"
+              placeholder="Ex.: Salvador"
+              class="w-full rounded-xl border border-outline-variant
+                     bg-surface-container-lowest px-4 py-3
+                     text-on-surface outline-none
+                     focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+
+          </div>
+
+
+          <div>
+
+            <label class="mb-2 block text-sm font-medium text-on-surface">
+              Estado
+            </label>
+
+            <input
+              type="text"
+              name="estado"
+              [(ngModel)]="estado"
+              placeholder="Ex.: BA"
+              maxlength="2"
+              class="w-full rounded-xl border border-outline-variant
+                     bg-surface-container-lowest px-4 py-3
+                     text-on-surface uppercase outline-none
+                     focus:border-primary focus:ring-2 focus:ring-primary/20"
+            >
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- DESCRIÇÃO -->
+      <section class="mt-10 border-t border-outline-variant/30 pt-8">
+
+        <h3 class="text-lg font-bold text-on-surface">
+          Descrição
+        </h3>
+
+        <textarea
+          name="descricao"
+          [(ngModel)]="descricao"
+          rows="6"
+          placeholder="Descreva o imóvel, seus diferenciais, localização, infraestrutura..."
+          class="mt-6 w-full resize-none rounded-xl border border-outline-variant
+                 bg-surface-container-lowest px-4 py-3
+                 text-on-surface outline-none
+                 focus:border-primary focus:ring-2 focus:ring-primary/20"
+        ></textarea>
+
+      </section>
+
+
+      <!-- BOTÃO -->
+      <div class="mt-10 flex justify-end">
+
+        <button
+          type="submit"
+          class="rounded-xl bg-primary px-8 py-3.5
+                 font-semibold text-on-primary
+                 transition hover:opacity-90"
+        >
+          Anunciar imóvel
+        </button>
+
+      </div>
+
+    </form>
+
+  </main>
+
+</div>
