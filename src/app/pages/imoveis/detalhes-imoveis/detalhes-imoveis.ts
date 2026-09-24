@@ -9,11 +9,38 @@ import { Imovel } from '../../../models/imovel';
 
 @Component({
   selector: 'app-detalhes-imoveis',
-  imports: [FormsModule, RouterLink],
+  standalone: true,
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterLink
+  ],
   templateUrl: './detalhes-imoveis.html',
   styleUrl: './detalhes-imoveis.css'
 })
 export class DetalhesImoveis implements OnInit {
+
+  // ==============================
+  // USUÁRIO / MENU
+  // ==============================
+
+  usuarioLogado = false;
+  usuarioNome = '';
+  perfilUsuario: 'usuario' | 'corretor' = 'usuario';
+  menuUsuarioAberto = false;
+
+
+  // ==============================
+  // IMÓVEL
+  // ==============================
+
+  imovel?: Imovel;
+  mensagemImovel = '';
+
+
+  // ==============================
+  // AVALIAÇÃO
+  // ==============================
 
   comentando = false;
   verificandoLocalizacao = false;
@@ -23,27 +50,38 @@ export class DetalhesImoveis implements OnInit {
   novaAvaliacao = 5;
   novoComentario = '';
 
+
+  // ==============================
+  // CONTATO
+  // ==============================
+
   telefoneVisivel = false;
 
   mensagemAberta = false;
   mensagemContato = '';
   mensagemEnviada = false;
 
+
+  // ==============================
+  // FAVORITOS
+  // ==============================
+
   favoritoAdicionado = false;
   animandoFavorito = false;
   mensagemFavorito = '';
 
-  usuarioLogado = false;
-  usuarioNome = '';
-  perfilUsuario: 'usuario' | 'corretor' = 'usuario';
-  menuUsuarioAberto = false;
 
-  imovel?: Imovel;
   constructor(
     private route: ActivatedRoute,
     private imoveisService: ImoveisService,
     private atendimentosService: AtendimentosService
-  ) { }
+  ) {}
+
+
+  // ==============================
+  // MENU DO USUÁRIO
+  // ==============================
+
   toggleMenuUsuario(): void {
     this.menuUsuarioAberto = !this.menuUsuarioAberto;
   }
@@ -62,9 +100,19 @@ export class DetalhesImoveis implements OnInit {
     this.menuUsuarioAberto = false;
   }
 
+
+  // ==============================
+  // TELEFONE
+  // ==============================
+
   mostrarTelefone(): void {
     this.telefoneVisivel = !this.telefoneVisivel;
   }
+
+
+  // ==============================
+  // MENSAGEM PARA O CORRETOR
+  // ==============================
 
   abrirMensagem(): void {
     this.mensagemAberta = true;
@@ -86,8 +134,7 @@ export class DetalhesImoveis implements OnInit {
       return;
     }
 
-    const usuarioSalvo =
-      localStorage.getItem('usuario');
+    const usuarioSalvo = localStorage.getItem('usuario');
 
     if (!usuarioSalvo) {
       return;
@@ -104,18 +151,14 @@ export class DetalhesImoveis implements OnInit {
 
         imovelTitulo: this.imovel.titulo,
 
-        nomeUsuario:
-          usuario.nome || 'Usuário',
+        nomeUsuario: usuario.nome || 'Usuário',
 
-        emailUsuario:
-          usuario.email || '',
+        emailUsuario: usuario.email || '',
 
-        mensagem:
-          this.mensagemContato.trim()
+        mensagem: this.mensagemContato.trim()
       };
 
-      this.atendimentosService
-        .criarAtendimento(novoAtendimento);
+      this.atendimentosService.criarAtendimento(novoAtendimento);
 
       this.mensagemEnviada = true;
 
@@ -135,12 +178,20 @@ export class DetalhesImoveis implements OnInit {
 
     }
   }
+
+
+  // ==============================
+  // WHATSAPP
+  // ==============================
+
   abrirWhatsApp(): void {
+
     if (!this.imovel) {
       return;
     }
 
-    const telefone = this.imovel.telefoneProprietario.replace(/\D/g, '');
+    const telefone =
+      this.imovel.telefoneProprietario.replace(/\D/g, '');
 
     const mensagem = encodeURIComponent(
       `Olá! Tenho interesse no imóvel "${this.imovel.titulo}" que vi no LocalizaImóveis.`
@@ -152,12 +203,21 @@ export class DetalhesImoveis implements OnInit {
     );
   }
 
+
+  // ==============================
+  // AVALIAÇÃO
+  // ==============================
+
   abrirAvaliacao(): void {
-    const usuarioLogado = localStorage.getItem('usuarioLogado');
+
+    const usuarioLogado =
+      localStorage.getItem('usuarioLogado');
 
     if (usuarioLogado !== 'true') {
+
       this.mensagemLocalizacao =
         'Você precisa estar logado para avaliar esta região.';
+
       return;
     }
 
@@ -165,19 +225,27 @@ export class DetalhesImoveis implements OnInit {
     this.mensagemLocalizacao = '';
   }
 
+
   cancelarAvaliacao(): void {
+
     this.comentando = false;
     this.verificandoLocalizacao = false;
     this.localizacaoValidada = false;
+
     this.mensagemLocalizacao = '';
+
     this.novoComentario = '';
     this.novaAvaliacao = 5;
   }
 
+
   verificarLocalizacao(): void {
+
     if (!navigator.geolocation) {
+
       this.mensagemLocalizacao =
         'Seu navegador não permite verificar a localização.';
+
       return;
     }
 
@@ -185,18 +253,24 @@ export class DetalhesImoveis implements OnInit {
     this.mensagemLocalizacao = '';
 
     navigator.geolocation.getCurrentPosition(
-      (posicao) => {
-        const latitude = posicao.coords.latitude;
-        const longitude = posicao.coords.longitude;
 
-        console.log('Localização aproximada:', latitude, longitude);
+      (posicao) => {
+
+        const latitude =
+          posicao.coords.latitude;
+
+        const longitude =
+          posicao.coords.longitude;
+
+        console.log(
+          'Localização aproximada:',
+          latitude,
+          longitude
+        );
 
         /*
-         * Aqui vamos comparar a localização do usuário
-         * com a região do imóvel.
-         *
-         * Por enquanto, vamos considerar a localização
-         * validada para testar o formulário.
+         * Por enquanto, a localização é considerada
+         * válida apenas para testar o formulário.
          */
 
         this.localizacaoValidada = true;
@@ -205,91 +279,169 @@ export class DetalhesImoveis implements OnInit {
         this.mensagemLocalizacao =
           'Localização validada. Você pode avaliar esta região.';
       },
+
       () => {
+
         this.verificandoLocalizacao = false;
+
         this.mensagemLocalizacao =
           'Não foi possível verificar sua localização. Permita o acesso à localização para continuar.';
       }
     );
   }
 
-  adicionarAosFavoritos(): void {
-    const usuarioLogado =
-      localStorage.getItem('usuarioLogado') === 'true';
-
-    if (!usuarioLogado) {
-      this.mensagemFavorito =
-        'Você precisa estar logado para adicionar imóveis aos favoritos.';
-      return;
-    }
-
-    this.favoritoAdicionado = !this.favoritoAdicionado;
-    this.animandoFavorito = true;
-
-    this.mensagemFavorito = this.favoritoAdicionado
-      ? 'Imóvel adicionado aos favoritos!'
-      : 'Imóvel removido dos favoritos.';
-
-    setTimeout(() => {
-      this.animandoFavorito = false;
-    }, 400);
-  }
 
   publicarAvaliacao(): void {
+
     if (!this.imovel) {
       return;
     }
 
     if (!this.localizacaoValidada) {
+
       this.mensagemLocalizacao =
         'Sua localização precisa ser validada antes de publicar.';
+
       return;
     }
 
     if (!this.novoComentario.trim()) {
+
       this.mensagemLocalizacao =
         'Digite um comentário antes de publicar.';
+
       return;
     }
 
-    const usuarioSalvo = localStorage.getItem('usuario');
+    const usuarioSalvo =
+      localStorage.getItem('usuario');
 
     if (!usuarioSalvo) {
+
       this.mensagemLocalizacao =
         'Você precisa estar logado para publicar uma avaliação.';
+
       return;
     }
 
-    const usuario = JSON.parse(usuarioSalvo);
+    try {
 
-    this.imovel.comentarios.unshift({
-      nome: usuario.nome || 'Usuário',
-      data: new Date().toLocaleDateString('pt-BR'),
-      avaliacao: this.novaAvaliacao,
-      comentario: this.novoComentario.trim()
-    });
+      const usuario = JSON.parse(usuarioSalvo);
 
-    this.cancelarAvaliacao();
+      this.imovel.comentarios.unshift({
+
+        nome: usuario.nome || 'Usuário',
+
+        data: new Date().toLocaleDateString('pt-BR'),
+
+        avaliacao: this.novaAvaliacao,
+
+        comentario: this.novoComentario.trim()
+
+      });
+
+      this.cancelarAvaliacao();
+
+    } catch (erro) {
+
+      console.error(
+        'Erro ao publicar avaliação:',
+        erro
+      );
+    }
   }
 
-  ngOnInit(): void {
-    const id = Number(
-      this.route.snapshot.paramMap.get('id')
-    );
 
-    this.imovel = this.imoveisService.getImovelById(id);
+  // ==============================
+  // FAVORITOS
+  // ==============================
+
+  adicionarAosFavoritos(): void {
+
+    const usuarioLogado =
+      localStorage.getItem('usuarioLogado') === 'true';
+
+    if (!usuarioLogado) {
+
+      this.mensagemFavorito =
+        'Você precisa estar logado para adicionar imóveis aos favoritos.';
+
+      return;
+    }
+
+    this.favoritoAdicionado =
+      !this.favoritoAdicionado;
+
+    this.animandoFavorito = true;
+
+    this.mensagemFavorito =
+      this.favoritoAdicionado
+        ? 'Imóvel adicionado aos favoritos!'
+        : 'Imóvel removido dos favoritos.';
+
+    setTimeout(() => {
+
+      this.animandoFavorito = false;
+
+    }, 400);
+  }
+
+
+  // ==============================
+  // INICIALIZAÇÃO DA PÁGINA
+  // ==============================
+
+  ngOnInit(): void {
+
+    // ------------------------------
+    // Carrega o imóvel
+    // ------------------------------
+
+    const idParam =
+      this.route.snapshot.paramMap.get('id');
+
+    const id = Number(idParam);
+
+    if (!idParam || Number.isNaN(id)) {
+
+      this.mensagemImovel =
+        'Imóvel não encontrado.';
+
+      return;
+    }
+
+    this.imovel =
+      this.imoveisService.getImovelById(id);
+
+    if (!this.imovel) {
+
+      this.mensagemImovel =
+        'Imóvel não encontrado.';
+
+      return;
+    }
+
+
+    // ------------------------------
+    // Carrega usuário
+    // ------------------------------
 
     const usuarioLogado =
       localStorage.getItem('usuarioLogado');
 
     if (usuarioLogado === 'true') {
+
       this.usuarioLogado = true;
 
-      const usuario = localStorage.getItem('usuario');
+      const usuario =
+        localStorage.getItem('usuario');
 
       if (usuario) {
+
         try {
-          const dadosUsuario = JSON.parse(usuario);
+
+          const dadosUsuario =
+            JSON.parse(usuario);
 
           this.usuarioNome =
             dadosUsuario.nome || 'Usuário';
@@ -298,24 +450,39 @@ export class DetalhesImoveis implements OnInit {
             dadosUsuario.perfil || 'usuario';
 
         } catch {
+
           this.usuarioNome = 'Usuário';
           this.perfilUsuario = 'usuario';
         }
       }
+
     } else {
+
       this.usuarioLogado = false;
       this.usuarioNome = '';
       this.perfilUsuario = 'usuario';
     }
   }
 
-  getEstrelas(avaliacao: number): string {
-    const valor = Math.max(
-      0,
-      Math.min(5, Math.round(avaliacao))
-    );
 
-    return '★'.repeat(valor) +
-      '☆'.repeat(5 - valor);
+  // ==============================
+  // ESTRELAS
+  // ==============================
+
+  getEstrelas(avaliacao: number): string {
+
+    const valor =
+      Math.max(
+        0,
+        Math.min(
+          5,
+          Math.round(avaliacao)
+        )
+      );
+
+    return (
+      '★'.repeat(valor) +
+      '☆'.repeat(5 - valor)
+    );
   }
 }

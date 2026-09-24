@@ -15,8 +15,10 @@ export const routes: Routes = [
 
   { path: 'login', component: Login },
 
-  { path: 'imovel/:id', component: DetalhesImoveis },
-
+  {
+    path: 'imovel/:id',
+    component: DetalhesImoveis
+  },
   { path: 'cadastrar-imoveis', component: CadastrarImoveis },
 
   { path: 'meus-imoveis', component: MeusImoveis },
