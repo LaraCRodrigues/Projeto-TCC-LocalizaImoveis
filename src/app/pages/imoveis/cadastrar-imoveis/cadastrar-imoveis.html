@@ -5,10 +5,7 @@
 
     <div class="mx-auto flex max-w-7xl items-center justify-between px-gutter-lg py-5">
 
-      <a
-        routerLink="/home"
-        class="flex items-center gap-2 font-semibold text-on-surface"
-      >
+      <a routerLink="/home" class="flex items-center gap-2 font-semibold text-on-surface">
         <span class="material-symbols-outlined">
           arrow_back
         </span>
@@ -44,10 +41,7 @@
 
 
     <!-- CARD -->
-    <form
-      (ngSubmit)="enviarAnuncio()"
-      class="rounded-2xl bg-surface-container-low p-6 shadow-sm sm:p-8"
-    >
+    <form (ngSubmit)="enviarAnuncio()" class="rounded-2xl bg-surface-container-low p-6 shadow-sm sm:p-8">
 
       <!-- INFORMAÇÕES PRINCIPAIS -->
       <section>
@@ -65,17 +59,11 @@
               Título do anúncio
             </label>
 
-            <input
-              type="text"
-              name="titulo"
-              [(ngModel)]="titulo"
-              placeholder="Ex.: Apartamento moderno com vista para o mar"
-              required
-              class="w-full rounded-xl border border-outline-variant
+            <input type="text" name="titulo" [(ngModel)]="titulo"
+              placeholder="Ex.: Apartamento moderno com vista para o mar" required class="w-full rounded-xl border border-outline-variant
                      bg-surface-container-lowest px-4 py-3
                      text-on-surface outline-none
-                     focus:border-primary focus:ring-2 focus:ring-primary/20"
-            >
+                     focus:border-primary focus:ring-2 focus:ring-primary/20">
 
           </div>
 
@@ -87,15 +75,10 @@
               Tipo de imóvel
             </label>
 
-            <select
-              name="tipo"
-              [(ngModel)]="tipo"
-              required
-              class="w-full rounded-xl border border-outline-variant
+            <select name="tipo" [(ngModel)]="tipo" required class="w-full rounded-xl border border-outline-variant
                      bg-surface-container-lowest px-4 py-3
                      text-on-surface outline-none
-                     focus:border-primary focus:ring-2 focus:ring-primary/20"
-            >
+                     focus:border-primary focus:ring-2 focus:ring-primary/20">
 
               <option value="">
                 Selecione
@@ -129,15 +112,10 @@
               Finalidade
             </label>
 
-            <select
-              name="finalidade"
-              [(ngModel)]="finalidade"
-              required
-              class="w-full rounded-xl border border-outline-variant
+            <select name="finalidade" [(ngModel)]="finalidade" required class="w-full rounded-xl border border-outline-variant
                      bg-surface-container-lowest px-4 py-3
                      text-on-surface outline-none
-                     focus:border-primary focus:ring-2 focus:ring-primary/20"
-            >
+                     focus:border-primary focus:ring-2 focus:ring-primary/20">
 
               <option value="">
                 Selecione
@@ -163,17 +141,10 @@
               Preço
             </label>
 
-            <input
-              type="text"
-              name="preco"
-              [(ngModel)]="preco"
-              placeholder="R$ 000.000,00"
-              required
-              class="w-full rounded-xl border border-outline-variant
+            <input type="text" name="preco" [(ngModel)]="preco" placeholder="R$ 000.000,00" required class="w-full rounded-xl border border-outline-variant
                      bg-surface-container-lowest px-4 py-3
                      text-on-surface outline-none
-                     focus:border-primary focus:ring-2 focus:ring-primary/20"
-            >
+                     focus:border-primary focus:ring-2 focus:ring-primary/20">
 
           </div>
 
@@ -184,17 +155,10 @@
             <label class="mb-2 block text-sm font-medium text-on-surface">
               Área
             </label>
-
-            <input
-              type="text"
-              name="area"
-              [(ngModel)]="area"
-              placeholder="Ex.: 120 m²"
-              class="w-full rounded-xl border border-outline-variant
-                     bg-surface-container-lowest px-4 py-3
-                     text-on-surface outline-none
-                     focus:border-primary focus:ring-2 focus:ring-primary/20"
-            >
+            <input type="number" name="area" [(ngModel)]="area" min="0" placeholder="Ex.: 120" class="w-full rounded-xl border border-outline-variant
+         bg-surface-container-lowest px-4 py-3
+         text-on-surface outline-none
+         focus:border-primary focus:ring-2 focus:ring-primary/20">
 
           </div>
 
@@ -206,17 +170,10 @@
               Quartos
             </label>
 
-            <input
-              type="number"
-              name="quartos"
-              [(ngModel)]="quartos"
-              min="0"
-              placeholder="Ex.: 3"
-              class="w-full rounded-xl border border-outline-variant
+            <input type="number" name="quartos" [(ngModel)]="quartos" min="0" placeholder="Ex.: 3" class="w-full rounded-xl border border-outline-variant
                      bg-surface-container-lowest px-4 py-3
                      text-on-surface outline-none
-                     focus:border-primary focus:ring-2 focus:ring-primary/20"
-            >
+                     focus:border-primary focus:ring-2 focus:ring-primary/20">
 
           </div>
 
@@ -228,24 +185,100 @@
               Banheiros
             </label>
 
-            <input
-              type="number"
-              name="banheiros"
-              [(ngModel)]="banheiros"
-              min="0"
-              placeholder="Ex.: 2"
-              class="w-full rounded-xl border border-outline-variant
+            <input type="number" name="banheiros" [(ngModel)]="banheiros" min="0" placeholder="Ex.: 2" class="w-full rounded-xl border border-outline-variant
                      bg-surface-container-lowest px-4 py-3
                      text-on-surface outline-none
-                     focus:border-primary focus:ring-2 focus:ring-primary/20"
-            >
+                     focus:border-primary focus:ring-2 focus:ring-primary/20">
 
           </div>
 
         </div>
 
       </section>
+      <!-- IMAGEM DO IMÓVEL -->
+      <section class="mt-10 border-t border-outline-variant/30 pt-8">
 
+        <h3 class="text-lg font-bold text-on-surface">
+          Imagem do imóvel
+        </h3>
+
+        <p class="mt-2 text-sm text-on-surface-variant">
+          Adicione uma imagem para apresentar seu imóvel no anúncio.
+        </p>
+
+        <div class="mt-6">
+
+          <!-- ÁREA DE UPLOAD -->
+          <label for="imagem"
+            class="flex min-h-64 cursor-pointer flex-col items-center justify-center rounded-2xl border-2 border-dashed border-outline-variant bg-surface-container-lowest px-6 py-10 text-center transition hover:border-primary hover:bg-primary/5">
+
+            <!-- ÍCONE -->
+            <div class="flex h-16 w-16 items-center justify-center rounded-full bg-primary/10">
+              <span class="material-symbols-outlined text-4xl text-primary">
+                add_photo_alternate
+              </span>
+            </div>
+
+            <!-- TEXTO -->
+            <p class="mt-4 text-base font-semibold text-on-surface">
+              Adicione uma imagem
+            </p>
+
+            <p class="mt-2 text-sm text-on-surface-variant">
+              Clique para selecionar uma foto do imóvel
+            </p>
+
+            <p class="mt-1 text-xs text-on-surface-variant">
+              PNG, JPG ou JPEG
+            </p>
+
+            <!-- INPUT ESCONDIDO -->
+            <input id="imagem" type="file" name="imagem" accept="image/png,image/jpeg" class="hidden"
+              (change)="selecionarImagem($event)">
+
+          </label>
+
+          <!-- PRÉVIA DA IMAGEM -->
+          @if (imagemPreview) {
+
+          <div class="mt-5 overflow-hidden rounded-2xl border border-outline-variant bg-surface-container-lowest">
+
+            <div class="relative">
+
+              <img [src]="imagemPreview" alt="Prévia do imóvel" class="h-72 w-full object-cover">
+
+              <!-- REMOVER IMAGEM -->
+              <button type="button" (click)="removerImagem()"
+                class="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-white/90 text-red-500 shadow-md transition hover:bg-white"
+                aria-label="Remover imagem">
+                <span class="material-symbols-outlined">
+                  delete
+                </span>
+              </button>
+
+            </div>
+
+            @if (nomeImagem) {
+            <div class="flex items-center gap-2 px-4 py-3">
+
+              <span class="material-symbols-outlined text-primary">
+                image
+              </span>
+
+              <span class="truncate text-sm text-on-surface">
+                {{ nomeImagem }}
+              </span>
+
+            </div>
+            }
+
+          </div>
+
+          }
+
+        </div>
+
+      </section>
 
       <!-- LOCALIZAÇÃO -->
       <section class="mt-10 border-t border-outline-variant/30 pt-8">
@@ -262,16 +295,10 @@
               Endereço
             </label>
 
-            <input
-              type="text"
-              name="endereco"
-              [(ngModel)]="endereco"
-              placeholder="Rua, avenida, número..."
-              class="w-full rounded-xl border border-outline-variant
+            <input type="text" name="endereco" [(ngModel)]="endereco" placeholder="Rua, avenida, número..." class="w-full rounded-xl border border-outline-variant
                      bg-surface-container-lowest px-4 py-3
                      text-on-surface outline-none
-                     focus:border-primary focus:ring-2 focus:ring-primary/20"
-            >
+                     focus:border-primary focus:ring-2 focus:ring-primary/20">
 
           </div>
 
@@ -282,16 +309,10 @@
               Cidade
             </label>
 
-            <input
-              type="text"
-              name="cidade"
-              [(ngModel)]="cidade"
-              placeholder="Ex.: Salvador"
-              class="w-full rounded-xl border border-outline-variant
+            <input type="text" name="cidade" [(ngModel)]="cidade" placeholder="Ex.: Salvador" class="w-full rounded-xl border border-outline-variant
                      bg-surface-container-lowest px-4 py-3
                      text-on-surface outline-none
-                     focus:border-primary focus:ring-2 focus:ring-primary/20"
-            >
+                     focus:border-primary focus:ring-2 focus:ring-primary/20">
 
           </div>
 
@@ -302,17 +323,10 @@
               Estado
             </label>
 
-            <input
-              type="text"
-              name="estado"
-              [(ngModel)]="estado"
-              placeholder="Ex.: BA"
-              maxlength="2"
-              class="w-full rounded-xl border border-outline-variant
+            <input type="text" name="estado" [(ngModel)]="estado" placeholder="Ex.: BA" maxlength="2" class="w-full rounded-xl border border-outline-variant
                      bg-surface-container-lowest px-4 py-3
                      text-on-surface uppercase outline-none
-                     focus:border-primary focus:ring-2 focus:ring-primary/20"
-            >
+                     focus:border-primary focus:ring-2 focus:ring-primary/20">
 
           </div>
 
@@ -328,16 +342,11 @@
           Descrição
         </h3>
 
-        <textarea
-          name="descricao"
-          [(ngModel)]="descricao"
-          rows="6"
-          placeholder="Descreva o imóvel, seus diferenciais, localização, infraestrutura..."
-          class="mt-6 w-full resize-none rounded-xl border border-outline-variant
+        <textarea name="descricao" [(ngModel)]="descricao" rows="6"
+          placeholder="Descreva o imóvel, seus diferenciais, localização, infraestrutura..." class="mt-6 w-full resize-none rounded-xl border border-outline-variant
                  bg-surface-container-lowest px-4 py-3
                  text-on-surface outline-none
-                 focus:border-primary focus:ring-2 focus:ring-primary/20"
-        ></textarea>
+                 focus:border-primary focus:ring-2 focus:ring-primary/20"></textarea>
 
       </section>
 
@@ -345,12 +354,9 @@
       <!-- BOTÃO -->
       <div class="mt-10 flex justify-end">
 
-        <button
-          type="submit"
-          class="rounded-xl bg-primary px-8 py-3.5
+        <button type="submit" class="rounded-xl bg-primary px-8 py-3.5
                  font-semibold text-on-primary
-                 transition hover:opacity-90"
-        >
+                 transition hover:opacity-90">
           Anunciar imóvel
         </button>
 

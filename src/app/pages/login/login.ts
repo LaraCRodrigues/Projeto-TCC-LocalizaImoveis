@@ -41,6 +41,11 @@ mensagemSucesso = '';
 
     this.limparMensagens();
 
+    if (!this.aceitouLGPD) {
+    this.mensagemErro =
+      'Você precisa aceitar a Política de Privacidade para entrar.';
+    return;
+  }
     if (!this.emailLogin || !this.senhaLogin) {
       this.mensagemErro = 'Preencha o e-mail e a senha.';
       return;

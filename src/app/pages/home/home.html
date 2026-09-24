@@ -113,13 +113,13 @@
 
 
               <!-- Meus imóveis -->
-              <a routerLink="/cadastrar-imoveis" (click)="fecharMenuUsuario()"
-                class="flex w-full items-center gap-3 rounded-xl px-3 py-3 transition hover:bg-surface-container-high">
-                <span class="material-symbols-outlined text-primary">
+              <a routerLink="/meus-imoveis" (click)="fecharMenuUsuario()"
+                class="flex w-full items-center gap-3 rounded-xl px-3 py-3 transition hover:bg-teal-50">
+                <span class="material-symbols-outlined text-teal-600">
                   home_work
                 </span>
 
-                <span class="text-sm font-medium text-on-surface">
+                <span class="text-sm font-medium text-slate-700">
                   Meus imóveis
                 </span>
               </a>
@@ -222,11 +222,12 @@
         </div>
 
 
-        <!-- BUSCA -->
+        <!-- BUSCA E FILTROS -->
         <div class="bg-surface-container-lowest rounded-2xl p-3 shadow-xl max-w-5xl">
 
           <div class="flex flex-col md:flex-row gap-3">
 
+            <!-- CAMPO DE BUSCA -->
             <div class="flex-1 flex items-center gap-3 px-4 h-14 rounded-xl bg-surface-container-low">
 
               <span class="material-symbols-outlined text-secondary">
@@ -234,12 +235,43 @@
               </span>
 
               <input type="text" [(ngModel)]="termoBusca" placeholder="Busque por cidade, bairro ou tipo de imóvel"
-                class="w-full bg-transparent outline-none text-on-surface placeholder:text-on-surface-variant">
+                class="w-full bg-transparent outline-none text-on-surface placeholder:text-on-surface-variant"
+                (keyup.enter)="pesquisar()">
 
             </div>
 
-            <button type="button" (click)="pesquisar()"
-              class="h-14 px-8 rounded-xl bg-secondary text-on-secondary font-semibold hover:opacity-90 transition">
+
+            <!-- FILTRO DE TIPO -->
+            <div class="relative">
+
+              <select [(ngModel)]="tipoFiltro" (change)="pesquisar()" class="h-14 w-full md:w-52 appearance-none rounded-xl
+               bg-surface-container-low
+               px-4 pr-10
+               text-on-surface
+               outline-none
+               cursor-pointer
+               border-0">
+
+                <option value="Todos">Todos os imóveis</option>
+                <option value="Casa">Casas</option>
+                <option value="Apartamento">Apartamentos</option>
+
+              </select>
+
+              <span class="material-symbols-outlined absolute right-3 top-1/2
+               -translate-y-1/2 pointer-events-none
+               text-on-surface-variant">
+                expand_more
+              </span>
+
+            </div>
+
+
+            <!-- BOTÃO BUSCAR -->
+            <button type="button" (click)="pesquisar()" class="h-14 px-8 rounded-xl
+             bg-secondary text-on-secondary
+             font-semibold
+             hover:opacity-90 transition">
 
               Buscar imóveis
 

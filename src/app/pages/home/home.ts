@@ -32,7 +32,7 @@ export class Home {
   // ==========================================
 
   termoBusca = '';
-
+tipoFiltro = 'Todos';
 
   // ==========================================
   // IMÓVEIS
@@ -134,63 +134,54 @@ export class Home {
 
 
   // ==========================================
-  // PESQUISA
-  // ==========================================
+// PESQUISA E FILTRO
+// ==========================================
 
-  pesquisar(): void {
+pesquisar(): void {
+  this.filtrarImoveis();
+}
 
-    const busca =
-      this.termoBusca
-        .trim()
-        .toLowerCase();
+filtrarImoveis(): void {
+  const busca = this.termoBusca
+    .trim()
+    .toLowerCase();
 
+  this.imoveisFiltrados = this.imoveis.filter(
+    (imovel: Imovel) => {
 
-    if (!busca) {
+      // Filtro por tipo
+      const correspondeTipo =
+        this.tipoFiltro === 'Todos' ||
+        imovel.tipo.toLowerCase() ===
+        this.tipoFiltro.toLowerCase();
 
-      this.imoveisFiltrados =
-        [...this.imoveis];
+      // Filtro pela busca
+      const correspondeBusca =
+        !busca ||
+        imovel.titulo
+          .toLowerCase()
+          .includes(busca) ||
+        imovel.tipo
+          .toLowerCase()
+          .includes(busca) ||
+        imovel.localizacao
+          .toLowerCase()
+          .includes(busca);
 
-      return;
-
+      return correspondeTipo && correspondeBusca;
     }
+  );
+}
 
+// ==========================================
+// LIMPAR PESQUISA
+// ==========================================
 
-    this.imoveisFiltrados =
-      this.imoveis.filter(
-        (imovel: Imovel) =>
+limparBusca(): void {
+  this.termoBusca = '';
+  this.tipoFiltro = 'Todos';
 
-          imovel.titulo
-            .toLowerCase()
-            .includes(busca)
-
-          ||
-
-          imovel.tipo
-            .toLowerCase()
-            .includes(busca)
-
-          ||
-
-          imovel.localizacao
-            .toLowerCase()
-            .includes(busca)
-
-      );
-
-  }
-
-
-  // ==========================================
-  // LIMPAR PESQUISA
-  // ==========================================
-
-  limparBusca(): void {
-
-    this.termoBusca = '';
-
-    this.imoveisFiltrados =
-      [...this.imoveis];
-
-  }
+  this.filtrarImoveis();
+}
 
 }

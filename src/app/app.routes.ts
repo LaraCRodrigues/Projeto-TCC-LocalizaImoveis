@@ -4,6 +4,7 @@ import { Home } from './pages/home/home';
 import { Login } from './pages/login/login';
 import { DetalhesImoveis } from './pages/imoveis/detalhes-imoveis/detalhes-imoveis';
 import { CadastrarImoveis } from './pages/imoveis/cadastrar-imoveis/cadastrar-imoveis';
+import { MeusImoveis } from './pages/imoveis/meus-imoveis/meus-imoveis';
 
 export const routes: Routes = [
 
@@ -36,6 +37,9 @@ export const routes: Routes = [
   {
     path: '**',
     redirectTo: 'home'
-  }
-
+  },
+{
+  path: 'meus-imoveis',
+  component: MeusImoveis
+},
 ];
