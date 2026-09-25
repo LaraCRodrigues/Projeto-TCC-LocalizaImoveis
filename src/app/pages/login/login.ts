@@ -7,7 +7,7 @@ import { Router, RouterLink } from '@angular/router';
   standalone: true,
   imports: [FormsModule, RouterLink],
   templateUrl: './login.html',
-  styleUrl: './login.css'
+  styleUrl: './login.css',
 })
 export class Login {
 
@@ -25,12 +25,14 @@ export class Login {
 
   perfilCadastro: 'usuario' | 'corretor' = 'usuario';
 
+  // LGPD
   aceitouLGPD = false;
+  mostrarPolitica = false;
 
   mensagemErro = '';
   mensagemSucesso = '';
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
 
   abrirCadastro(): void {
     this.mostrarCadastro = true;
@@ -40,17 +42,11 @@ export class Login {
   fecharCadastro(): void {
     this.mostrarCadastro = false;
     this.limparMensagens();
+    this.mostrarPolitica = false;
   }
 
   entrar(): void {
-
     this.limparMensagens();
-
-    if (!this.aceitouLGPD) {
-      this.mensagemErro =
-        'Você precisa aceitar a Política de Privacidade para entrar.';
-      return;
-    }
 
     if (!this.emailLogin || !this.senhaLogin) {
       this.mensagemErro = 'Preencha o e-mail e a senha.';
@@ -85,7 +81,6 @@ export class Login {
   }
 
   cadastrar(): void {
-
     this.limparMensagens();
 
     if (
@@ -98,6 +93,13 @@ export class Login {
       return;
     }
 
+    // Consentimento LGPD
+    if (!this.aceitouLGPD) {
+      this.mensagemErro =
+        'Você precisa aceitar a Política de Privacidade para criar sua conta.';
+      return;
+    }
+
     if (this.senhaCadastro !== this.confirmarSenha) {
       this.mensagemErro = 'As senhas não são iguais.';
       return;
@@ -105,7 +107,6 @@ export class Login {
 
     // Campos obrigatórios somente para corretor
     if (this.perfilCadastro === 'corretor') {
-
       if (!this.telefoneCadastro || !this.creciCadastro) {
         this.mensagemErro =
           'Para cadastrar um corretor, informe o telefone e o CRECI.';
@@ -116,7 +117,6 @@ export class Login {
     const usuarioSalvo = localStorage.getItem('usuario');
 
     if (usuarioSalvo) {
-
       const usuario = JSON.parse(usuarioSalvo);
 
       if (usuario.email === this.emailCadastro) {
@@ -130,18 +130,18 @@ export class Login {
       email: this.emailCadastro,
       senha: this.senhaCadastro,
       perfil: this.perfilCadastro,
-      telefone: this.perfilCadastro === 'corretor'
-        ? this.telefoneCadastro
-        : '',
-      creci: this.perfilCadastro === 'corretor'
-        ? this.creciCadastro
-        : ''
+      telefone: this.telefoneCadastro,
+      creci:
+        this.perfilCadastro === 'corretor'
+          ? this.creciCadastro
+          : '',
+
+      // Dados relacionados ao consentimento LGPD
+      aceitouLGPD: this.aceitouLGPD,
+      dataConsentimento: new Date().toISOString()
     };
 
-    localStorage.setItem(
-      'usuario',
-      JSON.stringify(novoUsuario)
-    );
+    localStorage.setItem('usuario', JSON.stringify(novoUsuario));
 
     this.mensagemSucesso =
       this.perfilCadastro === 'corretor'
@@ -161,6 +161,9 @@ export class Login {
 
     // Volta para usuário como padrão
     this.perfilCadastro = 'usuario';
+
+    // Limpa o consentimento para um próximo cadastro
+    this.aceitouLGPD = false;
 
     setTimeout(() => {
       this.mostrarCadastro = false;

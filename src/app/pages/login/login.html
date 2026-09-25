@@ -2,10 +2,16 @@
 
   <!-- VÍDEO DE FUNDO -->
   <video #videoFundo class="absolute inset-0 h-full w-full object-cover" autoplay muted loop playsinline>
+
+
+
+       
     <source src="/video.mp4" type="video/mp4">
+
+
+
+     
   </video>
-
-
   <!-- BOTÃO VOLTAR PARA HOME -->
   <a routerLink="/home"
     class="absolute top-6 left-6 z-50 flex items-center gap-2 rounded-lg bg-white/90 px-4 py-2 text-sm font-semibold text-gray-800 shadow-md transition hover:bg-white">
@@ -104,26 +110,6 @@
         </div>
         <!-- DADOS DO CORRETOR -->
         @if (perfilCadastro === 'corretor') {
-
-        <!-- TELEFONE -->
-        <div class="space-y-2">
-
-          <label for="telefoneCadastro" class="block text-sm font-medium text-white/90">
-            Telefone
-          </label>
-
-          <input id="telefoneCadastro" type="tel" name="telefoneCadastro" [(ngModel)]="telefoneCadastro"
-            placeholder="Digite seu telefone" required class="w-full rounded-xl border border-white/20
-             bg-white/10 py-3.5 px-4
-             text-white outline-none
-             placeholder:text-white/40
-             transition duration-200
-             focus:border-white/50
-             focus:bg-white/15
-             focus:ring-2 focus:ring-white/20">
-
-        </div>
-
 
         <!-- CRECI -->
         <div class="space-y-2">
@@ -341,6 +327,27 @@
                      focus:ring-2 focus:ring-white/20">
 
         </div>
+
+
+        <!-- TELEFONE — TODOS OS USUÁRIOS -->
+        <div class="space-y-2">
+
+          <label for="telefoneCadastro" class="block text-sm font-medium text-white/90">
+            Telefone
+          </label>
+
+          <input id="telefoneCadastro" type="tel" name="telefoneCadastro" [(ngModel)]="telefoneCadastro"
+            placeholder="Digite seu telefone" required class="w-full rounded-xl border border-white/20
+             bg-white/10 py-3.5 px-4
+             text-white outline-none
+             placeholder:text-white/40
+             transition duration-200
+             focus:border-white/50
+             focus:bg-white/15
+             focus:ring-2 focus:ring-white/20">
+
+        </div>
+
         <!-- TIPO DE CONTA -->
         <div class="space-y-3">
 
@@ -413,26 +420,6 @@
         </div>
         <!-- DADOS DO CORRETOR -->
         @if (perfilCadastro === 'corretor') {
-
-        <!-- TELEFONE -->
-        <div class="space-y-2">
-
-          <label for="telefoneCadastro" class="block text-sm font-medium text-white/90">
-            Telefone
-          </label>
-
-          <input id="telefoneCadastro" type="tel" name="telefoneCadastro" [(ngModel)]="telefoneCadastro"
-            placeholder="Digite seu telefone" required class="w-full rounded-xl border border-white/20
-             bg-white/10 py-3.5 px-4
-             text-white outline-none
-             placeholder:text-white/40
-             transition duration-200
-             focus:border-white/50
-             focus:bg-white/15
-             focus:ring-2 focus:ring-white/20">
-
-        </div>
-
 
         <!-- CRECI -->
         <div class="space-y-2">

@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { NgClass } from '@angular/common';
 import { Imovel, IMOVEIS } from '../../models/imovel';
-
+import { RouterLinkActive } from '@angular/router';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -11,7 +11,9 @@ import { Imovel, IMOVEIS } from '../../models/imovel';
   imports: [
     FormsModule,
     RouterLink,
-    NgClass
+    NgClass,
+     RouterLink,
+  RouterLinkActive
   ],
 
   templateUrl: './home.html',

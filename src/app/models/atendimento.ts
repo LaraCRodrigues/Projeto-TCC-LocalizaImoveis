@@ -4,6 +4,7 @@ export interface Atendimento {
   imovelTitulo: string;
   nomeUsuario: string;
   emailUsuario: string;
+  telefoneUsuario: string;
   mensagem: string;
   resposta?: string;
 }

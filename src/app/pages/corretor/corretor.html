@@ -1,178 +1,203 @@
 <div class="min-h-screen bg-slate-50">
 
   <!-- CABEÇALHO -->
-  <header class="border-b border-slate-200 bg-white">
-    <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+  <header class="bg-slate-900 text-white px-6 py-5">
+
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
 
       <div>
-        <p class="text-sm font-medium text-teal-600">
-          LocalizaImóveis
+
+        <p class="text-sm text-slate-300">
+          Painel do corretor
         </p>
 
-        <h1 class="text-2xl font-bold text-slate-800">
-          Painel do Corretor
+        <h1 class="text-2xl font-bold">
+          Olá, {{ nomeCorretor }}!
         </h1>
+
       </div>
 
       <a
         routerLink="/home"
-        class="rounded-xl border border-slate-200 px-4 py-2 text-sm
-               font-medium text-slate-600 transition hover:bg-slate-50"
-      >
-        Voltar para o site
+        class="rounded-lg bg-white/10 px-4 py-2 text-sm font-medium hover:bg-white/20 transition">
+
+        Voltar para Home
+
       </a>
 
     </div>
+
   </header>
 
 
   <!-- CONTEÚDO -->
-  <main class="mx-auto max-w-7xl px-6 py-8">
+  <main class="max-w-6xl mx-auto px-6 py-8">
 
-    <!-- SAUDAÇÃO -->
-    <section class="mb-8">
+    <div class="mb-8">
 
-      <h2 class="text-xl font-bold text-slate-800">
-        Olá, {{ nomeCorretor }}!
+      <h2 class="text-2xl font-bold text-slate-800">
+        Solicitações de atendimento
       </h2>
 
-      <p class="mt-1 text-sm text-slate-500">
-        Veja abaixo os pedidos de atendimento dos interessados.
+      <p class="mt-1 text-slate-500">
+        Veja as mensagens enviadas pelos usuários interessados nos imóveis.
       </p>
 
-    </section>
+    </div>
 
 
-    <!-- RESUMO -->
-    <section class="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+    <!-- QUANTIDADE -->
+    <div class="mb-6 rounded-xl bg-white border border-slate-200 p-5">
 
-      <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+      <p class="text-sm text-slate-500">
+        Atendimentos recebidos
+      </p>
 
-        <p class="text-sm text-slate-500">
-          Solicitações recebidas
-        </p>
+      <p class="mt-1 text-3xl font-bold text-slate-800">
+        {{ atendimentos.length }}
+      </p>
 
-        <p class="mt-2 text-3xl font-bold text-slate-800">
-          {{ atendimentos.length }}
+    </div>
+
+
+    <!-- SEM ATENDIMENTOS -->
+    @if (atendimentos.length === 0) {
+
+      <div class="rounded-xl border border-dashed border-slate-300 bg-white p-10 text-center">
+
+        <span class="material-symbols-outlined text-5xl text-slate-300">
+          inbox
+        </span>
+
+        <h3 class="mt-4 text-lg font-semibold text-slate-700">
+          Nenhum atendimento recebido
+        </h3>
+
+        <p class="mt-2 text-sm text-slate-500">
+          Quando um usuário falar com um corretor, a solicitação aparecerá aqui.
         </p>
 
       </div>
 
-    </section>
+    }
 
 
-    <!-- PEDIDOS -->
-    <section>
+    <!-- LISTA DE ATENDIMENTOS -->
+    @if (atendimentos.length > 0) {
 
-      <div class="mb-4">
+      <div class="space-y-5">
 
-        <h2 class="text-lg font-bold text-slate-800">
-          Pedidos de atendimento
-        </h2>
+        @for (atendimento of atendimentos; track atendimento.id) {
 
-      </div>
+          <div class="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
 
 
-      @if (atendimentos.length === 0) {
+            <!-- CABEÇALHO DO ATENDIMENTO -->
+            <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
 
-        <div class="rounded-2xl border border-dashed border-slate-300
-                    bg-white p-10 text-center">
+              <div>
 
-          <span class="material-symbols-outlined text-4xl text-slate-300">
-            inbox
-          </span>
+                <p class="text-xs font-semibold uppercase tracking-wide text-teal-600">
+                  Solicitação de atendimento
+                </p>
 
-          <h3 class="mt-3 font-semibold text-slate-700">
-            Nenhum pedido de atendimento
-          </h3>
+                <h3 class="mt-1 text-lg font-bold text-slate-800">
+                  {{ atendimento.imovelTitulo }}
+                </h3>
 
-          <p class="mt-1 text-sm text-slate-500">
-            Quando um interessado enviar uma dúvida,
-            ela aparecerá aqui.
-          </p>
+              </div>
 
-        </div>
+              <span class="rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700">
+                Aguardando resposta
+              </span>
 
-      } @else {
+            </div>
 
-        <div class="space-y-4">
 
-          @for (atendimento of atendimentos; track atendimento.id) {
+            <!-- DADOS DO USUÁRIO -->
+            <div class="mt-5 grid gap-4 md:grid-cols-2">
 
-            <article
-              class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
-            >
+              <div class="rounded-lg bg-slate-50 p-4">
 
-              <div class="flex flex-col gap-4 lg:flex-row lg:items-start
-                          lg:justify-between">
+                <p class="text-xs text-slate-500">
+                  Usuário
+                </p>
 
-                <div>
-
-                  <p class="text-xs font-semibold uppercase tracking-wide
-                            text-teal-600">
-                    Interesse em imóvel
-                  </p>
-
-                  <h3 class="mt-1 text-lg font-bold text-slate-800">
-                    {{ atendimento.imovelTitulo }}
-                  </h3>
-
-                  <p class="mt-3 text-sm text-slate-500">
-                    Interessado:
-                    <span class="font-medium text-slate-700">
-                      {{ atendimento.nomeUsuario }}
-                    </span>
-                  </p>
-
-                  <p class="text-sm text-slate-500">
-                    {{ atendimento.emailUsuario }}
-                  </p>
-
-                </div>
+                <p class="mt-1 font-semibold text-slate-800">
+                  {{ atendimento.nomeUsuario }}
+                </p>
 
               </div>
 
 
-              <!-- MENSAGEM -->
-              <div class="mt-5 rounded-xl bg-slate-50 p-4">
+              <div class="rounded-lg bg-slate-50 p-4">
 
-                <p class="text-xs font-semibold text-slate-500">
-                  Mensagem do interessado
+                <p class="text-xs text-slate-500">
+                  E-mail
                 </p>
 
-                <p class="mt-2 text-sm leading-6 text-slate-700">
+                <p class="mt-1 font-semibold text-slate-800">
+                  {{ atendimento.emailUsuario }}
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <!-- MENSAGEM -->
+            <div class="mt-5">
+
+              <p class="text-sm font-semibold text-slate-700">
+                Mensagem do usuário
+              </p>
+
+              <div class="mt-2 rounded-lg bg-slate-50 border border-slate-200 p-4">
+
+                <p class="text-sm leading-6 text-slate-700">
                   {{ atendimento.mensagem }}
                 </p>
 
               </div>
 
+            </div>
 
-              <!-- RESPOSTA -->
-              @if (atendimento.resposta) {
 
-                <div class="mt-4 rounded-xl bg-teal-50 p-4">
+            <!-- CONTATO COM O USUÁRIO -->
+            <div class="mt-5 border-t border-slate-200 pt-5">
 
-                  <p class="text-xs font-semibold text-teal-700">
-                    Resposta enviada
-                  </p>
+              <p class="text-sm font-semibold text-slate-700 mb-3">
+                Contato
+              </p>
 
-                  <p class="mt-2 text-sm leading-6 text-slate-700">
-                    {{ atendimento.resposta }}
-                  </p>
+              <div class="flex flex-col sm:flex-row gap-3">
 
-                </div>
+                <!-- WHATSAPP -->
+                <button
+                  type="button"
+                  (click)="abrirWhatsApp(atendimento.telefoneUsuario)"
+                  class="flex-1 rounded-lg bg-green-600 px-4 py-3 text-sm font-semibold text-white transition hover:bg-green-700">
 
-              }
+                  <span class="material-symbols-outlined align-middle mr-2">
+                    chat
+                  </span>
 
-            </article>
+                  Conversar pelo WhatsApp
 
-          }
+                </button>
 
-        </div>
+              </div>
 
-      }
+            </div>
 
-    </section>
+
+          </div>
+
+        }
+
+      </div>
+
+    }
 
   </main>
 
