@@ -1,0 +1,13 @@
+:host {
+  display: block;
+}
+
+input,
+select,
+button {
+  font-family: inherit;
+}
+
+article img {
+  display: block;
+}

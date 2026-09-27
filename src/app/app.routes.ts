@@ -6,9 +6,8 @@ import { DetalhesImoveis } from './pages/imoveis/detalhes-imoveis/detalhes-imove
 import { CadastrarImoveis } from './pages/imoveis/cadastrar-imoveis/cadastrar-imoveis';
 import { MeusImoveis } from './pages/meus-imoveis/meus-imoveis';
 import { Corretor } from './pages/corretor/corretor';
-
 import { authGuard } from './guards/auth-guard';
-
+import { ExplorarImoveis } from './pages/imoveis/explorar-imoveis/explorar-imoveis';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
 
@@ -21,20 +20,24 @@ export const routes: Routes = [
   {
     path: 'cadastrar-imoveis',
     component: CadastrarImoveis,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
+  },
+  {
+    path: 'imoveis/explorar',
+    component: ExplorarImoveis,
   },
 
   {
     path: 'meus-imoveis',
     component: MeusImoveis,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
 
   {
     path: 'corretor',
     component: Corretor,
-    canActivate: [authGuard]
+    canActivate: [authGuard],
   },
 
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'home' },
 ];

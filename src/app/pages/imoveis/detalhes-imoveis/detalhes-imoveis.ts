@@ -33,6 +33,26 @@ export class DetalhesImoveis implements OnInit {
   mensagemImovel = '';
 
   // ==============================
+  // IMAGENS SECUNDÁRIAS
+  // ==============================
+
+  get imagemInterior1(): string {
+    const imovel = this.imovel as
+      | (Imovel & { imagemInterior1?: string })
+      | undefined;
+
+    return imovel?.imagemInterior1 || this.imovel?.imagem || '';
+  }
+
+  get imagemInterior2(): string {
+    const imovel = this.imovel as
+      | (Imovel & { imagemInterior2?: string })
+      | undefined;
+
+    return imovel?.imagemInterior2 || this.imovel?.imagem || '';
+  }
+
+  // ==============================
   // AVALIAÇÃO
   // ==============================
 
@@ -102,7 +122,11 @@ export class DetalhesImoveis implements OnInit {
   // ==============================
 
   mostrarTelefone(): void {
-    this.telefoneVisivel = !this.telefoneVisivel;
+    if (!this.usuarioLogado) {
+      return;
+    }
+
+    this.telefoneVisivel = true;
   }
 
   // ==============================
